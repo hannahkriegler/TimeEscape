@@ -32,8 +32,6 @@ public class Free_GM : MonoBehaviour {
 
         }
 
-       
-
     }
     Vector3 tmptrans;
     // Update is called once per frame
