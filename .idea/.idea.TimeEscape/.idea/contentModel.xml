@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\hanna\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\hanna\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_TimeEscape.1630307246.00" t="ExcludeRecursive" />
+    <e p="C:\Users\hanna\OneDrive\Dokumente\01Uni\TimeEscape" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Free_Pack" t="Include">
+          <e p="BURLY-MAN_1_swordsman" t="Include">
+            <e p="Free_GM.cs" t="Include" />
+          </e>
+          <e p="Demo_GameResource" t="Include">
+            <e p="Script" t="Include">
+              <e p="CharacterController_2D.cs" t="Include" />
+              <e p="ColliderEvent_Sender.cs" t="Include" />
+              <e p="Demo_GM.cs" t="Include" />
+              <e p="DestroyEffect.cs" t="Include" />
+              <e p="WoodDoll_Mgr.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="TimeEscape.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
