@@ -9,6 +9,7 @@ namespace TE
         
         public Movement Movement { get; private set; }
         public CombatMelee CombatMelee { get; private set; }
+        public CombatSkill CombatSkill { get; private set; }
 
         [Header("References")]
         public Rigidbody2D rigidBody;
@@ -22,6 +23,7 @@ namespace TE
             this._game = game;
             Movement = new Movement(this, _game);
             CombatMelee = new CombatMelee(this, _game);
+            CombatSkill = new CombatSkill(this, _game);
         }
 
         private void Update()

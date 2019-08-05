@@ -8,8 +8,8 @@ namespace  TE
     public class Game : MonoBehaviour
     {
         //Custom Deltas
-        public float deltaPlayer;
-        public float deltaWorld;
+        public float deltaPlayer { get; private set; }
+        public float deltaWorld { get; private set; }
 
         public InputManager inputManager;
         [HideInInspector] public Player player;

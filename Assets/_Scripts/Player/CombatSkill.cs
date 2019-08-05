@@ -5,13 +5,15 @@ namespace TE
     public class CombatSkill
     {
         private Player _player;
+        private Game _game;
 
         private Skill _chargeSkill;
         private Skill _activeSkill;
         
-        public CombatSkill(Player player)
+        public CombatSkill(Player player, Game game)
         {
-            this._player = player;
+            _player = player;
+            _game = game;
         }
 
         public void ActivateChargeSkill()
