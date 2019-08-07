@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: box-end-up
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 8feb8ead8936e2e4ab34481e79ee03ab, type: 3}
-  m_Color: {r: 0.11320752, g: 0.10092557, b: 0.10092557, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Transform:
     e00: 1
     e01: 0
