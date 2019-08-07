@@ -17,8 +17,18 @@ namespace  TE
         public Session session;
         public TimeStorage storage;
 
+
+        public static Game instance;
+        
+        private void Awake()
+        {
+            instance = this;
+            throw new NotImplementedException();
+        }
+
         private void Start()
         {
+            DontDestroyOnLoad(gameObject);
             session = new Session(this);
             storage = new TimeStorage(this);
             inputManager.Init(this);
