@@ -38,3 +38,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Sonstiges/.DS_Store
+Assets/Sprites/Deepdream_Backgrounds/.DS_Store
+Assets/Sprites/10gamebackgrounds_windows/bg set 2/.DS_Store
+Assets/Sprites/10gamebackgrounds_windows/.DS_Store
+Assets/Sprites/.DS_Store
+Assets/.DS_Store
+.DS_Store
