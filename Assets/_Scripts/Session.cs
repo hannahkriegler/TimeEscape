@@ -11,7 +11,7 @@ namespace TE
 
         public bool IsDashUnlocked()
         {
-            //TODO Implement Dash
+           //TODO Implement check
             return true;
         }
     }
