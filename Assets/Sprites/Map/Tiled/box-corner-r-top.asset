@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: box-corner-r-top
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: f0fb0ffa0e1ca7c4f9fe341674303c1b, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0
