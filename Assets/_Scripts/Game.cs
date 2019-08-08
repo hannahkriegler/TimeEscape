@@ -9,7 +9,7 @@ namespace  TE
     {
         //Custom Deltas
         public float deltaPlayer { get; private set; }
-        public float deltaWorld { get; private set; }
+        public float deltaWorld { get; private set; } 
 
         public InputManager inputManager;
         [HideInInspector] public Player player;

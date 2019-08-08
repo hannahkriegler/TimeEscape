@@ -1,7 +1,55 @@
 fileFormatVersion: 2
 guid: cd033cbb1f4dcfb4cbaed30af1a5ae6a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -1946166229499285088
+    second: book_enemy_reference_0
+  - first:
+      213: -436680371590035047
+    second: book_enemy_reference_1
+  - first:
+      213: -567864343648699695
+    second: book_enemy_reference_2
+  - first:
+      213: -430018318078029513
+    second: book_enemy_reference_3
+  - first:
+      213: -5440618105020310376
+    second: book_enemy_reference_4
+  - first:
+      213: -5299713453112807728
+    second: book_enemy_reference_5
+  - first:
+      213: -239255084408002116
+    second: book_enemy_reference_6
+  - first:
+      213: 1966745155315773620
+    second: book_enemy_reference_7
+  - first:
+      213: 4221609772581801789
+    second: book_enemy_reference_8
+  - first:
+      213: 7097070842694754644
+    second: book_enemy_reference_9
+  - first:
+      213: -6809699317375779019
+    second: book_enemy_reference_10
+  - first:
+      213: 6680383809440286544
+    second: book_enemy_reference_11
+  - first:
+      213: 5050145619209471786
+    second: book_enemy_reference_12
+  - first:
+      213: 1939133544616655960
+    second: book_enemy_reference_13
+  - first:
+      213: 8452000671005019
+    second: book_enemy_reference_14
+  - first:
+      213: 1056340738950662600
+    second: book_enemy_reference_15
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -31,7 +79,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -40,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,9 +118,357 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: book_enemy_reference_0
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 1285
+        width: 285
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c1e0625a3ab7424c8878f67371e844c
+      internalID: -1946166229499285088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_1
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1287
+        width: 304
+        height: 224
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e906ab709b968468c65b1c9e9d1b1c
+      internalID: -436680371590035047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_2
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1262
+        width: 307
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0333dc3bf0cd4764591bbe39219dcfc7
+      internalID: -567864343648699695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_3
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 1259
+        width: 304
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5ec0dcc72ad36b4f8516efb865b513d
+      internalID: -430018318078029513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_4
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 893
+        width: 304
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 179933144b11a8c4e9d63dd42900ad53
+      internalID: -5440618105020310376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_5
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 908
+        width: 351
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0490eef0a8e06ab41a649874e51a1779
+      internalID: -5299713453112807728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_6
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 910
+        width: 380
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e2eab20edf09db4082f45ec171d1a14
+      internalID: -239255084408002116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_7
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 822
+        width: 432
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e283046b92d7c0741ae333a59139a112
+      internalID: 1966745155315773620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_8
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 417
+        width: 430
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d20acb33286d419458e65a23f3e7691d
+      internalID: 4221609772581801789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_9
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 424
+        width: 418
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fdc2bdcc1dc10045b2b06be62999033
+      internalID: 7097070842694754644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_10
+      rect:
+        serializedVersion: 2
+        x: 1118
+        y: 455
+        width: 392
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bbfd4c4a55b6043ac3211d99cf87fe
+      internalID: -6809699317375779019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_11
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 487
+        width: 285
+        height: 234
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01255a648b481b24f9125da870bfa7f2
+      internalID: 6680383809440286544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_12
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 17
+        width: 430
+        height: 266
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21990b4433382ec47bb4020ee7a4c5dd
+      internalID: 5050145619209471786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_13
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 49
+        width: 418
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7812c0582a86a4a41aae21e3bfbe7b03
+      internalID: 1939133544616655960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_14
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 51
+        width: 411
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebfe56b9b0dc79c4aa7f34bad7bdede5
+      internalID: 8452000671005019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: book_enemy_reference_15
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 53
+        width: 410
+        height: 239
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b80360e29ce5a324d9ae6622c4a6b8c7
+      internalID: 1056340738950662600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
