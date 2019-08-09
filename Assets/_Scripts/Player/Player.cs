@@ -38,8 +38,8 @@ namespace TE
 
         private void Update()
         {
-            delta = Time.deltaTime * _game.playerTimeScale;
-            fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
+            //delta = Time.deltaTime * _game.playerTimeScale;
+            //fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
         }
 
         public void OnHit()
