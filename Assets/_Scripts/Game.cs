@@ -8,8 +8,9 @@ namespace  TE
     public class Game : MonoBehaviour
     {
         //Custom Deltas
-        public float deltaPlayer { get; private set; }
-        public float deltaWorld { get; private set; } 
+        public float playerTimeScale { get; private set; }
+        public float worldTimeScale { get; private set; } 
+        
 
         public InputManager inputManager;
         [HideInInspector] public Player player;
@@ -23,7 +24,6 @@ namespace  TE
         private void Awake()
         {
             instance = this;
-            throw new NotImplementedException();
         }
 
         private void Start()
@@ -31,13 +31,9 @@ namespace  TE
             DontDestroyOnLoad(gameObject);
             session = new Session(this);
             storage = new TimeStorage(this);
+            playerTimeScale = 1;
+            worldTimeScale = 1;
             inputManager.Init(this);
-        }
-
-        private void Update()
-        {
-            deltaPlayer = Time.deltaTime;
-            deltaWorld = Time.deltaTime;
         }
     }
 }

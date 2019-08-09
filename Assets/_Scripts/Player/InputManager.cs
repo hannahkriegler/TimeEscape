@@ -31,11 +31,13 @@ namespace TE
             dashCheck = false;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             UpdateInputs();
             UpdatePlayer();
         }
+
+   
 
         void UpdateInputs()
         {
@@ -83,7 +85,7 @@ namespace TE
             //Attack Handling
             if (attack)
             {
-                chargeTimer += player.delta;
+                chargeTimer += player.fixedDelta;
             }
 
             if (attack_up)

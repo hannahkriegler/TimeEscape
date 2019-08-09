@@ -10,17 +10,27 @@ namespace TE
         public Movement Movement { get; private set; }
         public CombatMelee CombatMelee { get; private set; }
         public CombatSkill CombatSkill { get; private set; }
+        
+        public Rigidbody2D rigidBody  { get; private set; }
 
+        public SwordHook sword  { get; private set; }
         [Header("References")]
-        public Rigidbody2D rigidBody;
-
-        public SwordHook sword;
-
+        public Transform groundCheck;
+        public LayerMask groundLayerCheck;
+        
+        [Header("Settings")]
+        public float moveSpeed = 365f;
+        public float maxSpeed = 5;
+        public float jumpForce = 2000;
+        
         public float delta { get; private set; }
+        public float fixedDelta { get; private set; }
         
         public void Init(Game game)
         {
             this._game = game;
+            rigidBody = GetComponent<Rigidbody2D>();
+            sword = GetComponentInChildren<SwordHook>();
             Movement = new Movement(this, _game);
             CombatMelee = new CombatMelee(this, _game);
             CombatSkill = new CombatSkill(this, _game);
@@ -28,7 +38,8 @@ namespace TE
 
         private void Update()
         {
-            delta = _game.deltaPlayer;
+            delta = Time.deltaTime * _game.playerTimeScale;
+            fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
         }
 
         public void OnHit()
