@@ -11,27 +11,45 @@ namespace TE
         public bool grounded { get; private set; }
         public bool facingRight { get; private set; } = true;
 
+        public bool jump;
+
         public Movement(Player player, Game game)
         {
             _player = player;
             _game = game;
         }
 
+        public void Tick()
+        {
+            float delta = _player.fixedDelta;
+            grounded = Physics2D.Linecast(_player.transform.position, _player.groundCheck.position, _player.groundLayerCheck);
+
+            Rigidbody2D rb = _player.rigidBody;
+
+            if(rb.velocity.y < 0)
+            {
+                rb.velocity += Vector2.up * Physics.gravity.y * (_player.fallMultiplier - 1) * delta;
+            }
+            else if(rb.velocity.y > 0 && !jump)
+            {
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.lowJumpMultiplier - 1) * delta;
+            }
+        }
+
         public void Move(Vector2 direction)
         {
             float delta = _player.fixedDelta;
-            Rigidbody2D rigid = _player.rigidBody;
+            Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
             
             //TODO Move Animation
             
-            grounded = Physics2D.Linecast(_player.transform.position, _player.groundCheck.position, _player.groundLayerCheck);
             
-            if (h * rigid.velocity.x < _player.maxSpeed)
-                rigid.AddForce(h * _player.moveSpeed * Vector2.right);
+            if (h * rb.velocity.x < _player.maxSpeed)
+                rb.AddForce(h * _player.moveSpeed * Vector2.right);
 
-            if (Mathf.Abs (rigid.velocity.x) > _player.maxSpeed)
-                rigid.velocity = new Vector2(Mathf.Sign (rigid.velocity.x) * _player.maxSpeed, rigid.velocity.y);
+            if (Mathf.Abs (rb.velocity.x) > _player.maxSpeed)
+                rb.velocity = new Vector2(Mathf.Sign (rb.velocity.x) * _player.maxSpeed, rb.velocity.y);
             
             if (h > 0 && !facingRight)
                 FlipCharacter ();
@@ -44,7 +62,7 @@ namespace TE
             if (grounded)
             {
                 //TODO Trigger Jump Animation
-                _player.rigidBody.AddForce(new Vector2(0f, _player.jumpForce));
+                _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
             }
         }
 

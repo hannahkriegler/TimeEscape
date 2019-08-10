@@ -3501,7 +3501,7 @@ Transform:
   m_GameObject: {fileID: 1892420787937326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.15, y: -0.21, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: -0.4, y: 0.4, z: 1}
   m_Children:
   - {fileID: 4372054120543010}
   - {fileID: 811455764}
@@ -3557,7 +3557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3092a51a5c864cae8eeb94ccfd756a24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 811455764}
+  groundCheck: {fileID: 0}
   groundLayerCheck:
     serializedVersion: 2
     m_Bits: 823

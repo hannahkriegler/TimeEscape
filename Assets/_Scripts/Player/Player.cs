@@ -21,7 +21,9 @@ namespace TE
         [Header("Settings")]
         public float moveSpeed = 365f;
         public float maxSpeed = 5;
-        public float jumpForce = 2000;
+        public float jumpVelocity = 10;
+        public float fallMultiplier = 2.5f;
+        public float lowJumpMultiplier = 2f;
         
         public float delta { get; private set; }
         public float fixedDelta { get; private set; }
