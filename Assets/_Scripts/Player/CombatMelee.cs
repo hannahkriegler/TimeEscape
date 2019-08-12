@@ -14,8 +14,7 @@ namespace TE
 
         public void Attack()
         {
-            //TODO-Hannah Implement basic melee Attack
-            Debug.Log(("Melee Attack!"));
+            _player.PlayAnimation("Attack");
         }
     }
 }

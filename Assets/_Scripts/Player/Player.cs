@@ -13,9 +13,10 @@ namespace TE
         
         public Rigidbody2D rigidBody  { get; private set; }
 
+        public Animator animator { get; private set; }
+
         public SwordHook sword  { get; private set; }
         [Header("References")]
-        public Transform groundCheck;
         public LayerMask groundLayerCheck;
         
         [Header("Settings")]
@@ -24,15 +25,17 @@ namespace TE
         public float jumpVelocity = 10;
         public float fallMultiplier = 2.5f;
         public float lowJumpMultiplier = 2f;
+        public float gravityMultiplier = 2f;
         
         public float delta { get; private set; }
         public float fixedDelta { get; private set; }
         
         public void Init(Game game)
         {
-            this._game = game;
+            _game = game;
             rigidBody = GetComponent<Rigidbody2D>();
             sword = GetComponentInChildren<SwordHook>();
+            animator = GetComponentInChildren<Animator>();
             Movement = new Movement(this, _game);
             CombatMelee = new CombatMelee(this, _game);
             CombatSkill = new CombatSkill(this, _game);
@@ -40,8 +43,8 @@ namespace TE
 
         private void Update()
         {
-            //delta = Time.deltaTime * _game.playerTimeScale;
-            //fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
+            delta = Time.deltaTime * _game.playerTimeScale;
+            fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
         }
 
         public void OnHit()
@@ -49,5 +52,9 @@ namespace TE
             Debug.Log("Player hitted!");
         }
         
+        public void PlayAnimation(string animation)
+        {
+            animator.CrossFade(animation, 0.2f);
+        }
     }
 }

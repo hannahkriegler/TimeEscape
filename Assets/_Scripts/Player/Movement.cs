@@ -22,13 +22,17 @@ namespace TE
         public void Tick()
         {
             float delta = _player.fixedDelta;
-            grounded = Physics2D.Linecast(_player.transform.position, _player.groundCheck.position, _player.groundLayerCheck);
 
+            grounded = CheckGrounded(0, -1.2f) || CheckGrounded(0.2f, -1.2f) || CheckGrounded(-0.2f, -1.2f);
             Rigidbody2D rb = _player.rigidBody;
 
+            if (!grounded)
+            {
+                rb.velocity += Vector2.up * delta * Physics2D.gravity * _player.gravityMultiplier;
+            }
             if(rb.velocity.y < 0)
             {
-                rb.velocity += Vector2.up * Physics.gravity.y * (_player.fallMultiplier - 1) * delta;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.fallMultiplier - 1) * delta;
             }
             else if(rb.velocity.y > 0 && !jump)
             {
@@ -41,10 +45,16 @@ namespace TE
             float delta = _player.fixedDelta;
             Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
-            
+
             //TODO Move Animation
+
+            _player.animator.SetFloat("MoveSpeed", direction.magnitude);
             
-            
+            if(direction.magnitude < 0.1f)
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
+
             if (h * rb.velocity.x < _player.maxSpeed)
                 rb.AddForce(h * _player.moveSpeed * Vector2.right);
 
@@ -80,6 +90,13 @@ namespace TE
             Vector3 theScale = _player.transform.localScale;
             theScale.x *= -1;
             _player.transform.localScale = theScale;
+        }
+
+        bool CheckGrounded(float rightOffset, float upOffset)
+        {
+            return Physics2D.Linecast(_player.transform.position + Vector3.right * rightOffset, 
+                _player.transform.position + Vector3.up * upOffset + Vector3.right * rightOffset,
+                _player.groundLayerCheck);
         }
     }
 }

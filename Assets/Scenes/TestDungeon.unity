@@ -49057,12 +49057,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!4 &811455764 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 811455764, guid: 8cc81305d37e7f546ac8b6604aca1497,
-    type: 3}
-  m_PrefabInstance: {fileID: 2009171813}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1202520808
 GameObject:
   m_ObjectHideFlags: 0
@@ -49438,7 +49432,7 @@ PrefabInstance:
     - target: {fileID: 50891965311963048, guid: 8cc81305d37e7f546ac8b6604aca1497,
         type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50891965311963048, guid: 8cc81305d37e7f546ac8b6604aca1497,
         type: 3}
@@ -49447,7 +49441,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 811455764, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.28
+      value: -1.272
+      objectReference: {fileID: 0}
+    - target: {fileID: 811455764, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.116
       objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: jumpForce
@@ -49456,22 +49454,22 @@ PrefabInstance:
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: groundCheck
       value: 
-      objectReference: {fileID: 811455764}
+      objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: moveSpeed
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: jumpVelocity
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: fallMultiplier
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: maxSpeed
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2009171815, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
       propertyPath: lowJumpMultiplier
@@ -49481,6 +49479,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.080949664
+      objectReference: {fileID: 0}
+    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.26843697
+      objectReference: {fileID: 0}
+    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.83581
+      objectReference: {fileID: 0}
+    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.83925366
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cc81305d37e7f546ac8b6604aca1497, type: 3}
