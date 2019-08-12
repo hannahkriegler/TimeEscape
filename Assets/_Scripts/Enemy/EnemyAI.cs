@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Pathfinding;
 using TE;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Seeker))]
@@ -23,11 +24,11 @@ public class EnemyAI : MonoBehaviour
     public Path path;
     
     // the AI's speed per second
-    public float speed = 300f;
-    public ForceMode2D fMode;
+    public float speed = 200f;
+    //public ForceMode2D fMode;
 
-    [HideInInspector]
-    public bool pathIsEnded = false;
+    [FormerlySerializedAs("pathIsEnded")] [HideInInspector]
+    public bool reachedEndOfPath = false;
 
     // The waypoint we are currently moving towards
     private int currentWaypoint = 0;
@@ -47,9 +48,9 @@ public class EnemyAI : MonoBehaviour
         }
         
         // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
+        
 
-        StartCoroutine(UpdatePath());
+        InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
     private IEnumerator UpdatePath()
@@ -59,11 +60,8 @@ public class EnemyAI : MonoBehaviour
             // TODO: Insert a player search here
             yield return false;
         }
-        // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
-        
-        yield return new WaitForSeconds(1f/updateRate);
-        StartCoroutine(UpdatePath());
+        if (seeker.IsDone())
+            seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
     public void OnPathComplete(Path p)
@@ -93,22 +91,23 @@ public class EnemyAI : MonoBehaviour
 
         if (currentWaypoint >= path.vectorPath.Count) 
         {
-            if(pathIsEnded) return;
-            Debug.Log("End of path reached.");
-            pathIsEnded = true;
+            reachedEndOfPath = true;
+            return;
         }
 
-        pathIsEnded = false;
+        reachedEndOfPath = false;
         
         // Direction to the next waypoint
         
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        dir *= speed * Time.fixedDeltaTime;  // TODO: problem with Game.deltaWorld, static?
+        Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = Time.deltaTime * speed * dir;
+        
+        //dir *= speed * Time.fixedDeltaTime;  // TODO: problem with Game.deltaWorld, static?
         
         // Move the AI
-        rb.AddForce(dir, fMode);
+        rb.AddForce(force);
 
-        float dist = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
+        float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (dist < nextWaypointDistance)
         {
             currentWaypoint++;
