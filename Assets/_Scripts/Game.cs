@@ -9,7 +9,8 @@ namespace  TE
     {
         //Custom Deltas
         public float playerTimeScale { get; private set; }
-        public float worldTimeScale { get; private set; } 
+        public float worldTimeScale { get; private set; }
+        public float coundwodnTimeScale { get; private set; }
         
 
         public InputManager inputManager;
@@ -20,6 +21,8 @@ namespace  TE
 
 
         public static Game instance;
+
+        public Countdown countdown;
         
         private void Awake()
         {
@@ -33,7 +36,9 @@ namespace  TE
             storage = new TimeStorage(this);
             playerTimeScale = 1;
             worldTimeScale = 1;
+            coundwodnTimeScale = 1;
             inputManager.Init(this);
+            countdown.Init(this);
         }
     }
 }

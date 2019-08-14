@@ -16,6 +16,10 @@ public class EnemyAI : MonoBehaviour
     // How many times each second we will update our path
     public float updateRate = 2f;
 
+    // Flip to right direction
+    public Transform enemyGFX;
+    public float rotationSpeed;
+    
     // chaching
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -47,18 +51,17 @@ public class EnemyAI : MonoBehaviour
             return;
         }
         
-        // Start a new path to the target position, return the result to the OnPathComplete method
         
-
+        // Start a new path to the target position, return the result to the OnPathComplete method
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
-    private IEnumerator UpdatePath()
+    private void UpdatePath()
     {
         if (target == null)
         {
             // TODO: Insert a player search here
-            yield return false;
+            return;
         }
         if (seeker.IsDone())
             seeker.StartPath(rb.position, target.position, OnPathComplete);
@@ -66,7 +69,7 @@ public class EnemyAI : MonoBehaviour
 
     public void OnPathComplete(Path p)
     {
-        Debug.Log("We got a path. Did it have an error?" + p.error);
+        //Debug.Log("We got a path. Did it have an error?" + p.error);
         if (!p.error)
         {
             path = p;
@@ -107,11 +110,23 @@ public class EnemyAI : MonoBehaviour
         // Move the AI
         rb.AddForce(force);
 
+        
         float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        
         if (dist < nextWaypointDistance)
         {
             currentWaypoint++;
             return;
         }
+        
+        if (force.x <= 0.01)
+        {
+            enemyGFX.localScale = new Vector3(-Mathf.Abs(enemyGFX.localScale.x) ,enemyGFX.localScale.y , enemyGFX.localScale.z);
+        }   else if(force.x >= -0.01f)
+        {
+            enemyGFX.localScale = new Vector3(Mathf.Abs(enemyGFX.localScale.x),enemyGFX.localScale.y , enemyGFX.localScale.z);
+        }
+        
+
     }
 }
