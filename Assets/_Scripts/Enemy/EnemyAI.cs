@@ -126,7 +126,7 @@ public class EnemyAI : MonoBehaviour
         {
             enemyGFX.localScale = new Vector3(Mathf.Abs(enemyGFX.localScale.x),enemyGFX.localScale.y , enemyGFX.localScale.z);
         }
-        
+
 
     }
 }
