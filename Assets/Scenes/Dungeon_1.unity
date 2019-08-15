@@ -237,7 +237,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 37828520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736ea534e28584746b51a6f0d0715fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomTypesType: 0
@@ -49452,10 +49452,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 608499012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23270bb0983197d4fa4486dc570a447c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomTypesType: 0
+  roomTypesType: 3
   allEnemies: []
   aliveEnemies: []
   allLoot: []
@@ -49652,7 +49652,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 758957798}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 372ebd960d3364d4c931eaff08a6db56, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomTypesType: 1
@@ -50154,10 +50154,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1251386289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a088159edb6439a41bab2a735b162489, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomTypesType: 0
+  roomTypesType: 4
   allEnemies: []
   aliveEnemies: []
   allLoot: []
