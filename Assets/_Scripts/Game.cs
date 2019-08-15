@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace  TE
 {
@@ -39,6 +40,11 @@ namespace  TE
             coundwodnTimeScale = 1;
             inputManager.Init(this);
             countdown.Init(this);
+        }
+
+        public void GameOver()
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

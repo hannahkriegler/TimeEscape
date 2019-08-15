@@ -49316,14 +49316,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.44
       objectReference: {fileID: 0}
-    - target: {fileID: 61708266675200500, guid: 8cc81305d37e7f546ac8b6604aca1497,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 61708266675200500, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

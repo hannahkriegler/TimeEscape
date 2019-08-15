@@ -17,7 +17,7 @@ public class Countdown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _timeLeft = 600;
+        _timeLeft = 300;
     }
 
     public void Init(Game game)
@@ -34,6 +34,9 @@ public class Countdown : MonoBehaviour
         
         countdownText.text = min.ToString();
         countdownImage.fillAmount = sec / 60f;
+
+        if (_timeLeft <= 0)
+            _game.GameOver();
     }
 
     public static void IncreaseTime(float time)

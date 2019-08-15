@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IHit
 {
 
    public float damageAmount = 10f;
@@ -13,14 +13,6 @@ public abstract class Enemy : MonoBehaviour
       this.damageAmount = damageAmount;
       this.HitPoints = Hitpoints;
    }
-
-   public void GotHit()
-   {
-      HitPoints--;
-      if (HitPoints >= 0) 
-         Die();
-   }
-
    public void Attack()
    {
       
@@ -41,4 +33,11 @@ public abstract class Enemy : MonoBehaviour
    {
       return HitPoints;
    }
+
+    public void OnHit(int damage)
+    {
+        HitPoints -= damage;
+        if (HitPoints <= 0)
+            Die();
+    }
 }
