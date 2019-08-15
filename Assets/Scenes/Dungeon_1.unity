@@ -49316,14 +49316,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.44
       objectReference: {fileID: 0}
-    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 61708266675200500, guid: 8cc81305d37e7f546ac8b6604aca1497,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 70242907774875010, guid: 8cc81305d37e7f546ac8b6604aca1497,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -49567,7 +49567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 3
   allEnemies: []
   aliveEnemies: []
   allLoot: []
@@ -49767,7 +49767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 1
   allEnemies: []
   aliveEnemies: []
   allLoot: []
@@ -50494,7 +50494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d01e518d059dbe4eb55539501351b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 0
+  roomType: 4
   allEnemies: []
   aliveEnemies: []
   allLoot: []
