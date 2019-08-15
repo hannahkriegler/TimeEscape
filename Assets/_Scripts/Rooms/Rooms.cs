@@ -16,7 +16,7 @@ public class Rooms : MonoBehaviour
         Boss
     };
 
-    public RoomTypes roomTypesType;
+    public RoomTypes roomType;
 
     public Enemy[] allEnemies;
     [HideInInspector]
@@ -26,9 +26,9 @@ public class Rooms : MonoBehaviour
     [HideInInspector]
     public Loot[] collectedLoot;
 
-    protected Rooms(RoomTypes roomTypesType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
+    protected Rooms(RoomTypes roomType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
     {
-        this.roomTypesType = roomTypesType;
+        this.roomType = roomType;
         this.allEnemies = allEnemies;
         this.aliveEnemies = aliveEnemies;
         this.allLoot = allLoot;
@@ -44,7 +44,7 @@ public class Rooms : MonoBehaviour
     {
         if (!player.CompareTag("Player")) return;
 
-        switch (roomTypesType)
+        switch (roomType)
         {
             case RoomTypes.Tutorial:
                 TutorialRoomBehaviour();

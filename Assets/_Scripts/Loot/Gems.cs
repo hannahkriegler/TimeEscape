@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Gems : Loot
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum GemTypes
     {
-        
+        SwordBuff, // +2 sec for hits on enemies
+        LessSkillCosts, // reduces skill cost
+        LessTimeMagicCosts, // reduces time magic costs
+        IncreasePlayerSpeed, // Player moves slightly faster
+        IncreasePlayerJump, // Player can jum slightly higher
+        ReduceDamage, // Player loses less time if he gets hit from enemy
+        CrazyGem, // Doubles Damage, Doubles countdown speed
+        DamageDash, // Dash makes damage
+        FasterSword // Sword is faster
     }
+    
 
-    // Update is called once per frame
-    void Update()
+    public GemTypes gemType;
+
+    public override void PickUpLoot()
     {
-        
+        Debug.Log("You found a Gem!");
     }
 }
