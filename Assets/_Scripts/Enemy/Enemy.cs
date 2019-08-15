@@ -26,13 +26,11 @@ public abstract class Enemy : MonoBehaviour
       
    }
 
-   protected virtual void Die()
+   private void Die()
    {
-      Debug.Log("Hello");
+      Debug.Log("You killed an Enemy!");
    }
 
-
-   // Getter & Setter
    
    public float GetDamageAmount()
    {

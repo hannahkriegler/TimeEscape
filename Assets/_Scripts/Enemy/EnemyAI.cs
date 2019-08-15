@@ -10,9 +10,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Seeker))]
 public class EnemyAI : MonoBehaviour
 {
-    // What to chase?
     public Transform target;
-
+    
     // How many times each second we will update our path
     public float updateRate = 2f;
 
@@ -20,24 +19,17 @@ public class EnemyAI : MonoBehaviour
     public Transform enemyGFX;
     public float rotationSpeed;
     
-    // chaching
     private Seeker seeker;
     private Rigidbody2D rb;
-    
-    // the calculated path
     public Path path;
     
     // the AI's speed per second
     public float speed = 200f;
-    //public ForceMode2D fMode;
 
     [FormerlySerializedAs("pathIsEnded")] [HideInInspector]
     public bool reachedEndOfPath = false;
-
-    // The waypoint we are currently moving towards
+    
     private int currentWaypoint = 0;
-
-    // The max distance from the AI to a waypoint for it to continure to the next waypoint
     public float nextWaypointDistance = 3f;
 
     private void Start()
@@ -50,9 +42,6 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("No Player found? PANIC!");
             return;
         }
-        
-        
-        // Start a new path to the target position, return the result to the OnPathComplete method
         InvokeRepeating("UpdatePath", 0f, .5f);
     }
 
