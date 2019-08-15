@@ -19,18 +19,16 @@ namespace  TE
 
         public Session session;
         public TimeStorage storage;
-
-
         public static Game instance;
+        
+        public static float TimeLeft;
 
-        public Countdown countdown;
-
-        public static float timeLeft;
+        public Rooms[] allRooms;
         
         private void Awake()
         {
             instance = this;
-            timeLeft = 600;
+            TimeLeft = 600;
         }
 
         private void Start()
@@ -52,19 +50,19 @@ namespace  TE
 
         private void FixedUpdate()
         {
-            timeLeft -= Time.deltaTime * coundwodnTimeScale;
-            if (timeLeft <= 0)
+            TimeLeft -= Time.deltaTime * coundwodnTimeScale;
+            if (TimeLeft <= 0)
                 GameOver();
         }
         
         public static void IncreaseTime(float time)
         {
-            timeLeft += time;
+            TimeLeft += time;
         }
 
         public static void DecreaseTime(float time)
         {
-            timeLeft -= time;
+            TimeLeft -= time;
         }
         
     }

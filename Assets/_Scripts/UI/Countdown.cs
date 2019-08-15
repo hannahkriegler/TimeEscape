@@ -14,7 +14,7 @@ public class Countdown : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        _timeLeft = Game.timeLeft;
+        _timeLeft = Game.TimeLeft;
         int min = Mathf.FloorToInt(_timeLeft / 60f);
         int sec = Mathf.FloorToInt((_timeLeft - min * 60));
         
