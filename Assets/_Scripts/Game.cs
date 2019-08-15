@@ -19,15 +19,16 @@ namespace  TE
 
         public Session session;
         public TimeStorage storage;
-
-
         public static Game instance;
+        
+        public static float TimeLeft;
 
-        public Countdown countdown;
+        public Rooms[] allRooms;
         
         private void Awake()
         {
             instance = this;
+            TimeLeft = 600;
         }
 
         private void Start()
@@ -39,12 +40,32 @@ namespace  TE
             worldTimeScale = 1;
             coundwodnTimeScale = 1;
             inputManager.Init(this);
-            countdown.Init(this);
         }
 
         public void GameOver()
         {
             SceneManager.LoadScene(0);
         }
+        
+
+        private void FixedUpdate()
+        {
+            TimeLeft -= Time.deltaTime * coundwodnTimeScale;
+            if (TimeLeft <= 0)
+                GameOver();
+        }
+        
+        public static void IncreaseTime(float time)
+        {
+            TimeLeft += time;
+        }
+
+        public static void DecreaseTime(float time)
+        {
+            TimeLeft -= time;
+        }
+        
     }
+    
+    
 }

@@ -25,6 +25,8 @@ public class Rooms : MonoBehaviour
     public Loot[] allLoot;
     [HideInInspector]
     public Loot[] collectedLoot;
+    
+    public int RoomID;
 
     protected Rooms(RoomTypes roomType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
     {
