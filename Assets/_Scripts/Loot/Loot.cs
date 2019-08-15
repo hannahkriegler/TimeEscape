@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TE;
 using UnityEngine;
 
 public class Loot : MonoBehaviour
@@ -28,7 +29,7 @@ public class Loot : MonoBehaviour
         {
             case LootTypes.Time:
                 Debug.Log("Increased Time");
-                Countdown.IncreaseTime(addedTime);
+                Game.IncreaseTime(addedTime);
                 break;
             case LootTypes.Zeitsplitter:
                 Debug.Log("Picked Up Zeitsplitter");

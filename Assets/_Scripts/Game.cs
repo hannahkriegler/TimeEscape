@@ -24,10 +24,13 @@ namespace  TE
         public static Game instance;
 
         public Countdown countdown;
+
+        public static float timeLeft;
         
         private void Awake()
         {
             instance = this;
+            timeLeft = 600;
         }
 
         private void Start()
@@ -39,12 +42,32 @@ namespace  TE
             worldTimeScale = 1;
             coundwodnTimeScale = 1;
             inputManager.Init(this);
-            countdown.Init(this);
         }
 
         public void GameOver()
         {
             SceneManager.LoadScene(0);
         }
+        
+
+        private void FixedUpdate()
+        {
+            timeLeft -= Time.deltaTime * coundwodnTimeScale;
+            if (timeLeft <= 0)
+                GameOver();
+        }
+        
+        public static void IncreaseTime(float time)
+        {
+            timeLeft += time;
+        }
+
+        public static void DecreaseTime(float time)
+        {
+            timeLeft -= time;
+        }
+        
     }
+    
+    
 }
