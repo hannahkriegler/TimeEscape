@@ -12,6 +12,8 @@ namespace TE
         public CombatSkill CombatSkill { get; private set; }
         
         public Rigidbody2D rigidBody  { get; private set; }
+        
+        public Collider2D collider { get; private set; }
 
         public Animator animator { get; private set; }
 
@@ -32,10 +34,14 @@ namespace TE
         
         public void Init(Game game)
         {
+            //Setting References
             _game = game;
             rigidBody = GetComponent<Rigidbody2D>();
             sword = GetComponentInChildren<SwordHook>();
             animator = GetComponentInChildren<Animator>();
+            collider = GetComponent<Collider2D>();
+            
+            //Init Components
             Movement = new Movement(this, _game);
             CombatMelee = new CombatMelee(this, _game);
             CombatSkill = new CombatSkill(this, _game);

@@ -6,35 +6,54 @@ namespace TE
     {
         private Player _player;
         private Game _game;
-        
 
         public bool grounded { get; private set; }
         public bool facingRight { get; private set; } = true;
 
         public bool jump;
 
+        //Settings
+        private float raySpacing = 0.125f;
+        private float skinWidth = 0.015f;
+
+        //Private Values
+        private float _horizontalRaySpacing;
+        private float _horizontalRayCount;
+        private float _verticalRaySpacing;
+        private float _verticalRayCount;
+
+        private RaycastOrigins _raycastOrigins;
+
+        protected struct RaycastOrigins
+        {
+            public Vector2 topLeft, topRight, bottomLeft, bottomRight;
+        }
+
         public Movement(Player player, Game game)
         {
             _player = player;
             _game = game;
+            CalculateSpacing();
         }
 
         public void Tick()
         {
             float delta = _player.fixedDelta;
-
-            grounded = CheckGrounded(0, -1.2f) || CheckGrounded(0.2f, -1.2f) || CheckGrounded(-0.2f, -1.2f);
+            
+            UpdateRaycastOrigins();
+            grounded = CheckGrounded();
             Rigidbody2D rb = _player.rigidBody;
 
             if (!grounded)
             {
                 rb.velocity += Vector2.up * delta * Physics2D.gravity * _player.gravityMultiplier;
             }
-            if(rb.velocity.y < 0)
+
+            if (rb.velocity.y < 0)
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.fallMultiplier - 1) * delta;
             }
-            else if(rb.velocity.y > 0 && !jump)
+            else if (rb.velocity.y > 0 && !jump)
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.lowJumpMultiplier - 1) * delta;
             }
@@ -49,8 +68,8 @@ namespace TE
             //TODO Move Animation
 
             _player.animator.SetFloat("MoveSpeed", direction.magnitude);
-            
-            if(direction.magnitude < 0.1f)
+
+            if (direction.magnitude < 0.1f)
             {
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
@@ -58,13 +77,13 @@ namespace TE
             if (h * rb.velocity.x < _player.maxSpeed)
                 rb.AddForce(h * _player.moveSpeed * Vector2.right);
 
-            if (Mathf.Abs (rb.velocity.x) > _player.maxSpeed)
-                rb.velocity = new Vector2(Mathf.Sign (rb.velocity.x) * _player.maxSpeed, rb.velocity.y);
-            
+            if (Mathf.Abs(rb.velocity.x) > _player.maxSpeed)
+                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * _player.maxSpeed, rb.velocity.y);
+
             if (h > 0 && !facingRight)
-                FlipCharacter ();
+                FlipCharacter();
             else if (h < 0 && facingRight)
-                FlipCharacter ();
+                FlipCharacter();
         }
 
         public void Jump()
@@ -92,11 +111,48 @@ namespace TE
             _player.transform.localScale = theScale;
         }
 
-        bool CheckGrounded(float rightOffset, float upOffset)
+        bool CheckGrounded()
         {
-            return Physics2D.Linecast(_player.transform.position + Vector3.right * rightOffset, 
-                _player.transform.position + Vector3.up * upOffset + Vector3.right * rightOffset,
-                _player.groundLayerCheck);
+            for (int i = 0; i < _verticalRayCount; i++)
+            {
+                Vector2 rayOrigin = facingRight ? _raycastOrigins.bottomLeft : _raycastOrigins.bottomRight;
+                rayOrigin += (facingRight ? Vector2.right : Vector2.left) * (_verticalRaySpacing * i);
+                rayOrigin.y += skinWidth * 2;
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down,
+                    skinWidth * 4f, _player.groundLayerCheck);
+
+                if (hit)
+                {
+                    Debug.DrawRay(rayOrigin, Vector2.down * skinWidth * 2, Color.blue);
+                    return true;
+                }
+            }
+
+            return false;
         }
+        
+        #region Calculations
+
+        void CalculateSpacing()
+        {
+            Bounds bounds = _player.collider.bounds;
+            bounds.Expand(skinWidth * -2);
+            _horizontalRayCount = Mathf.Round(bounds.size.y / raySpacing);
+            _verticalRayCount = Mathf.Round(bounds.size.x / raySpacing);
+            _horizontalRaySpacing = bounds.size.y / (_horizontalRayCount - 1);
+            _verticalRaySpacing = bounds.size.x / (_verticalRayCount - 1);
+        }
+
+        void UpdateRaycastOrigins()
+        {
+            Bounds bounds = _player.collider.bounds;
+            bounds.Expand(skinWidth * -2);   
+            _raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
+            _raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
+            _raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
+            _raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
+        }
+        
+        #endregion
     }
 }
