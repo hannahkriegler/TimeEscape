@@ -20,8 +20,5 @@ public class Gems : Loot
 
     public GemTypes gemType;
 
-    public override void PickUpLoot()
-    {
-        Debug.Log("You found a Gem!");
-    }
+    
 }

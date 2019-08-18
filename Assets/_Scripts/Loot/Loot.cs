@@ -45,7 +45,7 @@ public class Loot : MonoBehaviour
             case LootTypes.Zeitsplitter:
                 Debug.Log("Picked Up Zeitsplitter");
                 if (Game.portalIsSet) spawnType = SpawnTypes.ReSpawn;
-                // TODO need to implement this
+                Game.AddZeitsplitter();
                 break;
             case LootTypes.Gem:
                 if (Game.portalIsSet) spawnType = SpawnTypes.NotSpawn;

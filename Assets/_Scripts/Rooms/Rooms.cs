@@ -46,7 +46,8 @@ public class Rooms : MonoBehaviour
     {
         foreach (Loot loot in allLoot)
         {
-            if (loot.spawnType == Loot.SpawnTypes.Spawn)
+            if (loot.spawnType == Loot.SpawnTypes.Spawn ||
+                loot.spawnType == Loot.SpawnTypes.ReSpawn)
             {
                 loot.ShowSprite();
             }

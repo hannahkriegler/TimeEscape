@@ -13,8 +13,8 @@ namespace  TE
         public float worldTimeScale { get; private set; }
         public float coundwodnTimeScale { get; private set; }
 
-        public static bool portalIsSet = false;
-        
+        public static bool portalIsSet = false; // Test Dummy
+
         public InputManager inputManager;
         [HideInInspector] public Player player;
 
@@ -23,6 +23,8 @@ namespace  TE
         public static Game instance;
         
         public static float TimeLeft;
+        [Range(0,4)]
+        public static int ZeitsplitterCounter;
 
         public Rooms[] allRooms;
 
@@ -32,6 +34,7 @@ namespace  TE
         {
             instance = this;
             TimeLeft = 600;
+            ZeitsplitterCounter = 0;
         }
 
         private void Start()
@@ -43,9 +46,19 @@ namespace  TE
             worldTimeScale = 1;
             coundwodnTimeScale = 1;
             inputManager.Init(this);
+            portalIsSet = true; // TODO: Just for testing, need to be set false after portal setter is implemented
             SetUpRooms();
         }
-        
+
+        private void Update()
+        {
+            if (testTimeTravel)
+            {
+                SetUpRooms();
+                testTimeTravel = false;
+            }
+        }
+
 
         private void SetUpRooms()
         {
@@ -76,6 +89,16 @@ namespace  TE
         public static void DecreaseTime(float time)
         {
             TimeLeft -= time;
+        }
+
+        public static void AddZeitsplitter()
+        {
+            if (ZeitsplitterCounter < 4) ZeitsplitterCounter++;
+        }
+
+        public static void SetZeitsplitterCounter(int counter)
+        {
+            ZeitsplitterCounter = counter;
         }
         
     }

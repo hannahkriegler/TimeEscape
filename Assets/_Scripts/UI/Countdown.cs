@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TE;
+﻿using TE;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Countdown : MonoBehaviour
+namespace _Scripts.UI
 {
-
-    public Image countdownImage;
-    public Text countdownText;
-    private static float _timeLeft ;
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public class Countdown : MonoBehaviour
     {
-        _timeLeft = Game.TimeLeft;
-        int min = Mathf.FloorToInt(_timeLeft / 60f);
-        int sec = Mathf.FloorToInt((_timeLeft - min * 60));
-        
-        countdownText.text = min.ToString();
-        countdownImage.fillAmount = sec / 60f;
-    }
 
+        public Image countdownImage;
+        public Text countdownText;
+        private static float _timeLeft ;
+
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            _timeLeft = Game.TimeLeft;
+            int min = Mathf.FloorToInt(_timeLeft / 60f);
+            int sec = Mathf.FloorToInt((_timeLeft - min * 60));
+        
+            countdownText.text = min.ToString();
+            countdownImage.fillAmount = sec / 60f;
+        }
+
+    }
 }
