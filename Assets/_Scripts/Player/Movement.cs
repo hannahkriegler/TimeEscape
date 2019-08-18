@@ -10,17 +10,17 @@ namespace TE
         public bool grounded { get; private set; }
         public bool facingRight { get; private set; } = true;
 
-        public bool jump;
-
         //Settings
         private float raySpacing = 0.125f;
-        private float skinWidth = 0.015f;
+        private float skinWidth = 0.01f;
 
         //Private Values
         private float _horizontalRaySpacing;
         private float _horizontalRayCount;
         private float _verticalRaySpacing;
         private float _verticalRayCount;
+
+        private bool readyToJump;
 
        
         private RaycastOrigins _raycastOrigins;
@@ -43,7 +43,7 @@ namespace TE
             float delta = _player.fixedDelta;
             
             UpdateRaycastOrigins();
-            grounded = CheckGrounded();
+            UpdateGrounded();
             Rigidbody2D rb = _player.rigidBody;
 
             if (!grounded)
@@ -55,7 +55,7 @@ namespace TE
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.fallMultiplier - 1) * delta;
             }
-            else if (rb.velocity.y > 0 && !jump)
+            else if (rb.velocity.y > 0)
             {
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.lowJumpMultiplier - 1) * delta;
             }
@@ -69,7 +69,9 @@ namespace TE
 
             _player.animator.SetFloat("MoveSpeed", direction.magnitude);
 
-            rb.velocity = new Vector2(h * _player.moveSpeed * delta, rb.velocity.y);
+            float modifier = grounded ? 1.0f : 1.15f;
+
+            rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier, rb.velocity.y);
 
             if (h > 0 && !facingRight)
                 FlipCharacter();
@@ -77,13 +79,15 @@ namespace TE
                 FlipCharacter();
         }
 
-        public void Jump()
+        public bool Jump()
         {
-            if (grounded)
+            if (readyToJump)
             {
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
+                return true;
             }
+            return false;
         }
 
         public void Dash()
@@ -102,24 +106,37 @@ namespace TE
             _player.transform.localScale = theScale;
         }
 
-        bool CheckGrounded()
+        void UpdateGrounded()
         {
+            grounded = false;
+            readyToJump = false;
+
             for (int i = 0; i < _verticalRayCount; i++)
             {
                 Vector2 rayOrigin = facingRight ? _raycastOrigins.bottomLeft : _raycastOrigins.bottomRight;
                 rayOrigin += (facingRight ? Vector2.right : Vector2.left) * (_verticalRaySpacing * i);
-                rayOrigin.y += skinWidth * 2;
+                rayOrigin.y += skinWidth * 2f;
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down,
-                    skinWidth * 4f, _player.groundLayerCheck);
+                    skinWidth * 5f, _player.groundLayerCheck);
 
                 if (hit)
                 {
                     Debug.DrawRay(rayOrigin, Vector2.down * skinWidth * 2, Color.blue);
-                    return true;
+                    grounded = true;
+                    readyToJump = true;
+                    break;
+                }
+
+                if (!readyToJump)
+                {
+                    RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.down * 1.5f,
+                      skinWidth * 5f, _player.groundLayerCheck);
+                    if(hit2)
+                    {
+                        readyToJump = true;
+                    }
                 }
             }
-
-            return false;
         }
         
         #region Calculations

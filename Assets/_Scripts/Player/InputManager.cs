@@ -66,15 +66,14 @@ namespace TE
         void UpdatePlayer()
         {
             //Movement
-            player.Movement.jump = jump;
             player.Movement.Tick();
             player.Movement.Move(movement);
 
             if (jump)
             {
-                jump = false;
                 player.Movement.Jump();
             }
+
 
             if (dash && !dashCheck)
             {
