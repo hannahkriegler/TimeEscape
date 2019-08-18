@@ -9,11 +9,21 @@ public class Loot : MonoBehaviour
     public enum LootTypes
     {
         Time,
-        Zeitsplitter
+        Zeitsplitter,
+        Gem
+    }
+
+    public enum SpawnTypes
+    {
+        Spawn,
+        NotSpawn,
+        ReSpawn
     }
 
     public int addedTime = 10;
     public LootTypes lootType;
+
+    public SpawnTypes spawnType = SpawnTypes.Spawn;
 
     public void OnTriggerEnter2D(Collider2D player)
     {
@@ -30,10 +40,16 @@ public class Loot : MonoBehaviour
             case LootTypes.Time:
                 Debug.Log("Increased Time");
                 Game.IncreaseTime(addedTime);
+                if (Game.portalIsSet) spawnType = SpawnTypes.ReSpawn;
                 break;
             case LootTypes.Zeitsplitter:
                 Debug.Log("Picked Up Zeitsplitter");
+                if (Game.portalIsSet) spawnType = SpawnTypes.ReSpawn;
                 // TODO need to implement this
+                break;
+            case LootTypes.Gem:
+                if (Game.portalIsSet) spawnType = SpawnTypes.NotSpawn;
+                GemBehaviour();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -43,8 +59,19 @@ public class Loot : MonoBehaviour
 
     public void HideSprite()
     {
-        this.GetComponent<SpriteRenderer>().enabled = false;
-        this.GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+    }
+
+    public void ShowSprite()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<CircleCollider2D>().enabled = true;
+    }
+
+    public virtual void GemBehaviour()
+    {
+        Debug.Log("Picked Up Gem");
     }
     
     

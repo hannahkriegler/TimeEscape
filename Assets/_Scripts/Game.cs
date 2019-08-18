@@ -12,8 +12,9 @@ namespace  TE
         public float playerTimeScale { get; private set; }
         public float worldTimeScale { get; private set; }
         public float coundwodnTimeScale { get; private set; }
-        
 
+        public static bool portalIsSet = false;
+        
         public InputManager inputManager;
         [HideInInspector] public Player player;
 
@@ -24,6 +25,8 @@ namespace  TE
         public static float TimeLeft;
 
         public Rooms[] allRooms;
+
+        public bool testTimeTravel = false;
         
         private void Awake()
         {
@@ -40,6 +43,16 @@ namespace  TE
             worldTimeScale = 1;
             coundwodnTimeScale = 1;
             inputManager.Init(this);
+            SetUpRooms();
+        }
+        
+
+        private void SetUpRooms()
+        {
+            foreach (Rooms room in allRooms)
+            {
+                room.SpawnLoot();
+            }
         }
 
         public void GameOver()

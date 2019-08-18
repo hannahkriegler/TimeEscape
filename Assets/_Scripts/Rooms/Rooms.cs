@@ -42,6 +42,34 @@ public class Rooms : MonoBehaviour
         
     }
 
+    public void SpawnLoot()
+    {
+        foreach (Loot loot in allLoot)
+        {
+            if (loot.spawnType == Loot.SpawnTypes.Spawn)
+            {
+                loot.ShowSprite();
+            }
+
+            if (loot.spawnType == Loot.SpawnTypes.NotSpawn)
+            {
+                loot.HideSprite();
+            }
+        }
+    }
+
+    public void ChangeLootFromReSpawnToNotSpawn()
+    {
+        foreach (Loot loot in allLoot)
+        {
+            if (loot.spawnType == Loot.SpawnTypes.ReSpawn)
+            {
+                loot.spawnType = Loot.SpawnTypes.NotSpawn;
+            }
+        }
+    }
+    
+
     public void OnTriggerEnter2D(Collider2D player)
     {
         if (!player.CompareTag("Player")) return;
