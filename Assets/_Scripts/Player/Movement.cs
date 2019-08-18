@@ -22,6 +22,7 @@ namespace TE
         private float _verticalRaySpacing;
         private float _verticalRayCount;
 
+       
         private RaycastOrigins _raycastOrigins;
 
         protected struct RaycastOrigins
@@ -33,6 +34,7 @@ namespace TE
         {
             _player = player;
             _game = game;
+             Physics2D.queriesStartInColliders = false;
             CalculateSpacing();
         }
 
@@ -63,22 +65,11 @@ namespace TE
         {
             float delta = _player.fixedDelta;
             Rigidbody2D rb = _player.rigidBody;
-            float h = direction.x;
-
-            //TODO Move Animation
+            float h = direction.x;  
 
             _player.animator.SetFloat("MoveSpeed", direction.magnitude);
 
-            if (direction.magnitude < 0.1f)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
-
-            if (h * rb.velocity.x < _player.maxSpeed)
-                rb.AddForce(h * _player.moveSpeed * Vector2.right);
-
-            if (Mathf.Abs(rb.velocity.x) > _player.maxSpeed)
-                rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * _player.maxSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(h * _player.moveSpeed * delta, rb.velocity.y);
 
             if (h > 0 && !facingRight)
                 FlipCharacter();

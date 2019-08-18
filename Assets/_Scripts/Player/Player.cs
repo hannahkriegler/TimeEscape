@@ -22,8 +22,7 @@ namespace TE
         public LayerMask groundLayerCheck;
         
         [Header("Settings")]
-        public float moveSpeed = 365f;
-        public float maxSpeed = 5;
+        public float moveSpeed = 50;
         public float jumpVelocity = 10;
         public float fallMultiplier = 2.5f;
         public float lowJumpMultiplier = 2f;
