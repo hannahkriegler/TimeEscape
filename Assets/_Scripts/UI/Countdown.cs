@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.UI
+namespace TE.UI
 {
     public class Countdown : MonoBehaviour
     {

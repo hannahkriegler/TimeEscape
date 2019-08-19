@@ -3,7 +3,7 @@ using TE;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Scripts.UI
+namespace TE.UI
 {
     public class Zeitsplitter : MonoBehaviour
     {

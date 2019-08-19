@@ -11,7 +11,7 @@ namespace TE
         public bool facingRight { get; private set; } = true;
 
         //Settings
-        private float raySpacing = 0.125f;
+        private float raySpacing = 0.05f;
         private float skinWidth = 0.01f;
 
         //Private Values
@@ -69,7 +69,7 @@ namespace TE
 
             _player.animator.SetFloat("MoveSpeed", direction.magnitude);
 
-            float modifier = grounded ? 1.0f : 1.15f;
+            float modifier = grounded ? 1.0f : 1.2f;
 
             rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier, rb.velocity.y);
 
@@ -143,7 +143,7 @@ namespace TE
 
         void CalculateSpacing()
         {
-            Bounds bounds = _player.collider.bounds;
+            Bounds bounds = _player.col.bounds;
             bounds.Expand(skinWidth * -2);
             _horizontalRayCount = Mathf.Round(bounds.size.y / raySpacing);
             _verticalRayCount = Mathf.Round(bounds.size.x / raySpacing);
@@ -153,7 +153,7 @@ namespace TE
 
         void UpdateRaycastOrigins()
         {
-            Bounds bounds = _player.collider.bounds;
+            Bounds bounds = _player.col.bounds;
             bounds.Expand(skinWidth * -2);   
             _raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
             _raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);

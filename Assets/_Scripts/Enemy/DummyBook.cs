@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DummyBook : Enemy
+namespace TE
 {
-    public DummyBook(float damageAmount, int Hitpoints) : base(damageAmount, Hitpoints){}
-
-
-    private Enemy _enemy;
-
-    private void Start()
+    public class DummyBook : Enemy
     {
-        _enemy = new DummyBook(10f, 3);
-    }
+        public DummyBook(float damageAmount, int Hitpoints) : base(damageAmount, Hitpoints) { }
 
-    private void Update()
-    {
-        
-    }
 
-    
+        private Enemy _enemy;
+
+        private void Start()
+        {
+            _enemy = new DummyBook(10f, 3);
+        }
+
+        private void Update()
+        {
+
+        }
+    }
 }

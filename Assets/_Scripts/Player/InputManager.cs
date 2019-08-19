@@ -12,7 +12,6 @@ namespace TE
         //Inputs
         private bool active_skill;
         private bool attack;
-        private bool attack_up;
         private bool jump;
         private bool timeStamp;
         private bool timeSkill1, timeSkill2, timeSkill3, timeSkill4;
@@ -21,13 +20,13 @@ namespace TE
         private Vector2 movement;
 
         private bool dashCheck;
-        private float chargeTimer;
+
+        float jumpTimer;
 
         public void Init(Game game)
         {
             this.game = game;
             player.Init(game);
-            chargeTimer = 0;
             dashCheck = false;
         }
 
@@ -37,17 +36,28 @@ namespace TE
             UpdatePlayer();
         }
 
-   
-
         void UpdateInputs()
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
 
-            attack = Input.GetButton("Attack");
-            attack_up = Input.GetButtonUp("Attack");
+            attack = Input.GetButtonDown("Attack");
             active_skill = Input.GetButtonDown("Skill");
+
+            //Jump Handling
             jump = Input.GetButtonDown("Jump");
+            if(jump)
+            {
+                jumpTimer = 0;
+            }
+            bool jumpBuffer = Input.GetButton("Jump");
+            if(jumpBuffer)
+            {
+                jumpTimer += Time.deltaTime;
+                if (jumpTimer < 0.1f)
+                    jump = true;
+            }
+
             timeStamp = Input.GetButtonDown("TimeStamp");
 
             bool controllerDash = Input.GetAxis("Dash") > 0.5f;
@@ -86,21 +96,7 @@ namespace TE
             //Attack Handling
             if (attack)
             {
-                chargeTimer += player.fixedDelta;
-            }
-
-            if (attack_up)
-            {
-                if (chargeTimer < 0.5f)
-                {
-                    player.CombatMelee.Attack();
-                }
-                else
-                {
-                    player.CombatSkill.ActivateChargeSkill();
-                }
-
-                chargeTimer = 0;
+                player.CombatMelee.Attack();
             }
 
             //Skills

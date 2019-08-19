@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public interface IHit
+namespace TE
 {
-    void OnHit(int damage);
+    public interface IHit
+    {
+        void OnHit(int damage);
+    }
 }

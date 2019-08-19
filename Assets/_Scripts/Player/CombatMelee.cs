@@ -14,7 +14,12 @@ namespace TE
 
         public void Attack()
         {
-            _player.PlayAnimation("Attack");
+            if (!_player.canAttack)
+                return;
+
+            _player.animator.Play("Attack");
+            _player.sword.AllowHit(true);
+            _player.canAttack = false;
         }
     }
 }

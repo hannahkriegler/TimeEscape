@@ -1845,6 +1845,7 @@ GameObject:
   - component: {fileID: 4691382349309754}
   - component: {fileID: 212274107053699224}
   - component: {fileID: 61708266675200500}
+  - component: {fileID: 8511804003544664734}
   m_Layer: 10
   m_Name: R_Weapon
   m_TagString: Untagged
@@ -1922,13 +1923,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530035515879368}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000166893, y: 1.4225582}
+  m_Offset: {x: 0.0064384937, y: 1.5435023}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5000001, y: 0.16726089}
@@ -1939,8 +1940,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.79, y: 1.8182254}
+  m_Size: {x: 1.051966, y: 2.2076612}
   m_EdgeRadius: 0
+--- !u!114 &8511804003544664734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530035515879368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57e36cbd128c42ebb6cb2a70ba78adec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  col: {fileID: 61708266675200500}
 --- !u!1 &1552662708866818
 GameObject:
   m_ObjectHideFlags: 0
@@ -3529,11 +3543,12 @@ MonoBehaviour:
   groundLayerCheck:
     serializedVersion: 2
     m_Bits: 823
-  moveSpeed: 250
-  jumpVelocity: 14
-  fallMultiplier: 1.5
+  moveSpeed: 300
+  jumpVelocity: 15
+  fallMultiplier: 2
   lowJumpMultiplier: 1.5
   gravityMultiplier: 2
+  canAttack: 0
 --- !u!114 &2009171816
 MonoBehaviour:
   m_ObjectHideFlags: 0

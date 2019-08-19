@@ -4,136 +4,139 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-public class Rooms : MonoBehaviour
+namespace TE
 {
-    public enum RoomTypes
+    public class Rooms : MonoBehaviour
     {
-        Spawn,
-        Tutorial,
-        Loot,
-        Mob,
-        Normal,
-        Boss
-    };
-
-    public RoomTypes roomType;
-
-    public Enemy[] allEnemies;
-    [HideInInspector]
-    public Enemy[] aliveEnemies;
-
-    public Loot[] allLoot;
-    [HideInInspector]
-    public Loot[] collectedLoot;
-    
-    public int RoomID;
-
-    protected Rooms(RoomTypes roomType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
-    {
-        this.roomType = roomType;
-        this.allEnemies = allEnemies;
-        this.aliveEnemies = aliveEnemies;
-        this.allLoot = allLoot;
-        this.collectedLoot = collectedLoot;
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    public void SpawnLoot()
-    {
-        foreach (Loot loot in allLoot)
+        public enum RoomTypes
         {
-            if (loot.spawnType == Loot.SpawnTypes.Spawn ||
-                loot.spawnType == Loot.SpawnTypes.ReSpawn)
-            {
-                loot.ShowSprite();
-            }
+            Spawn,
+            Tutorial,
+            Loot,
+            Mob,
+            Normal,
+            Boss
+        };
 
-            if (loot.spawnType == Loot.SpawnTypes.NotSpawn)
-            {
-                loot.HideSprite();
-            }
+        public RoomTypes roomType;
+
+        public Enemy[] allEnemies;
+        [HideInInspector]
+        public Enemy[] aliveEnemies;
+
+        public Loot[] allLoot;
+        [HideInInspector]
+        public Loot[] collectedLoot;
+
+        public int RoomID;
+
+        protected Rooms(RoomTypes roomType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
+        {
+            this.roomType = roomType;
+            this.allEnemies = allEnemies;
+            this.aliveEnemies = aliveEnemies;
+            this.allLoot = allLoot;
+            this.collectedLoot = collectedLoot;
         }
-    }
 
-    public void ChangeLootFromReSpawnToNotSpawn()
-    {
-        foreach (Loot loot in allLoot)
+        private void Start()
         {
-            if (loot.spawnType == Loot.SpawnTypes.ReSpawn)
+
+        }
+
+        public void SpawnLoot()
+        {
+            foreach (Loot loot in allLoot)
             {
-                loot.spawnType = Loot.SpawnTypes.NotSpawn;
+                if (loot.spawnType == Loot.SpawnTypes.Spawn ||
+                    loot.spawnType == Loot.SpawnTypes.ReSpawn)
+                {
+                    loot.ShowSprite();
+                }
+
+                if (loot.spawnType == Loot.SpawnTypes.NotSpawn)
+                {
+                    loot.HideSprite();
+                }
             }
         }
-    }
-    
 
-    public void OnTriggerEnter2D(Collider2D player)
-    {
-        if (!player.CompareTag("Player")) return;
-
-        switch (roomType)
+        public void ChangeLootFromReSpawnToNotSpawn()
         {
-            case RoomTypes.Tutorial:
-                TutorialRoomBehaviour();
-                break;
-            case RoomTypes.Spawn:
-                SpawnRoomBehaviour();
-                break;
-            case RoomTypes.Normal:
-                NormalRoomBehaviour();
-                break;
-            case RoomTypes.Mob:
-                MobRoomBehaviour();
-                break;
-            case RoomTypes.Loot:
-                LootRoomBehaviour();
-                break;
-            case RoomTypes.Boss:
-                BossRoomBehaviour();
-                break;
-
-            default:
-                throw new ArgumentOutOfRangeException();
+            foreach (Loot loot in allLoot)
+            {
+                if (loot.spawnType == Loot.SpawnTypes.ReSpawn)
+                {
+                    loot.spawnType = Loot.SpawnTypes.NotSpawn;
+                }
+            }
         }
-        
-        Debug.Log("Enemies alive: " + aliveEnemies.Length);
-        
-    }
-    
 
-    private void TutorialRoomBehaviour()
-    {
-        Debug.Log("Welcome to the Tutorial Room!");
-    }
 
-    private void SpawnRoomBehaviour()
-    {
-        Debug.Log(("Welcome to the Spawn Romm!"));
-    }
+        public void OnTriggerEnter2D(Collider2D player)
+        {
+            if (!player.CompareTag("Player")) return;
 
-    private void NormalRoomBehaviour()
-    {
-        Debug.Log("Welcome to a Normal Room!");
-    }
+            switch (roomType)
+            {
+                case RoomTypes.Tutorial:
+                    TutorialRoomBehaviour();
+                    break;
+                case RoomTypes.Spawn:
+                    SpawnRoomBehaviour();
+                    break;
+                case RoomTypes.Normal:
+                    NormalRoomBehaviour();
+                    break;
+                case RoomTypes.Mob:
+                    MobRoomBehaviour();
+                    break;
+                case RoomTypes.Loot:
+                    LootRoomBehaviour();
+                    break;
+                case RoomTypes.Boss:
+                    BossRoomBehaviour();
+                    break;
 
-    private void MobRoomBehaviour()
-    {
-        Debug.Log("Welcome to a Mob Room!");
-    }
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
-    private void BossRoomBehaviour()
-    {
-        Debug.Log("Welcome to a Boss Room!");
-    }
+            Debug.Log("Enemies alive: " + aliveEnemies.Length);
 
-    private void LootRoomBehaviour()
-    {
-        Debug.Log("Welcome to a Loot Room!");
-    }
+        }
 
-    
+
+        private void TutorialRoomBehaviour()
+        {
+            Debug.Log("Welcome to the Tutorial Room!");
+        }
+
+        private void SpawnRoomBehaviour()
+        {
+            Debug.Log(("Welcome to the Spawn Romm!"));
+        }
+
+        private void NormalRoomBehaviour()
+        {
+            Debug.Log("Welcome to a Normal Room!");
+        }
+
+        private void MobRoomBehaviour()
+        {
+            Debug.Log("Welcome to a Mob Room!");
+        }
+
+        private void BossRoomBehaviour()
+        {
+            Debug.Log("Welcome to a Boss Room!");
+        }
+
+        private void LootRoomBehaviour()
+        {
+            Debug.Log("Welcome to a Loot Room!");
+        }
+
+
+    }
 }
