@@ -20,6 +20,7 @@ namespace TE
         public SwordHook sword  { get; private set; }
         [Header("References")]
         public LayerMask groundLayerCheck;
+        public Transform groundCheck;
         
         [Header("Settings")]
         public float moveSpeed = 50;

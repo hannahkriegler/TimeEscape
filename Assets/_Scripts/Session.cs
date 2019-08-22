@@ -9,6 +9,7 @@ namespace TE
             _game = game;
         }
 
+
         public bool IsDashUnlocked()
         {
            //TODO Implement check

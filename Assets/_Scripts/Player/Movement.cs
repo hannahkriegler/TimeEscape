@@ -10,39 +10,19 @@ namespace TE
         public bool grounded { get; private set; }
         public bool facingRight { get; private set; } = true;
 
-        //Settings
-        private float raySpacing = 0.05f;
-        private float skinWidth = 0.01f;
-
-        //Private Values
-        private float _horizontalRaySpacing;
-        private float _horizontalRayCount;
-        private float _verticalRaySpacing;
-        private float _verticalRayCount;
-
-        private bool readyToJump;
-
-       
-        private RaycastOrigins _raycastOrigins;
-
-        protected struct RaycastOrigins
-        {
-            public Vector2 topLeft, topRight, bottomLeft, bottomRight;
-        }
+        bool readyToJump;
 
         public Movement(Player player, Game game)
         {
             _player = player;
             _game = game;
              Physics2D.queriesStartInColliders = false;
-            CalculateSpacing();
         }
 
         public void Tick()
         {
             float delta = _player.fixedDelta;
             
-            UpdateRaycastOrigins();
             UpdateGrounded();
             Rigidbody2D rb = _player.rigidBody;
 
@@ -81,7 +61,7 @@ namespace TE
 
         public bool Jump()
         {
-            if (readyToJump)
+            if (grounded)
             {
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
@@ -111,56 +91,31 @@ namespace TE
             grounded = false;
             readyToJump = false;
 
-            for (int i = 0; i < _verticalRayCount; i++)
+            for (int i = 0; i < 24; i++)
             {
-                Vector2 rayOrigin = facingRight ? _raycastOrigins.bottomLeft : _raycastOrigins.bottomRight;
-                rayOrigin += (facingRight ? Vector2.right : Vector2.left) * (_verticalRaySpacing * i);
-                rayOrigin.y += skinWidth * 2f;
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down,
-                    skinWidth * 5f, _player.groundLayerCheck);
+                Vector2 rayOrigin = _player.groundCheck.position;
+                rayOrigin += Vector2.right * (i - 12) * 0.05f;
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.15f, _player.groundLayerCheck);
 
                 if (hit)
                 {
-                    Debug.DrawRay(rayOrigin, Vector2.down * skinWidth * 2, Color.blue);
+                    Debug.DrawRay(rayOrigin, Vector2.down * 0.3f, Color.blue);
                     grounded = true;
                     readyToJump = true;
                     break;
                 }
 
-                if (!readyToJump)
+                if (readyToJump)
+                    continue;
+
+                RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.down, 0.5f, _player.groundLayerCheck);
+
+                if (hit2)
                 {
-                    RaycastHit2D hit2 = Physics2D.Raycast(rayOrigin, Vector2.down * 1.5f,
-                      skinWidth * 5f, _player.groundLayerCheck);
-                    if(hit2)
-                    {
-                        readyToJump = true;
-                    }
+                    Debug.DrawRay(rayOrigin, Vector2.down * 0.3f, Color.blue);
+                    readyToJump = true;
                 }
             }
         }
-        
-        #region Calculations
-
-        void CalculateSpacing()
-        {
-            Bounds bounds = _player.col.bounds;
-            bounds.Expand(skinWidth * -2);
-            _horizontalRayCount = Mathf.Round(bounds.size.y / raySpacing);
-            _verticalRayCount = Mathf.Round(bounds.size.x / raySpacing);
-            _horizontalRaySpacing = bounds.size.y / (_horizontalRayCount - 1);
-            _verticalRaySpacing = bounds.size.x / (_verticalRayCount - 1);
-        }
-
-        void UpdateRaycastOrigins()
-        {
-            Bounds bounds = _player.col.bounds;
-            bounds.Expand(skinWidth * -2);   
-            _raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
-            _raycastOrigins.bottomRight = new Vector2(bounds.max.x, bounds.min.y);
-            _raycastOrigins.topLeft = new Vector2(bounds.min.x, bounds.max.y);
-            _raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
-        }
-        
-        #endregion
     }
 }

@@ -46,6 +46,7 @@ namespace TE
 
             //Jump Handling
             jump = Input.GetButtonDown("Jump");
+
             if(jump)
             {
                 jumpTimer = 0;
@@ -54,7 +55,7 @@ namespace TE
             if(jumpBuffer)
             {
                 jumpTimer += Time.deltaTime;
-                if (jumpTimer < 0.1f)
+                if (jumpTimer < 0.2f)
                     jump = true;
             }
 
