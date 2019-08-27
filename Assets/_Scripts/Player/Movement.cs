@@ -14,6 +14,13 @@ namespace TE
 
         const float jumpWindow = 0.2f;
 
+        const float dashCD = 0.2f;
+
+        float dashCDTimer;
+        float dashActiveTimer = 0;
+        float curDashSpeed;
+        Vector2 dashDir;
+
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -29,7 +36,10 @@ namespace TE
             UpdateReadyToJump(delta);
 
             if (grounded)
-                readyToJump = 0;
+            {
+                if(dashCDTimer < dashCD)
+                 dashCDTimer += delta;
+            }
 
             Rigidbody2D rb = _player.rigidBody;
 
@@ -58,7 +68,16 @@ namespace TE
 
             float modifier = grounded ? 1.0f : 1.2f;
 
-            rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier, rb.velocity.y);
+            float dashModifier = 0;
+
+            if(dashActiveTimer < 0.5f)
+            {
+                curDashSpeed = Mathf.Lerp(_player.dashVelocity, 0, dashActiveTimer * 2);
+                dashModifier = dashDir.x * curDashSpeed;
+                dashActiveTimer += delta;
+            }
+
+            rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
 
             if (h > 0 && !facingRight)
                 FlipCharacter();
@@ -83,15 +102,21 @@ namespace TE
             if (_game.session.IsDashUnlocked())
             {
                 Debug.Log("Player dashed!");
+                if(dashCDTimer >= dashCD)
+                {
+                    dashDir = facingRight ? Vector2.right : Vector2.left;
+                    dashActiveTimer = 0;
+                    dashCDTimer = 0;
+                }
             }
         }
 
         void FlipCharacter()
         {
             facingRight = !facingRight;
-            Vector3 theScale = _player.transform.localScale;
-            theScale.x *= -1;
-            _player.transform.localScale = theScale;
+            Vector3 playerScale = _player.transform.localScale;
+            playerScale.x *= -1;
+            _player.transform.localScale = playerScale;
         }
 
         void UpdateGrounded()
