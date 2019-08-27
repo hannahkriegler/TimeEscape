@@ -22,6 +22,7 @@ namespace TE
         private bool dashCheck;
 
         float jumpTimer;
+        bool didJump;
 
         public void Init(Game game)
         {
@@ -50,9 +51,10 @@ namespace TE
             if(jump)
             {
                 jumpTimer = 0;
+                didJump = false;
             }
             bool jumpBuffer = Input.GetButton("Jump");
-            if(jumpBuffer)
+            if(jumpBuffer && ! didJump)
             {
                 jumpTimer += Time.deltaTime;
                 if (jumpTimer < 0.2f)
@@ -82,7 +84,7 @@ namespace TE
 
             if (jump)
             {
-                player.Movement.Jump();
+                didJump = player.Movement.Jump();
             }
 
 
