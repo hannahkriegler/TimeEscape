@@ -15,6 +15,8 @@ namespace TE
         
         public Collider2D col { get; private set; }
 
+        public TrailRenderer trailRenderer { get; private set; }
+
         public Animator animator { get; private set; }
 
         public SwordHook sword  { get; private set; }
@@ -45,12 +47,15 @@ namespace TE
             sword = GetComponentInChildren<SwordHook>();
             animator = GetComponentInChildren<Animator>();
             col = GetComponent<Collider2D>();
+            trailRenderer = GetComponentInChildren<TrailRenderer>();
+           
             
             //Init Components
             Movement = new Movement(this, _game);
             CombatMelee = new CombatMelee(this, _game);
             CombatSkill = new CombatSkill(this, _game);
             canAttack = true;
+            SetupTrailRenderer();
         }
 
         private void Update()
@@ -72,6 +77,16 @@ namespace TE
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
+        }
+
+        void SetupTrailRenderer()
+        {
+            AnimationCurve curve = new AnimationCurve();
+            curve.AddKey(0.0f, 0.8f);
+            curve.AddKey(0.5f, 1.0f);
+            curve.AddKey(1.0f, 0.2f);
+            trailRenderer.widthCurve = curve;
+            trailRenderer.enabled = false;
         }
     }
 }

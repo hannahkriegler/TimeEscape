@@ -75,6 +75,15 @@ namespace TE
                 curDashSpeed = Mathf.Lerp(_player.dashVelocity, 0, dashActiveTimer * 2);
                 dashModifier = dashDir.x * curDashSpeed;
                 dashActiveTimer += delta;
+                if (!_player.trailRenderer.enabled)
+                {
+                    _player.trailRenderer.enabled = true;
+                    _player.trailRenderer.Clear();
+                }
+            }
+            else
+            {
+                _player.trailRenderer.enabled = false;
             }
 
             rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
