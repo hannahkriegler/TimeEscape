@@ -18,7 +18,7 @@ namespace TE
         const float dashCD = 0.3f;
 
         float dashCDTimer;
-        float dashActiveTimer = 0;
+        float dashActiveTimer = 1;
         float curDashSpeed;
         Vector2 dashDir;
 

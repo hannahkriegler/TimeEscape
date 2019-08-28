@@ -24,9 +24,9 @@ namespace TE
         
         public static float TimeLeft;
         [Range(0,4)]
-        public static int ZeitsplitterCounter;
+        public static int TimeShardCounter;
 
-        public Rooms[] allRooms;
+        public Room[] allRooms;
 
         public bool testTimeTravel = false;
         
@@ -34,7 +34,7 @@ namespace TE
         {
             instance = this;
             TimeLeft = 600;
-            ZeitsplitterCounter = 0;
+            TimeShardCounter = 0;
         }
 
         private void Start()
@@ -62,7 +62,7 @@ namespace TE
 
         private void SetUpRooms()
         {
-            foreach (Rooms room in allRooms)
+            foreach (Room room in allRooms)
             {
                 room.SpawnLoot();
             }
@@ -93,12 +93,12 @@ namespace TE
 
         public static void AddZeitsplitter()
         {
-            if (ZeitsplitterCounter < 4) ZeitsplitterCounter++;
+            if (TimeShardCounter < 4) TimeShardCounter++;
         }
 
         public static void SetZeitsplitterCounter(int counter)
         {
-            ZeitsplitterCounter = counter;
+            TimeShardCounter = counter;
         }
         
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TE
 {
-    public class Rooms : MonoBehaviour
+    public class Room : MonoBehaviour
     {
         public enum RoomTypes
         {
@@ -21,8 +21,7 @@ namespace TE
         public RoomTypes roomType;
 
         public Enemy[] allEnemies;
-        [HideInInspector]
-        public Enemy[] aliveEnemies;
+        List<Enemy> aliveEnemies;
 
         public Loot[] allLoot;
         [HideInInspector]
@@ -30,18 +29,15 @@ namespace TE
 
         public int RoomID;
 
-        protected Rooms(RoomTypes roomType, Enemy[] allEnemies, Enemy[] aliveEnemies, Loot[] allLoot, Loot[] collectedLoot)
-        {
-            this.roomType = roomType;
-            this.allEnemies = allEnemies;
-            this.aliveEnemies = aliveEnemies;
-            this.allLoot = allLoot;
-            this.collectedLoot = collectedLoot;
-        }
-
         private void Start()
         {
+            aliveEnemies = new List<Enemy>();
+            aliveEnemies.AddRange(allEnemies);
 
+            foreach (Enemy enemy in allEnemies)
+            {
+                enemy.AssignRoom(this);
+            }
         }
 
         public void SpawnLoot()
@@ -61,6 +57,14 @@ namespace TE
             }
         }
 
+        public void RespawnEnemies()
+        {
+            foreach (Enemy enemy in allEnemies)
+            {
+                //TODO Handling Time State
+            }
+        }
+
         public void ChangeLootFromReSpawnToNotSpawn()
         {
             foreach (Loot loot in allLoot)
@@ -72,6 +76,11 @@ namespace TE
             }
         }
 
+        public void NotifyEnemyDied(Enemy enemy)
+        {
+            if (aliveEnemies.Contains(enemy))
+                aliveEnemies.Remove(enemy);
+        }
 
         public void OnTriggerEnter2D(Collider2D player)
         {
@@ -102,8 +111,7 @@ namespace TE
                     throw new ArgumentOutOfRangeException();
             }
 
-            Debug.Log("Enemies alive: " + aliveEnemies.Length);
-
+            Debug.Log("Enemies alive: " + aliveEnemies.Count);
         }
 
 

@@ -9,6 +9,8 @@ namespace TE
         public float damageAmount = 10f;
         public int HitPoints = 3;
 
+        public Room assignedRoom { get; private set; }
+
         public void Attack()
         {
 
@@ -18,6 +20,7 @@ namespace TE
         {
             Debug.Log("You killed an Enemy!");
             gameObject.SetActive(false);
+            assignedRoom.NotifyEnemyDied(this);
         }
 
 
@@ -37,6 +40,11 @@ namespace TE
             HitPoints -= damage;
             if (HitPoints <= 0)
                 Die();
+        }
+
+        public void AssignRoom(Room room)
+        {
+            assignedRoom = room;
         }
     }
 }
