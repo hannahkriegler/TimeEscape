@@ -6,15 +6,9 @@ namespace TE
 {
     public abstract class Enemy : MonoBehaviour, IHit
     {
-
         public float damageAmount = 10f;
         public int HitPoints = 3;
 
-        protected Enemy(float damageAmount, int Hitpoints)
-        {
-            this.damageAmount = damageAmount;
-            this.HitPoints = Hitpoints;
-        }
         public void Attack()
         {
 
@@ -23,6 +17,7 @@ namespace TE
         private void Die()
         {
             Debug.Log("You killed an Enemy!");
+            gameObject.SetActive(false);
         }
 
 

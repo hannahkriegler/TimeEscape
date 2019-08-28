@@ -12,7 +12,7 @@ namespace TE
     [RequireComponent(typeof(Seeker))]
     public class EnemyAI : MonoBehaviour
     {
-        public Transform target;
+        Transform target;
 
         // How many times each second we will update our path
         public float updateRate = 2f;
@@ -35,24 +35,27 @@ namespace TE
         private int currentWaypoint = 0;
         public float nextWaypointDistance = 3f;
 
+        public bool canMove;
+
         private void Start()
         {
             seeker = GetComponent<Seeker>();
             rb = GetComponent<Rigidbody2D>();
 
-            if (target == null)
-            {
-                Debug.LogError("No Player found? PANIC!");
-                return;
-            }
+            //Takes player reference from game manager
+            target = Game.instance.player.transform;
+
             InvokeRepeating("UpdatePath", 0f, .5f);
         }
 
         private void UpdatePath()
         {
+            if (canMove == false)
+                return;
+
             if (target == null)
             {
-                // TODO: Insert a player search here
+                Debug.LogError("No Player found? PANIC!");
                 return;
             }
             if (seeker.IsDone())
@@ -73,9 +76,12 @@ namespace TE
         {
             if (target == null)
             {
-                // TODO: Insert a player search here
+                Debug.LogError("No Player found? PANIC!");
                 return;
             }
+
+            if (canMove == false)
+                return;
 
             // TODO: Always look at player
 

@@ -16,8 +16,8 @@ namespace TE
         public static bool portalIsSet = false; // Test Dummy
 
         public InputManager inputManager;
-        [HideInInspector] public Player player;
-
+        public Player player { get => inputManager.player; }
+       
         public Session session;
         public TimeStorage storage;
         public static Game instance;
