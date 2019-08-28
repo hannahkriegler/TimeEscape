@@ -45,7 +45,7 @@ namespace TE
             else
             {
                 //Allows to dash immediatly after jumping on ground
-                if (dashCDTimer > 0.1f)
+                if (dashCDTimer > 0.02f)
                     dashCDTimer = dashCD;
             }
 
@@ -148,12 +148,12 @@ namespace TE
             for (int i = 0; i < 12; i++)
             {
                 Vector2 rayOrigin = _player.groundCheck.position;
-                rayOrigin += Vector2.right * (i - 6) * 0.06f;
-                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.155f, _player.groundLayerCheck);
+                rayOrigin += Vector2.right * (i - 6) * 0.035f;
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, _player.groundLayerCheck);
               
                 if (hit)
                 {
-                    Debug.DrawRay(rayOrigin, Vector2.down * 0.3f, Color.blue);
+                    Debug.DrawRay(rayOrigin, Vector2.down * 0.1f, Color.blue);
                     grounded = true;
                     break;
                 }
@@ -172,7 +172,7 @@ namespace TE
                 readyToJump += delta;
 
             //Addtional raycast with furter distance to let jumping feel more responsive
-            RaycastHit2D hit = Physics2D.Raycast(_player.groundCheck.position, Vector2.down, 0.2f, _player.groundLayerCheck);
+            RaycastHit2D hit = Physics2D.Raycast(_player.groundCheck.position, Vector2.down, 0.15f, _player.groundLayerCheck);
             if (hit)
             {
                 readyToJump = 0;
