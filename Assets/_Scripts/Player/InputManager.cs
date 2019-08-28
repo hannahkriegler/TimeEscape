@@ -12,7 +12,7 @@ namespace TE
         //Inputs
         private bool active_skill;
         private bool attack;
-        private bool jump;
+        private bool jumpPressed;   
         private bool timeStamp;
         private bool timeSkill1, timeSkill2, timeSkill3, timeSkill4;
         private bool dash;
@@ -21,7 +21,7 @@ namespace TE
 
         private bool dashCheck;
 
-        float jumpTimer;
+        private bool jump;
         bool didJump;
 
         public void Init(Game game)
@@ -46,19 +46,17 @@ namespace TE
             active_skill = Input.GetButtonDown("Skill");
 
             //Jump Handling
-            jump = Input.GetButtonDown("Jump");
-
-            if(jump)
+            jumpPressed = Input.GetButton("Jump");
+            if(jumpPressed)
             {
-                jumpTimer = 0;
-                didJump = false;
-            }
-            bool jumpBuffer = Input.GetButton("Jump");
-            if(jumpBuffer && ! didJump)
-            {
-                jumpTimer += Time.deltaTime;
-                if (jumpTimer < 0.2f)
+                if (!didJump)
+                {
                     jump = true;
+                }
+            }
+            else
+            {
+                didJump = false;           
             }
 
             timeStamp = Input.GetButtonDown("TimeStamp");
@@ -81,10 +79,16 @@ namespace TE
             //Movement
             player.Movement.Tick();
             player.Movement.Move(movement);
+            player.Movement.higherJump = jumpPressed;
 
             if (jump)
             {
-                didJump = player.Movement.Jump();
+                bool jumped = player.Movement.Jump();
+                if (jumped)
+                {
+                    didJump = true;
+                    jump = false;
+                }
             }
 
 

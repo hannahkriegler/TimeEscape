@@ -28,7 +28,6 @@ namespace TE
         public float moveSpeed = 300;
         public float jumpVelocity = 10;
         public float fallMultiplier = 2.5f;
-        public float lowJumpMultiplier = 2f;
         public float gravityMultiplier = 2f;
         public float dashVelocity = 500;
 

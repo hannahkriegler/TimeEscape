@@ -51609,6 +51609,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5181368187397513308, guid: f965475b73dff7e43b1bb1fa7afd092a,
+        type: 3}
+      propertyPath: lowJumpMultiplier
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181368187397513308, guid: f965475b73dff7e43b1bb1fa7afd092a,
+        type: 3}
+      propertyPath: jumpVelocity
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 5185433604365018623, guid: f965475b73dff7e43b1bb1fa7afd092a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51663,6 +51673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5139494564091947155, guid: f965475b73dff7e43b1bb1fa7afd092a,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f965475b73dff7e43b1bb1fa7afd092a, type: 3}

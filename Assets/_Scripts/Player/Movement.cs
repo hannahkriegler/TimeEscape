@@ -12,9 +12,10 @@ namespace TE
 
         float readyToJump;
 
+        public bool higherJump;
         const float jumpWindow = 0.2f;
 
-        const float dashCD = 0.2f;
+        const float dashCD = 0.3f;
 
         float dashCDTimer;
         float dashActiveTimer = 0;
@@ -37,8 +38,15 @@ namespace TE
 
             if (grounded)
             {
+                //Prevents spamming dash on ground
                 if(dashCDTimer < dashCD)
                  dashCDTimer += delta;
+            }
+            else
+            {
+                //Allows to dash immediatly after jumping on ground
+                if (dashCDTimer > 0.1f)
+                    dashCDTimer = dashCD;
             }
 
             Rigidbody2D rb = _player.rigidBody;
@@ -54,7 +62,8 @@ namespace TE
             }
             else if (rb.velocity.y > 0)
             {
-                rb.velocity += Vector2.up * Physics2D.gravity.y * (_player.lowJumpMultiplier - 1) * delta;
+                float multiplier = higherJump ? 0.05f: 7.5f;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * multiplier * delta;
             }
         }
 
@@ -63,6 +72,13 @@ namespace TE
             float delta = _player.fixedDelta;
             Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
+            if (h > 0 && !facingRight)
+                FlipCharacter();
+            else if (h < 0 && facingRight)
+                FlipCharacter();
+
+            if (Mathf.Abs(h) < 0.01)
+                h = 0;
 
             _player.animator.SetFloat("MoveSpeed", direction.magnitude);
 
@@ -88,10 +104,7 @@ namespace TE
 
             rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
 
-            if (h > 0 && !facingRight)
-                FlipCharacter();
-            else if (h < 0 && facingRight)
-                FlipCharacter();
+    
         }
 
         public bool Jump()
@@ -132,12 +145,12 @@ namespace TE
         {
             grounded = false;
 
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 12; i++)
             {
                 Vector2 rayOrigin = _player.groundCheck.position;
-                rayOrigin += Vector2.right * (i - 12) * 0.05f;
+                rayOrigin += Vector2.right * (i - 6) * 0.06f;
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.155f, _player.groundLayerCheck);
-
+              
                 if (hit)
                 {
                     Debug.DrawRay(rayOrigin, Vector2.down * 0.3f, Color.blue);
