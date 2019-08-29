@@ -11,7 +11,7 @@ namespace TE
         //Custom Deltas
         public float playerTimeScale { get; private set; }
         public float worldTimeScale { get; private set; }
-        public float coundwodnTimeScale { get; private set; }
+        public float countdownTimeScale { get; private set; }
 
         public static bool portalIsSet = false; // Test Dummy
 
@@ -19,17 +19,17 @@ namespace TE
         public Player player { get => inputManager.player; }
        
         public Session session;
-        public TimeStorage storage;
+        public TimeStorage timeStorage { get; private set; }
         public static Game instance;
         
         public static float TimeLeft;
         [Range(0,4)]
         public static int TimeShardCounter;
 
+        [Header("Data")]
         public Room[] allRooms;
+        public GameObject timeStampPrefab;
 
-        public bool testTimeTravel = false;
-        
         private void Awake()
         {
             instance = this;
@@ -41,10 +41,10 @@ namespace TE
         {
             DontDestroyOnLoad(gameObject);
             session = new Session(this);
-            storage = new TimeStorage(this);
+            timeStorage = new TimeStorage(this);
             playerTimeScale = 1;
             worldTimeScale = 1;
-            coundwodnTimeScale = 1;
+            countdownTimeScale = 1;
             inputManager.Init(this);
             portalIsSet = true; // TODO: Just for testing, need to be set false after portal setter is implemented
             SetUpRooms();
@@ -52,11 +52,7 @@ namespace TE
 
         private void Update()
         {
-            if (testTimeTravel)
-            {
-                SetUpRooms();
-                testTimeTravel = false;
-            }
+            UpdateTime();
         }
 
 
@@ -73,14 +69,14 @@ namespace TE
             SceneManager.LoadScene(0);
         }
         
-
-        private void FixedUpdate()
+        void UpdateTime()
         {
-            TimeLeft -= Time.deltaTime * coundwodnTimeScale;
+            TimeLeft -= Time.deltaTime * countdownTimeScale;
             if (TimeLeft <= 0)
                 GameOver();
         }
-        
+
+
         public static void IncreaseTime(float time)
         {
             TimeLeft += time;

@@ -50923,7 +50923,8 @@ MonoBehaviour:
   - {fileID: 37828525}
   - {fileID: 1251386291}
   - {fileID: 608499014}
-  testTimeTravel: 0
+  timeStampPrefab: {fileID: 6334274536355022215, guid: e994687be87293d448b1a4de58737b5c,
+    type: 3}
 --- !u!4 &1261722532
 Transform:
   m_ObjectHideFlags: 0
@@ -52087,6 +52088,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5179513198990296853, guid: f965475b73dff7e43b1bb1fa7afd092a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5181368187397513308, guid: f965475b73dff7e43b1bb1fa7afd092a,
         type: 3}

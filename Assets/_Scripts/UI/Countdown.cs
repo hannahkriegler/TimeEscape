@@ -9,14 +9,12 @@ namespace TE.UI
 
         public Image countdownImage;
         public Text countdownText;
-        private static float _timeLeft ;
 
-        // Update is called once per frame
-        void FixedUpdate()
+        void Update()
         {
-            _timeLeft = Game.TimeLeft;
-            int min = Mathf.FloorToInt(_timeLeft / 60f);
-            int sec = Mathf.FloorToInt((_timeLeft - min * 60));
+            float timeLeft = Game.TimeLeft;
+            int min = Mathf.FloorToInt(timeLeft / 60f);
+            int sec = Mathf.FloorToInt((timeLeft - min * 60));
         
             countdownText.text = min.ToString();
             countdownImage.fillAmount = sec / 60f;

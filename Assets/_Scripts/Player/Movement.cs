@@ -178,5 +178,13 @@ namespace TE
                 readyToJump = 0;
             }
         }
+
+        public void Teleport(Vector2 teleportPos)
+        {
+            _player.rigidBody.isKinematic = true;
+            _player.transform.position = teleportPos;
+            _player.rigidBody.velocity = Vector2.zero;
+            _player.rigidBody.isKinematic = false;
+        }
     }
 }

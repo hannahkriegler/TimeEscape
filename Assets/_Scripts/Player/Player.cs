@@ -9,8 +9,8 @@ namespace TE
         
         public Movement Movement { get; private set; }
         public CombatMelee CombatMelee { get; private set; }
-        public CombatSkill CombatSkill { get; private set; }
-        
+        public TimeSkills TimeSkills { get; private set; }
+        public CombatSkill CombatSkill { get; private set; } 
         public Rigidbody2D rigidBody  { get; private set; }
         
         public Collider2D col { get; private set; }
@@ -49,8 +49,9 @@ namespace TE
             trailRenderer = GetComponentInChildren<TrailRenderer>();
            
             
-            //Init Components
+            //Init Subsystems
             Movement = new Movement(this, _game);
+            TimeSkills = new TimeSkills(this, _game);
             CombatMelee = new CombatMelee(this, _game);
             CombatSkill = new CombatSkill(this, _game);
             canAttack = true;

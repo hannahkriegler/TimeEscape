@@ -12,8 +12,9 @@ namespace TE
         //Inputs
         private bool active_skill;
         private bool attack;
-        private bool jumpPressed;   
+        private bool jumpPressed;
         private bool timeStamp;
+        private bool timeTravel;
         private bool timeSkill1, timeSkill2, timeSkill3, timeSkill4;
         private bool dash;
         private bool pause;
@@ -47,7 +48,7 @@ namespace TE
 
             //Jump Handling
             jumpPressed = Input.GetButton("Jump");
-            if(jumpPressed)
+            if (jumpPressed)
             {
                 if (!didJump)
                 {
@@ -56,11 +57,11 @@ namespace TE
             }
             else
             {
-                didJump = false;           
+                didJump = false;
             }
 
             timeStamp = Input.GetButtonDown("TimeStamp");
-
+            timeTravel = Input.GetButtonDown("TimeTravel");
             bool controllerDash = Input.GetAxis("Dash") > 0.5f;
             bool keyDash = Input.GetButtonDown("Dash");
             dash = controllerDash || keyDash;
@@ -70,8 +71,6 @@ namespace TE
                 if (!controllerDash && !keyDash)
                     dashCheck = false;
             }
-
-            //TODO Timeskills
         }
 
         void UpdatePlayer()
@@ -111,6 +110,17 @@ namespace TE
             {
                 active_skill = false;
                 player.CombatSkill.ActivateActiveSkill();
+            }
+
+            //Time Skills
+            if (timeStamp)
+            {
+                player.TimeSkills.PlaceTimestamp();
+            }
+            else
+            if (timeTravel)
+            {
+                player.TimeSkills.TimeTravel();
             }
         }
     }
