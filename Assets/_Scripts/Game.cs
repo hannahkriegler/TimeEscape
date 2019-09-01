@@ -21,6 +21,7 @@ namespace TE
         public Session session;
         public TimeStorage timeStorage { get; private set; }
         public static Game instance;
+        public float startTime = 600;
         
         public static float TimeLeft;
         [Range(0,4)]
@@ -33,7 +34,7 @@ namespace TE
         private void Awake()
         {
             instance = this;
-            TimeLeft = 600;
+            TimeLeft = startTime;
             TimeShardCounter = 0;
         }
 
