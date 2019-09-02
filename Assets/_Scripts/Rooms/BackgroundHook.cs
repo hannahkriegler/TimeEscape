@@ -7,6 +7,8 @@ namespace TE
     public class BackgroundHook : MonoBehaviour
     {
         Material mat;
+        float curTime;
+
         private void Start()
         {
             mat = GetComponent<Renderer>().material;
@@ -15,7 +17,8 @@ namespace TE
         {
             float time = Game.instance.startTime - Game.TimeLeft;
             time = Mathf.Clamp(time, 0, Game.instance.startTime);
-            mat.SetFloat("_CurTime", time);
+            curTime = Mathf.Lerp(curTime, time, Time.deltaTime * 5);
+            mat.SetFloat("_CurTime", curTime);
         }
     }
 }
