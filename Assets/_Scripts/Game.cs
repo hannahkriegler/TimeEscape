@@ -97,6 +97,22 @@ namespace TE
         {
             TimeShardCounter = counter;
         }
+
+        public void HandleTimeStampEnemies()
+        {
+            foreach (Room room in allRooms)
+            {
+                room.HandleTimeStampEnemies();
+            }
+        }
+
+        public void HandleTimeTravelEnemies()
+        {
+            foreach (Room room in allRooms)
+            {
+                room.HandleTimeTravelEnemies();
+            }
+        }
         
     }
     

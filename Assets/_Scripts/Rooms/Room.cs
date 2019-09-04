@@ -57,11 +57,19 @@ namespace TE
             }
         }
 
-        public void RespawnEnemies()
+        public void HandleTimeTravelEnemies()
         {
             foreach (Enemy enemy in allEnemies)
             {
-                //TODO Handling Time State
+                enemy.HandleTimeTravel();
+            }
+        }
+
+        public void HandleTimeStampEnemies()
+        {
+            foreach (Enemy enemy in allEnemies)
+            {
+                enemy.HandleTimeStamp();
             }
         }
 

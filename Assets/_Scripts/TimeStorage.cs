@@ -21,6 +21,7 @@ namespace TE
         {
             saved_time = Game.TimeLeft;
             saved_player_pos = player.rigidBody.position;
+            _game.HandleTimeStampEnemies();
             hasTimeStamp = true;
         }
 
@@ -30,6 +31,7 @@ namespace TE
                 return;
             Game.TimeLeft = saved_time;
             player.Movement.Teleport(saved_player_pos);
+            _game.HandleTimeTravelEnemies();
         }
     }
 }

@@ -7,9 +7,32 @@ namespace TE
     public abstract class Enemy : MonoBehaviour, IHit
     {
         public float damageAmount = 10f;
-        public int HitPoints = 3;
+        public int hitPoints = 3;
+
+        Vector3 savePos;
+        int saveHitPoints;
 
         public Room assignedRoom { get; private set; }
+
+        private void Start()
+        {
+            Setup();   
+        }
+
+        private void Update()
+        {
+            Tick();
+        }
+
+        protected virtual void Setup()
+        {
+           
+        }
+
+        protected virtual void Tick()
+        {
+
+        }
 
         public void Attack()
         {
@@ -23,6 +46,26 @@ namespace TE
             assignedRoom.NotifyEnemyDied(this);
         }
 
+        public void HandleTimeStamp()
+        {
+            savePos = transform.position;
+            saveHitPoints = hitPoints;
+        }
+
+        public void HandleTimeTravel()
+        {
+            transform.position = savePos;
+            hitPoints = saveHitPoints;
+            if(hitPoints <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+            }
+        }
+
 
         public float GetDamageAmount()
         {
@@ -31,14 +74,14 @@ namespace TE
 
         public int GetHitPoints()
         {
-            return HitPoints;
+            return hitPoints;
         }
 
         public void OnHit(int damage)
         {
             Debug.Log(gameObject.name + " took " + damage + " damage!");
-            HitPoints -= damage;
-            if (HitPoints <= 0)
+            hitPoints -= damage;
+            if (hitPoints <= 0)
                 Die();
         }
 
