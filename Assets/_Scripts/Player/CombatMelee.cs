@@ -14,12 +14,22 @@ namespace TE
 
         public void Attack()
         {
-            if (!_player.canAttack)
+            if (!_player.canAttack && !IsAttacking())
                 return;
 
-            _player.animator.Play("Attack");
+            if(_player.Movement.grounded)
+              _player.animator.CrossFade("Attack", 0.2f);
+            else
+                _player.animator.CrossFade("Jump_Attack", 0.2f);
             _player.sword.AllowHit(true);
             _player.canAttack = false;
+        }
+
+        public bool IsAttacking()
+        {
+            //TODO Improve Attack Check
+            return _player.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") ||
+                _player.animator.GetCurrentAnimatorStateInfo(0).IsName("Jump_Attack");
         }
     }
 }
