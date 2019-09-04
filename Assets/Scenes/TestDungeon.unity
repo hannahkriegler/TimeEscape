@@ -49547,7 +49547,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -14.109398, y: -0.5139713}
+  m_Offset: {x: -14.061623, y: -0.5139713}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -49558,7 +49558,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 130.98277, y: 13.839664}
+  m_Size: {x: 131.07832, y: 13.839664}
   m_EdgeRadius: 0
 --- !u!66 &382509052
 CompositeCollider2D:
@@ -49580,9 +49580,9 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 382509051}
     m_ColliderPaths:
-    - - X: 513819843
+    - - X: 514775363
         Y: -74338032
-      - X: 513819843
+      - X: 514775363
         Y: 64058608
       - X: -796007872
         Y: 64058579
@@ -49610,8 +49610,8 @@ CompositeCollider2D:
         Y: -241370944
   m_CompositePaths:
     m_Paths:
-    - - {x: 51.38198, y: -7.433803}
-      - {x: 51.38198, y: 6.405861}
+    - - {x: 51.477535, y: -7.433803}
+      - {x: 51.477535, y: 6.405861}
       - {x: -79.60079, y: 6.405855}
       - {x: -79.600784, y: -7.433803}
     - - {x: 22.493126, y: -24.137094}
@@ -49836,7 +49836,7 @@ MonoBehaviour:
   m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 382509052}
   m_ConfineScreenEdges: 1
-  m_Damping: 0.05
+  m_Damping: 0
 --- !u!1001 &507868769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50584,38 +50584,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 818325527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
+  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 10
-  m_LookaheadIgnoreY: 0
+  m_BindingMode: 1
+  m_FollowOffset: {x: 0, y: 0, z: -10}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
-  m_ScreenX: 0.5
-  m_ScreenY: 0.5
-  m_CameraDistance: 10
-  m_DeadZoneWidth: 0
-  m_DeadZoneHeight: 0
-  m_DeadZoneDepth: 0
-  m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
-  m_BiasX: 0
-  m_BiasY: 0
-  m_CenterOnActivate: 1
-  m_GroupFramingMode: 2
-  m_AdjustmentMode: 2
-  m_GroupFramingSize: 0.8
-  m_MaxDollyIn: 5000
-  m_MaxDollyOut: 5000
-  m_MinimumDistance: 1
-  m_MaximumDistance: 5000
-  m_MinimumFOV: 3
-  m_MaximumFOV: 60
-  m_MinimumOrthoSize: 1
-  m_MaximumOrthoSize: 5000
+  m_AngularDampingMode: 0
+  m_PitchDamping: 0
+  m_YawDamping: 0
+  m_RollDamping: 0
+  m_AngularDamping: 0
 --- !u!114 &818325530
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -51137,6 +51118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1261722530}
   startTime: 600
+  timeLeft: 0
+  timeShardCounter: 0
   allRooms:
   - {fileID: 758957802}
   - {fileID: 37828525}
@@ -52264,6 +52247,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyGem
       objectReference: {fileID: 0}
+    - target: {fileID: 2984882290947025077, guid: a76f07b5efddc71429025040ac3a5aba,
+        type: 3}
+      propertyPath: spawnType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2984882290947025072, guid: a76f07b5efddc71429025040ac3a5aba,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -52347,6 +52335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Zeitsplitter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987171292968274550, guid: d5db1b7a1e713ee4db50d70c5d241407,
+        type: 3}
+      propertyPath: spawnType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}

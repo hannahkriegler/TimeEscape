@@ -16,22 +16,22 @@ namespace TE
 
         public enum SpawnTypes
         {
-            Spawn,
-            NotSpawn,
-            ReSpawn
+            ReSpawn,
+            NoRespawn
         }
 
         public int addedTime = 10;
         public LootTypes lootType;
 
-        public SpawnTypes spawnType = SpawnTypes.Spawn;
+        public SpawnTypes spawnType = SpawnTypes.ReSpawn;
+
+        bool savePickedUp;
 
         public void OnTriggerEnter2D(Collider2D player)
         {
             if (!player.CompareTag("Player")) return;
 
             PickUpLoot();
-            HideSprite();
         }
 
         public virtual void PickUpLoot()
@@ -40,34 +40,38 @@ namespace TE
             {
                 case LootTypes.Time:
                     Debug.Log("Increased Time");
-                    Game.IncreaseTime(addedTime);
-                    if (Game.portalIsSet) spawnType = SpawnTypes.ReSpawn;
+                    Game.instance.IncreaseTime(addedTime);
                     break;
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
-                    if (Game.portalIsSet) spawnType = SpawnTypes.ReSpawn;
-                    Game.AddZeitsplitter();
+                    Game.instance.AddTimeShard();
                     break;
                 case LootTypes.Gem:
-                    if (Game.portalIsSet) spawnType = SpawnTypes.NotSpawn;
                     GemBehaviour();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
+            gameObject.SetActive(false);
         }
 
-        public void HideSprite()
+        public void HandleTimeStamp()
         {
-            GetComponent<SpriteRenderer>().enabled = false;
-            GetComponent<CircleCollider2D>().enabled = false;
+            savePickedUp = !gameObject.activeSelf;
         }
 
-        public void ShowSprite()
+        public void HandleTimeTravel()
         {
-            GetComponent<SpriteRenderer>().enabled = true;
-            GetComponent<CircleCollider2D>().enabled = true;
+            switch (spawnType)
+            {
+                case SpawnTypes.ReSpawn:
+                    gameObject.SetActive(!savePickedUp);
+                    break;
+                case SpawnTypes.NoRespawn:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public virtual void GemBehaviour()

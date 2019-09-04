@@ -12,7 +12,7 @@ namespace TE.UI
         
         private void FixedUpdate()
         {
-            _timeShardCounter = Game.TimeShardCounter;
+            _timeShardCounter = Game.instance.timeShardCounter;
             timesShard_Fill.fillAmount = _timeShardCounter / 4f;
         }
     }

@@ -22,6 +22,9 @@ namespace TE
         float curDashSpeed;
         Vector2 dashDir;
 
+        bool jump1;
+        bool jump2;
+
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -41,6 +44,10 @@ namespace TE
                 //Prevents spamming dash on ground
                 if(dashCDTimer < dashCD)
                  dashCDTimer += delta;
+
+                //Reset Jumps
+                jump1 = false;
+                jump2 = false;
             }
             else
             {
@@ -114,8 +121,18 @@ namespace TE
             {
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
+                jump1 = true;
                 return true;
             }
+
+            //Handle Double Jump
+            if(jump1 && _game.session.IsDoubleJumpUnlocked() && !jump2)
+            {
+                _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
+                jump2 = true;
+                return true;
+            }
+
             return false;
         }
 

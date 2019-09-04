@@ -13,8 +13,6 @@ namespace TE
         public float worldTimeScale { get; private set; }
         public float countdownTimeScale { get; private set; }
 
-        public static bool portalIsSet = false; // Test Dummy
-
         public InputManager inputManager;
         public Player player { get => inputManager.player; }
        
@@ -23,9 +21,9 @@ namespace TE
         public static Game instance;
         public float startTime = 600;
         
-        public static float TimeLeft;
+        public float timeLeft;
         [Range(0,4)]
-        public static int TimeShardCounter;
+        public int timeShardCounter;
 
         [Header("Data")]
         public Room[] allRooms;
@@ -34,8 +32,8 @@ namespace TE
         private void Awake()
         {
             instance = this;
-            TimeLeft = startTime;
-            TimeShardCounter = 0;
+            timeLeft = startTime;
+            timeShardCounter = 0;
         }
 
         private void Start()
@@ -47,22 +45,11 @@ namespace TE
             worldTimeScale = 1;
             countdownTimeScale = 1;
             inputManager.Init(this);
-            portalIsSet = true; // TODO: Just for testing, need to be set false after portal setter is implemented
-            SetUpRooms();
         }
 
         private void Update()
         {
             UpdateTime();
-        }
-
-
-        private void SetUpRooms()
-        {
-            foreach (Room room in allRooms)
-            {
-                room.SpawnLoot();
-            }
         }
 
         public void GameOver()
@@ -72,37 +59,37 @@ namespace TE
         
         void UpdateTime()
         {
-            TimeLeft -= Time.deltaTime * countdownTimeScale;
-            if (TimeLeft <= 0)
+            timeLeft -= Time.deltaTime * countdownTimeScale;
+            if (timeLeft <= 0)
                 GameOver();
         }
 
 
-        public static void IncreaseTime(float time)
+        public void IncreaseTime(float time)
         {
-            TimeLeft += time;
+            timeLeft += time;
         }
 
-        public static void DecreaseTime(float time)
+        public void DecreaseTime(float time)
         {
-            TimeLeft -= time;
+            timeLeft -= time;
         }
 
-        public static void AddZeitsplitter()
+        public void AddTimeShard()
         {
-            if (TimeShardCounter < 4) TimeShardCounter++;
+            if (timeShardCounter < 4) timeShardCounter++;
         }
 
-        public static void SetZeitsplitterCounter(int counter)
+        public void SetTimeShardCounter(int counter)
         {
-            TimeShardCounter = counter;
+            timeShardCounter = counter;
         }
 
         public void HandleTimeStampEnemies()
         {
             foreach (Room room in allRooms)
             {
-                room.HandleTimeStampEnemies();
+                room.HandleTimeStamp();
             }
         }
 
@@ -110,7 +97,7 @@ namespace TE
         {
             foreach (Room room in allRooms)
             {
-                room.HandleTimeTravelEnemies();
+                room.HandleTimeTravel();
             }
         }
         
