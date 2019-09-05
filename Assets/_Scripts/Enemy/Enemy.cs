@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 namespace TE
 {
@@ -9,12 +12,14 @@ namespace TE
     {
         public int damageAmount = 10;
         public int hitPoints = 3;
+        public bool hasLootDrop = false;
+        public Loot.LootTypes lootTypes;
         
-        //[HideInInspector]
+        [HideInInspector]
         public Transform player;
 
-        Vector3 savePos;
-        int saveHitPoints;
+        private Vector3 savePos;
+        private int _saveHitPoints;
 
         public Room assignedRoom { get; private set; }
 
@@ -31,7 +36,26 @@ namespace TE
         protected virtual void Setup()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            
         }
+
+        protected void DropLoot()
+        {
+            Debug.Log("Dropped Loot");
+            if (hasLootDrop)
+            {
+                switch (lootTypes)
+                {
+                    case Loot.LootTypes.Time:
+                        Instantiate(Resources.Load("BonusTime") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                    case Loot.LootTypes.Zeitsplitter:
+                        Instantiate(Resources.Load("Zeitsplitter") as GameObject, transform.position, Quaternion.identity);
+                        break;
+                }
+            }
+        }
+        
 
         protected virtual void Tick()
         {
@@ -60,18 +84,19 @@ namespace TE
             Debug.Log("You killed an Enemy!");
             gameObject.SetActive(false);
             assignedRoom.NotifyEnemyDied(this);
+            if(hasLootDrop) DropLoot();
         }
 
         public void HandleTimeStamp()
         {
             savePos = transform.position;
-            saveHitPoints = hitPoints;
+            _saveHitPoints = hitPoints;
         }
 
         public void HandleTimeTravel()
         {
             transform.position = savePos;
-            hitPoints = saveHitPoints;
+            hitPoints = _saveHitPoints;
             if(hitPoints <= 0)
             {
                 gameObject.SetActive(false);
