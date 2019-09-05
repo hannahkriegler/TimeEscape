@@ -14,7 +14,7 @@ namespace TE
             IHit hit = other.GetComponent<IHit>();
             if (hit != null)
             {
-                hit.OnHit(5);
+                hit.OnHit(this.GetComponentInParent<Player>().damage);
                 AllowHit(false);
             }
         }

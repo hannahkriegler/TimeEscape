@@ -38,6 +38,10 @@ namespace TE
         public float delta { get; private set; }
         public float fixedDelta { get; private set; }
         
+        // Gem stuff modifiers
+        [HideInInspector]
+        public int damage = 1;
+        
         public void Init(Game game)
         {
             //Setting References

@@ -9,6 +9,9 @@ namespace TE
     {
         public int damageAmount = 10;
         public int hitPoints = 3;
+        
+        //[HideInInspector]
+        public Transform player;
 
         Vector3 savePos;
         int saveHitPoints;
@@ -27,7 +30,7 @@ namespace TE
 
         protected virtual void Setup()
         {
-           
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         protected virtual void Tick()
@@ -35,8 +38,16 @@ namespace TE
 
         }
 
-        public void Attack()
-        { }
+        protected virtual void Attack(GameObject target)
+        {
+            if(!target.CompareTag("Player")) return;
+            IHit hit = target.GetComponent<IHit>();
+            if (hit != null)
+            {
+                hit.OnHit(damageAmount);
+                
+            }
+        }
 
         public void FollowPlayer()
         {
@@ -44,7 +55,7 @@ namespace TE
             enemyAi.canMove = enemyAi.IsInFollowDistance();
         }
 
-        private void Die()
+        protected virtual void Die()
         {
             Debug.Log("You killed an Enemy!");
             gameObject.SetActive(false);
@@ -71,18 +82,7 @@ namespace TE
             }
         }
 
-
-        public float GetDamageAmount()
-        {
-            return damageAmount;
-        }
-
-        public int GetHitPoints()
-        {
-            return hitPoints;
-        }
-
-        public void OnHit(int damage)
+        public virtual void OnHit(int damage)
         {
             Debug.Log(gameObject.name + " took " + damage + " damage!");
             hitPoints -= damage;
@@ -94,16 +94,23 @@ namespace TE
         {
             assignedRoom = room;
         }
-        
-        private void OnTriggerEnter2D(Collider2D other)
+
+        public virtual void OnTriggerEnter2D(Collider2D other)
         {    
-            if(!other.CompareTag("Player")) return;
-            IHit hit = other.GetComponent<IHit>();
-            if (hit != null)
-            {
-                hit.OnHit(damageAmount);
-                
-            }
+            Attack(other.gameObject);
         }
+        
+        public float GetDamageAmount()
+        {
+            return damageAmount;
+        }
+
+        public int GetHitPoints()
+        {
+            return hitPoints;
+        }
+
     }
+    
+    
 }
