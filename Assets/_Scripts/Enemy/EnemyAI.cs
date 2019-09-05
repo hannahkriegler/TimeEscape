@@ -13,9 +13,10 @@ namespace TE
     public class EnemyAI : MonoBehaviour
     {
         Transform target;
-
+        
         // How many times each second we will update our path
         public float updateRate = 2f;
+        public float maxEnemyDistance = 8f;
 
         // Flip to right direction
         public Transform enemyGFX;
@@ -96,6 +97,11 @@ namespace TE
                 return;
             }
 
+            if (!IsInFollowDistance())
+            {
+                return;
+            }
+
             reachedEndOfPath = false;
 
             // Direction to the next waypoint
@@ -110,7 +116,7 @@ namespace TE
 
 
             float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
+            
             if (dist < nextWaypointDistance)
             {
                 currentWaypoint++;
@@ -128,5 +134,25 @@ namespace TE
 
 
         }
+
+        public bool IsInFollowDistance()
+        {
+            float enemyDistance = Vector2.Distance(rb.position, target.position);
+            if (enemyDistance > maxEnemyDistance)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void AttackModus(bool modusOn)
+        {
+            if (modusOn)
+            {
+                
+            }
+        }
+        
     }
 }

@@ -6,14 +6,9 @@ namespace TE
 {
     public class DummyBook : Enemy
     {
-        private void Start()
-        {
-     
-        }
+      
+        
 
-        private void Update()
-        {
-
-        }
+        
     }
 }

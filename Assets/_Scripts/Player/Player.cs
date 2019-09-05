@@ -77,6 +77,7 @@ namespace TE
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
+            Game.DecreaseTime(damage);
         }
 
         void SetupTrailRenderer()

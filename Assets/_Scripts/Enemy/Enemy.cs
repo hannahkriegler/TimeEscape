@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,14 +7,16 @@ namespace TE
 {
     public abstract class Enemy : MonoBehaviour, IHit
     {
-        public float damageAmount = 10f;
-        public int HitPoints = 3;
+        public int damageAmount = 10;
+        public int hitPoints = 3;
 
         public Room assignedRoom { get; private set; }
 
-        public void Attack()
-        {
 
+        public void FollowPlayer()
+        {
+            EnemyAI enemyAi = gameObject.GetComponent<EnemyAI>();
+            enemyAi.canMove = enemyAi.IsInFollowDistance();
         }
 
         private void Die()
@@ -31,20 +34,31 @@ namespace TE
 
         public int GetHitPoints()
         {
-            return HitPoints;
+            return hitPoints;
         }
 
         public void OnHit(int damage)
         {
             Debug.Log(gameObject.name + " took " + damage + " damage!");
-            HitPoints -= damage;
-            if (HitPoints <= 0)
+            hitPoints -= damage;
+            if (hitPoints <= 0)
                 Die();
         }
 
         public void AssignRoom(Room room)
         {
             assignedRoom = room;
+        }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {    
+            if(!other.CompareTag("Player")) return;
+            IHit hit = other.GetComponent<IHit>();
+            if (hit != null)
+            {
+                hit.OnHit(damageAmount);
+                
+            }
         }
     }
 }
