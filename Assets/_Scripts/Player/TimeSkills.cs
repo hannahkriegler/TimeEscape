@@ -30,12 +30,17 @@ namespace TE
             timeStampSpawn.transform.position = _player.transform.position;
 
             _game.timeStorage.CreateTimeStamp(_player);
+            _player.animator.CrossFade("Cast", 0.2f);
             Debug.Log("Timestamp placed!");
         }
         
         public void TimeTravel()
         {
+            if (!timeStampSpawn)
+                return;
+
             _game.timeStorage.LoadTimeStamp(_player);
+            _player.animator.CrossFade("Dizzy", 0.2f);
             Debug.Log("Time traveled");
         }
     }

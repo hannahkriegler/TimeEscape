@@ -22,6 +22,11 @@ namespace TE
         float curDashSpeed;
         Vector2 dashDir;
 
+        bool jump1;
+        bool jump2;
+
+        bool knockBack;
+
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -41,6 +46,10 @@ namespace TE
                 //Prevents spamming dash on ground
                 if(dashCDTimer < dashCD)
                  dashCDTimer += delta;
+
+                //Reset Jumps
+                jump1 = false;
+                jump2 = false;
             }
             else
             {
@@ -69,6 +78,16 @@ namespace TE
 
         public void Move(Vector2 direction)
         {
+            //Handle Knockback
+            bool isInteracting = _player.IsInteracting();
+            if(knockBack)
+            {
+                if (isInteracting)
+                    return;
+                else
+                    knockBack = false;
+            }
+
             float delta = _player.fixedDelta;
             Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
@@ -77,10 +96,12 @@ namespace TE
             else if (h < 0 && facingRight)
                 FlipCharacter();
 
-            if (Mathf.Abs(h) < 0.01)
+            if (Mathf.Abs(h) < 0.1)
+            {
                 h = 0;
+            }
 
-            _player.animator.SetFloat("MoveSpeed", direction.magnitude);
+            _player.animator.SetFloat("MoveSpeed", Mathf.Abs(h));
 
             float modifier = grounded ? 1.0f : 1.2f;
 
@@ -114,8 +135,22 @@ namespace TE
             {
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
+                jump1 = true;
+                _player.animator.CrossFade("Jump", 0.2f);
+                _player.CombatMelee.AllowAttacking();
                 return true;
             }
+
+            //Handle Double Jump
+            if(jump1 && _game.session.IsDoubleJumpUnlocked() && !jump2)
+            {
+                _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
+                jump2 = true;
+                _player.animator.CrossFade("Jump", 0.2f);
+                _player.CombatMelee.AllowAttacking();
+                return true;
+            }
+
             return false;
         }
 
@@ -129,6 +164,8 @@ namespace TE
                     dashDir = facingRight ? Vector2.right : Vector2.left;
                     dashActiveTimer = 0;
                     dashCDTimer = 0;
+                    _player.animator.CrossFade("Dash", 0.2f);
+                    _player.CombatMelee.AllowAttacking();
                 }
             }
         }
@@ -185,6 +222,12 @@ namespace TE
             _player.transform.position = teleportPos;
             _player.rigidBody.velocity = Vector2.zero;
             _player.rigidBody.isKinematic = false;
+        }
+
+        public void KnockBack(float strength)
+        {
+            knockBack = true;
+            _player.rigidBody.AddForce(strength * -_player.transform.right, ForceMode2D.Force);
         }
     }
 }

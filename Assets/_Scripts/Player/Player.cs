@@ -19,7 +19,7 @@ namespace TE
 
         public Animator animator { get; private set; }
 
-        public SwordHook sword  { get; private set; }
+        public DamageCollider sword  { get; private set; }
         [Header("References")]
         public LayerMask groundLayerCheck;
         public Transform groundCheck;
@@ -43,7 +43,7 @@ namespace TE
             //Setting References
             _game = game;
             rigidBody = GetComponent<Rigidbody2D>();
-            sword = GetComponentInChildren<SwordHook>();
+            sword = GetComponentInChildren<DamageCollider>();
             animator = GetComponentInChildren<Animator>();
             col = GetComponent<Collider2D>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
@@ -67,17 +67,32 @@ namespace TE
 
         void UpdateAttack()
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (!IsInteracting())
             {
-                sword.AllowHit(false);
-                canAttack = true;
+                CombatMelee.AllowAttacking();
             }
         }
+
+  
+        public bool IsInteracting()
+        {
+            return animator.GetBool("isInteracting");
+        }
+
 
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
+
             Game.DecreaseTime(damage);
+
+            animator.CrossFade("Hit", 0.2f);
+        }
+
+        public void KnockBack(float strength = 150)
+        {
+            animator.CrossFade("Hit", 0.2f);
+            Movement.KnockBack(strength);
         }
 
         void SetupTrailRenderer()

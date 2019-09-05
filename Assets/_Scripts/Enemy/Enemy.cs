@@ -7,11 +7,36 @@ namespace TE
 {
     public abstract class Enemy : MonoBehaviour, IHit
     {
-        public int damageAmount = 10;
+        public float damageAmount = 10f;
         public int hitPoints = 3;
+
+        Vector3 savePos;
+        int saveHitPoints;
 
         public Room assignedRoom { get; private set; }
 
+        private void Start()
+        {
+            Setup();   
+        }
+
+        private void Update()
+        {
+            Tick();
+        }
+
+        protected virtual void Setup()
+        {
+           
+        }
+
+        protected virtual void Tick()
+        {
+
+        }
+
+        public void Attack()
+        { }
 
         public void FollowPlayer()
         {
@@ -24,6 +49,26 @@ namespace TE
             Debug.Log("You killed an Enemy!");
             gameObject.SetActive(false);
             assignedRoom.NotifyEnemyDied(this);
+        }
+
+        public void HandleTimeStamp()
+        {
+            savePos = transform.position;
+            saveHitPoints = hitPoints;
+        }
+
+        public void HandleTimeTravel()
+        {
+            transform.position = savePos;
+            hitPoints = saveHitPoints;
+            if(hitPoints <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                gameObject.SetActive(true);
+            }
         }
 
 

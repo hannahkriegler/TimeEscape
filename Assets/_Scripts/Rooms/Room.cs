@@ -40,41 +40,30 @@ namespace TE
             }
         }
 
-        public void SpawnLoot()
-        {
-            foreach (Loot loot in allLoot)
-            {
-                if (loot.spawnType == Loot.SpawnTypes.Spawn ||
-                    loot.spawnType == Loot.SpawnTypes.ReSpawn)
-                {
-                    loot.ShowSprite();
-                }
-
-                if (loot.spawnType == Loot.SpawnTypes.NotSpawn)
-                {
-                    loot.HideSprite();
-                }
-            }
-        }
-
-        public void RespawnEnemies()
+        public void HandleTimeTravel()
         {
             foreach (Enemy enemy in allEnemies)
             {
-                //TODO Handling Time State
+                enemy.HandleTimeTravel();
+            }
+            foreach (Loot loot in allLoot)
+            {
+                loot.HandleTimeTravel();
             }
         }
 
-        public void ChangeLootFromReSpawnToNotSpawn()
+        public void HandleTimeStamp()
         {
+            foreach (Enemy enemy in allEnemies)
+            {
+                enemy.HandleTimeStamp();
+            }
             foreach (Loot loot in allLoot)
             {
-                if (loot.spawnType == Loot.SpawnTypes.ReSpawn)
-                {
-                    loot.spawnType = Loot.SpawnTypes.NotSpawn;
-                }
+                loot.HandleTimeStamp();
             }
         }
+
 
         public void NotifyEnemyDied(Enemy enemy)
         {

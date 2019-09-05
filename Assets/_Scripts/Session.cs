@@ -15,5 +15,11 @@ namespace TE
            //TODO Implement check
             return true;
         }
+
+        public bool IsDoubleJumpUnlocked()
+        {
+            //Implement Check
+            return true;
+        }
     }
 }
