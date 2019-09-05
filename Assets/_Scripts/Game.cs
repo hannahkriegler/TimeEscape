@@ -21,7 +21,7 @@ namespace TE
         public static Game instance;
         public float startTime = 600;
         
-        public float timeLeft;
+        public static float timeLeft;
         [Range(0,4)]
         public int timeShardCounter;
 
@@ -70,7 +70,7 @@ namespace TE
             timeLeft += time;
         }
 
-        public void DecreaseTime(float time)
+        public static void DecreaseTime(float time)
         {
             timeLeft -= time;
         }

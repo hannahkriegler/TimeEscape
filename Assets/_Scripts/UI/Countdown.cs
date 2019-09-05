@@ -12,7 +12,7 @@ namespace TE.UI
 
         void Update()
         {
-            float timeLeft = Game.instance.timeLeft;
+            float timeLeft = Game.timeLeft;
             int min = Mathf.FloorToInt(timeLeft / 60f);
             int sec = Mathf.FloorToInt((timeLeft - min * 60));
         

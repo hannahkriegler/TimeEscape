@@ -7,7 +7,7 @@ namespace TE
 {
     public abstract class Enemy : MonoBehaviour, IHit
     {
-        public float damageAmount = 10f;
+        public int damageAmount = 10;
         public int hitPoints = 3;
 
         Vector3 savePos;

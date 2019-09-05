@@ -83,8 +83,8 @@ namespace TE
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
-
-            Game.DecreaseTime(damage);
+            float f = damage * 1.0f;
+            Game.DecreaseTime(f);
 
             animator.CrossFade("Hit", 0.2f);
         }
