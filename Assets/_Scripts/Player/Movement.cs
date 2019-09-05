@@ -25,6 +25,8 @@ namespace TE
         bool jump1;
         bool jump2;
 
+        bool knockBack;
+
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -76,6 +78,16 @@ namespace TE
 
         public void Move(Vector2 direction)
         {
+            //Handle Knockback
+            bool isInteracting = _player.IsInteracting();
+            if(knockBack)
+            {
+                if (isInteracting)
+                    return;
+                else
+                    knockBack = false;
+            }
+
             float delta = _player.fixedDelta;
             Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
@@ -125,6 +137,7 @@ namespace TE
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump1 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
+                _player.CombatMelee.AllowAttacking();
                 return true;
             }
 
@@ -134,6 +147,7 @@ namespace TE
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump2 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
+                _player.CombatMelee.AllowAttacking();
                 return true;
             }
 
@@ -151,6 +165,7 @@ namespace TE
                     dashActiveTimer = 0;
                     dashCDTimer = 0;
                     _player.animator.CrossFade("Dash", 0.2f);
+                    _player.CombatMelee.AllowAttacking();
                 }
             }
         }
@@ -207,6 +222,12 @@ namespace TE
             _player.transform.position = teleportPos;
             _player.rigidBody.velocity = Vector2.zero;
             _player.rigidBody.isKinematic = false;
+        }
+
+        public void KnockBack(float strength)
+        {
+            knockBack = true;
+            _player.rigidBody.AddForce(strength * -_player.transform.right, ForceMode2D.Force);
         }
     }
 }

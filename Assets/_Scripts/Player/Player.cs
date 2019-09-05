@@ -67,17 +67,29 @@ namespace TE
 
         void UpdateAttack()
         {
-            if (!CombatMelee.IsAttacking())
+            if (!IsInteracting())
             {
-                sword.AllowHit(false);
-                canAttack = true;
+                CombatMelee.AllowAttacking();
             }
+        }
+
+  
+        public bool IsInteracting()
+        {
+            return animator.GetBool("isInteracting");
         }
 
 
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
+            animator.CrossFade("Hit", 0.2f);
+        }
+
+        public void KnockBack(float strength = 150)
+        {
+            animator.CrossFade("Hit", 0.2f);
+            Movement.KnockBack(strength);
         }
 
         void SetupTrailRenderer()

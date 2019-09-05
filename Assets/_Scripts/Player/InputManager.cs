@@ -11,7 +11,7 @@ namespace TE
 
         //Inputs
         private bool active_skill;
-        private bool attack;
+        private bool attackPressed;
         private bool jumpPressed;
         private bool timeStamp;
         private bool timeTravel;
@@ -24,6 +24,8 @@ namespace TE
 
         private bool jump;
         bool didJump;
+        bool attack;
+        bool didAttack;
 
         public void Init(Game game)
         {
@@ -43,7 +45,22 @@ namespace TE
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
 
-            attack = Input.GetButtonDown("Attack");
+            //Handle Attack
+            attackPressed = Input.GetButton("Attack");
+            //Input Buffer
+            if(attackPressed)
+            {
+                if(!didAttack)
+                {
+                    attack = true;
+                }
+            }
+            else
+            {
+                didAttack = false;
+            }
+
+
             active_skill = Input.GetButtonDown("Skill");
 
             //Jump Handling
@@ -102,7 +119,12 @@ namespace TE
             //Attack Handling
             if (attack)
             {
-                player.CombatMelee.Attack();
+                bool attacked = player.CombatMelee.Attack();
+                if(attacked)
+                {
+                    didAttack = true;
+                    attack = false;
+                }
             }
 
             //Skills
