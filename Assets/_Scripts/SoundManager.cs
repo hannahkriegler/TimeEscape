@@ -19,7 +19,6 @@ namespace TE
         private void Awake()
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
 
             musicSource = gameObject.AddComponent<AudioSource>();
 

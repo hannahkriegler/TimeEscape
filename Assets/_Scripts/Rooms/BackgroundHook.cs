@@ -15,7 +15,7 @@ namespace TE
         }
         private void Update()
         {
-            float time = Game.instance.startTime - Game.timeLeft;
+            float time = Game.instance.startTime - Game.instance.timeLeft;
             time = Mathf.Clamp(time, 0, Game.instance.startTime);
             curTime = Mathf.Lerp(curTime, time, Time.deltaTime * 5);
             mat.SetFloat("_CurTime", curTime);

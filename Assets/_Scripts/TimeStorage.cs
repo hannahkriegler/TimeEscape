@@ -19,7 +19,7 @@ namespace TE
 
         public void CreateTimeStamp(Player player)
         {
-            saved_time = Game.timeLeft;
+            saved_time = Game.instance.timeLeft;
             saved_player_pos = player.rigidBody.position;
             _game.HandleTimeStampEnemies();
             hasTimeStamp = true;
@@ -29,7 +29,7 @@ namespace TE
         {
             if (!hasTimeStamp)
                 return;
-            Game.timeLeft = saved_time;
+            Game.instance.timeLeft = saved_time;
             player.Movement.Teleport(saved_player_pos);
             _game.HandleTimeTravelEnemies();
         }

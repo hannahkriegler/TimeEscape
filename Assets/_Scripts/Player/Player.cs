@@ -88,7 +88,7 @@ namespace TE
         {
             Debug.Log("Player hitted!");
             float f = damage * 1.0f;
-            Game.DecreaseTime(f);
+            _game.DecreaseTime(f);
 
             animator.CrossFade("Hit", 0.2f);
         }

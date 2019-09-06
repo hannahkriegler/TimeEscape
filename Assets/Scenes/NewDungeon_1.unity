@@ -50929,7 +50929,7 @@ MonoBehaviour:
   m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 382509052}
   m_ConfineScreenEdges: 0
-  m_Damping: 0.05
+  m_Damping: 0.2
 --- !u!1001 &507868769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52216,6 +52216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputManager: {fileID: 1261722530}
   startTime: 600
+  timeLeft: 0
   timeShardCounter: 0
   allRooms:
   - {fileID: 758957802}
