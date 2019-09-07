@@ -75,6 +75,7 @@ namespace TE
 
         private void FixedUpdate()
         {
+            
             if (target == null)
             {
                 Debug.LogError("No Player found? PANIC!");
@@ -103,6 +104,7 @@ namespace TE
             }
 
             reachedEndOfPath = false;
+            
 
             // Direction to the next waypoint
 
@@ -137,7 +139,8 @@ namespace TE
 
         public bool IsInFollowDistance()
         {
-            float enemyDistance = Vector2.Distance(rb.position, target.position);
+            //float enemyDistance = Vector2.Distance(rb.position, target.position);
+            float enemyDistance = path.GetTotalLength();
             if (enemyDistance > maxEnemyDistance)
             {
                 return false;

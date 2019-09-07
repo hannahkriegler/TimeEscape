@@ -12,6 +12,14 @@ namespace TE
         private void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
+            
+        }
+
+        protected override void Knockback()
+        {
+            // No Knockback in this enemy
+            return;
+            
         }
 
         private void LateUpdate()
@@ -24,7 +32,7 @@ namespace TE
             else
             {
 
-                timeBtwShots -= Time.deltaTime; // TODO: update it with world time
+                timeBtwShots -= Game.instance.worldTimeScale; // TODO: update it with world time
             }
         }
     }

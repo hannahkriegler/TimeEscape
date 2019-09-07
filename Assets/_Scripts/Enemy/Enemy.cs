@@ -10,6 +10,7 @@ namespace TE
 {
     public abstract class Enemy : MonoBehaviour, IHit
     {
+        
         public int damageAmount = 10;
         public int hitPoints = 3;
         public bool hasLootDrop = false;
@@ -18,6 +19,8 @@ namespace TE
         [HideInInspector]
         public Transform player;
 
+        [HideInInspector] public float knockback = 10;
+        
         private Vector3 savePos;
         private int _saveHitPoints;
 
@@ -110,6 +113,7 @@ namespace TE
         public virtual void OnHit(int damage)
         {
             Debug.Log(gameObject.name + " took " + damage + " damage!");
+            Knockback();
             hitPoints -= damage;
             if (hitPoints <= 0)
                 Die();
@@ -123,6 +127,13 @@ namespace TE
         public virtual void OnTriggerEnter2D(Collider2D other)
         {    
             Attack(other.gameObject);
+        }
+
+        protected virtual void Knockback()
+        {
+            var sword = player.GetComponent<Player>().sword;
+            Vector2 knockbackDirection = (transform.position  - sword.transform.position ).normalized *sword.knockback; 
+            gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
         }
         
         public float GetDamageAmount()

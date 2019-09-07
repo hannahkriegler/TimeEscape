@@ -9,6 +9,9 @@ namespace TE
     {
         public Collider2D col;
 
+        [HideInInspector]
+        public int knockback = 7;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             IHit hit = other.GetComponent<IHit>();
@@ -23,5 +26,7 @@ namespace TE
         {
             col.enabled = canHit;
         }
+        
+        
     }
 }

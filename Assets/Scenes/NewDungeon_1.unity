@@ -51330,7 +51330,7 @@ PrefabInstance:
     - target: {fileID: 6048208016722337940, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
@@ -52600,6 +52600,11 @@ PrefabInstance:
       propertyPath: hasLootDrop
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6048208016722337934, guid: 15f532553eb9bd5449374714237e56d2,
+        type: 3}
+      propertyPath: knockback
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f532553eb9bd5449374714237e56d2, type: 3}
 --- !u!1 &1607501284
@@ -53103,7 +53108,7 @@ PrefabInstance:
     - target: {fileID: 6048208016722337940, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
@@ -53415,7 +53420,7 @@ PrefabInstance:
     - target: {fileID: 2656596047608289395, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2656596047608289392, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
