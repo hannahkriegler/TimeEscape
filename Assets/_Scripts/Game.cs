@@ -10,7 +10,7 @@ namespace TE
     {
         //Custom Deltas
         public float playerTimeScale { get; private set; }
-        public float worldTimeScale { get; private set; }
+        public float worldTimeScale { get; set; }
         public float countdownTimeScale { get; private set; }
 
         public InputManager inputManager;
@@ -28,6 +28,10 @@ namespace TE
         [Header("Data")]
         public Room[] allRooms;
         public GameObject timeStampPrefab;
+
+        [Header("Gem stuff")] 
+        public int timeBonusOnHit;
+        
 
         private void Awake()
         {

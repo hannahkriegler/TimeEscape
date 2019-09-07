@@ -40,7 +40,8 @@ namespace TE
         
         // Gem stuff modifiers
         [HideInInspector]
-        public int damage = 1;
+        public int damageModifier = 1;
+        public float takenDamageModifier = 1;
         
         public void Init(Game game)
         {
@@ -87,7 +88,7 @@ namespace TE
         public void OnHit(int damage)
         {
             Debug.Log("Player hitted!");
-            float f = damage * 1.0f;
+            float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);
 
             animator.CrossFade("Hit", 0.2f);

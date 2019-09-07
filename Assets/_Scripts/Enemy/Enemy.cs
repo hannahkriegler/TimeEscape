@@ -124,6 +124,7 @@ namespace TE
             Knockback();
             StartCoroutine(KnockbackCountdown());
             hitPoints -= damage;
+            Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
             if (hitPoints <= 0)
                 Die();
         }

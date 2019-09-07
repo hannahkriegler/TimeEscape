@@ -25,7 +25,13 @@ namespace TE
 
         public SpawnTypes spawnType = SpawnTypes.ReSpawn;
 
+        public GameObject textBox;
         bool savePickedUp;
+
+        private void Start()
+        {
+            //textBox = GameObject.FindGameObjectWithTag("LootInfo");
+        }
 
         public void OnTriggerEnter2D(Collider2D player)
         {
