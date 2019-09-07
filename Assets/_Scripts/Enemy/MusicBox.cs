@@ -6,6 +6,9 @@ namespace TE
     {
         private float timeBtwShots;
         public float startTimeBtwShots;
+        public float attackRange = 10f;
+        private int counter = 0;
+        private float timeBtwTripleShots = 0.2f;
 
         public GameObject projectile;
 
@@ -13,7 +16,6 @@ namespace TE
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             attackKnockback = 0;
-
         }
 
         protected override void Knockback()
@@ -23,12 +25,15 @@ namespace TE
             
         }
 
-        private void LateUpdate()
+       private void LateUpdate()
         {
+            float enemyDistance = Vector2.Distance(player.position, transform.position);
+            if(enemyDistance > attackRange) return;
             if (timeBtwShots <= 0)
             {
                 Instantiate(projectile, transform.position, Quaternion.identity);
-                timeBtwShots = startTimeBtwShots;
+                counter++;
+                timeBtwShots = counter % 3 == 0 ? startTimeBtwShots : timeBtwTripleShots;
             }
             else
             {

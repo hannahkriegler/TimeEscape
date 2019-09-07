@@ -141,7 +141,7 @@ namespace TE
         protected virtual void Knockback()
         {
             var sword = player.GetComponent<Player>().sword;
-            Vector2 knockbackDirection = (transform.position  - sword.transform.position ).normalized *sword.knockback; 
+            Vector2 knockbackDirection = (transform.position  - player.transform.position ).normalized *sword.knockback; 
             gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
         }
         
@@ -157,7 +157,6 @@ namespace TE
 
         IEnumerator KnockbackCountdown()
         {
-            Debug.Log(currentKnockbackLength * Game.instance.worldTimeScale);
             yield return new WaitForSeconds(currentKnockbackLength * Game.instance.worldTimeScale);
             currentKnockbackLength = 0;
         }

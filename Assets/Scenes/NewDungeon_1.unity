@@ -52923,11 +52923,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicBox
       objectReference: {fileID: 0}
-    - target: {fileID: 2656596047608289395, guid: c0a81968320160949aaf9e7a888b7fa3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2656596047608289392, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -52981,11 +52976,6 @@ PrefabInstance:
     - target: {fileID: 2656596047608289392, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2656596047608289393, guid: c0a81968320160949aaf9e7a888b7fa3,
-        type: 3}
-      propertyPath: knockbackLength
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

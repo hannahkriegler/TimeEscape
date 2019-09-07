@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c6ca0d7fc0d4446acc3657f23b5c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 3
   hitPoints: 5
   hasLootDrop: 1
   lootTypes: 0

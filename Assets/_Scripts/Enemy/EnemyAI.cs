@@ -81,12 +81,7 @@ namespace TE
                 Debug.LogError("No Player found? PANIC!");
                 return;
             }
-
-            if (canMove == false)
-                return;
-
-            // TODO: Always look at player
-
+            
             if (path == null)
             {
                 return;
@@ -102,7 +97,8 @@ namespace TE
             {
                 return;
             }
-
+            if (canMove == false)
+                return;
             reachedEndOfPath = false;
             
 
@@ -127,11 +123,15 @@ namespace TE
 
             if (force.x <= 0.01)
             {
-                enemyGFX.localScale = new Vector3(-Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                //enemyGFX.localScale = new Vector3(-Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
             }
             else if (force.x >= -0.01f)
             {
-                enemyGFX.localScale = new Vector3(Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                //enemyGFX.localScale = new Vector3(Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
             }
 
 
@@ -139,7 +139,6 @@ namespace TE
 
         public bool IsInFollowDistance()
         {
-            //float enemyDistance = Vector2.Distance(rb.position, target.position);
             float enemyDistance = path.GetTotalLength();
             if (enemyDistance > maxEnemyDistance)
             {

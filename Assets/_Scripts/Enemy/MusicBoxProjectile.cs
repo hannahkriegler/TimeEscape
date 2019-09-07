@@ -30,6 +30,7 @@ namespace TE
 
         protected override void Attack(GameObject target)
         {
+            
             if (target.CompareTag("Player"))
             {
                 IHit hit = target.GetComponent<IHit>();
