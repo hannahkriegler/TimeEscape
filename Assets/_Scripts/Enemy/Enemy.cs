@@ -19,8 +19,11 @@ namespace TE
         [HideInInspector]
         public Transform player;
 
-        [HideInInspector] public float knockback = 10;
-        
+        // Knockbacks
+        private float currentKnockbackLength = 0f;
+        public float knockbackLength;
+        private float attackKnockback = 3f;
+
         private Vector3 savePos;
         private int _saveHitPoints;
 
@@ -67,12 +70,15 @@ namespace TE
 
         protected virtual void Attack(GameObject target)
         {
-            if(!target.CompareTag("Player")) return;
+            if (!target.CompareTag("Player")) return;
+            
             IHit hit = target.GetComponent<IHit>();
             if (hit != null)
             {
                 hit.OnHit(damageAmount);
-                
+                Vector2 knockbackDirection = (transform.position  - target.transform.position ).normalized *attackKnockback; 
+                gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
+
             }
         }
 
@@ -112,8 +118,11 @@ namespace TE
 
         public virtual void OnHit(int damage)
         {
+            if(currentKnockbackLength>0) return;
+            currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
             Debug.Log(gameObject.name + " took " + damage + " damage!");
             Knockback();
+            StartCoroutine(KnockbackCountdown());
             hitPoints -= damage;
             if (hitPoints <= 0)
                 Die();
@@ -146,6 +155,12 @@ namespace TE
             return hitPoints;
         }
 
+        IEnumerator KnockbackCountdown()
+        {
+            Debug.Log(currentKnockbackLength * Game.instance.worldTimeScale);
+            yield return new WaitForSeconds(currentKnockbackLength * Game.instance.worldTimeScale);
+            currentKnockbackLength = 0;
+        }
     }
     
     
