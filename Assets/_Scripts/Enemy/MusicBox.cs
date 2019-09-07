@@ -12,7 +12,8 @@ namespace TE
         private void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
-            
+            attackKnockback = 0;
+
         }
 
         protected override void Knockback()
@@ -31,8 +32,7 @@ namespace TE
             }
             else
             {
-
-                timeBtwShots -= Game.instance.worldTimeScale; // TODO: update it with world time
+                timeBtwShots -= Time.deltaTime * Game.instance.worldTimeScale; // TODO: update it with world time
             }
         }
     }

@@ -22,7 +22,7 @@ namespace TE
         // Knockbacks
         private float currentKnockbackLength = 0f;
         public float knockbackLength;
-        private float attackKnockback = 3f;
+        protected float attackKnockback = 3f;
 
         private Vector3 savePos;
         private int _saveHitPoints;

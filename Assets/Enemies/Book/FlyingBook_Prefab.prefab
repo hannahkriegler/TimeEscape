@@ -200,7 +200,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  hitPoints: 3
+  hitPoints: 5
+  hasLootDrop: 1
+  lootTypes: 0
+  player: {fileID: 0}
+  knockbackLength: 1
 --- !u!60 &887641814
 PolygonCollider2D:
   m_ObjectHideFlags: 0

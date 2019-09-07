@@ -51280,7 +51280,7 @@ PrefabInstance:
     - target: {fileID: 6048208016722337940, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
@@ -52335,11 +52335,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingBook1
       objectReference: {fileID: 0}
-    - target: {fileID: 6048208016722337940, guid: 15f532553eb9bd5449374714237e56d2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -52394,30 +52389,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048208016722337934, guid: 15f532553eb9bd5449374714237e56d2,
-        type: 3}
-      propertyPath: hasLootDrop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048208016722337934, guid: 15f532553eb9bd5449374714237e56d2,
-        type: 3}
-      propertyPath: knockback
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048208016722337934, guid: 15f532553eb9bd5449374714237e56d2,
-        type: 3}
-      propertyPath: knockbackLength
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048208016722337934, guid: 15f532553eb9bd5449374714237e56d2,
-        type: 3}
-      propertyPath: hitPoints
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 887641820, guid: 15f532553eb9bd5449374714237e56d2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f532553eb9bd5449374714237e56d2, type: 3}
@@ -52747,7 +52718,7 @@ PrefabInstance:
     - target: {fileID: 6048208016722337940, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
         type: 3}
@@ -52955,7 +52926,7 @@ PrefabInstance:
     - target: {fileID: 2656596047608289395, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2656596047608289392, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
@@ -53010,6 +52981,11 @@ PrefabInstance:
     - target: {fileID: 2656596047608289392, guid: c0a81968320160949aaf9e7a888b7fa3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656596047608289393, guid: c0a81968320160949aaf9e7a888b7fa3,
+        type: 3}
+      propertyPath: knockbackLength
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
