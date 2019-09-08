@@ -113,3 +113,4 @@ MonoBehaviour:
   addedTime: 10
   lootType: 1
   spawnType: 0
+  textBox: {fileID: 0}
