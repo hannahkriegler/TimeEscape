@@ -11,7 +11,7 @@ namespace TE
         //Custom Deltas
         public float playerTimeScale { get; private set; }
         public float worldTimeScale { get; set; }
-        public float countdownTimeScale { get; private set; }
+       
 
         public InputManager inputManager;
         public Player player { get => inputManager.player; }
@@ -20,7 +20,7 @@ namespace TE
         public TimeStorage timeStorage { get; private set; }
         public static Game instance;
         public float startTime = 600;
-        
+        public float timeDrainMultiplier = 1;
         public float timeLeft;
         [Range(0,4)]
         public int timeShardCounter;
@@ -46,7 +46,6 @@ namespace TE
             timeStorage = new TimeStorage(this);
             playerTimeScale = 1;
             worldTimeScale = 1;
-            countdownTimeScale = 1;
             inputManager.Init(this);
         }
 
@@ -62,7 +61,7 @@ namespace TE
         
         void UpdateTime()
         {
-            timeLeft -= Time.deltaTime * countdownTimeScale;
+            timeLeft -= Time.deltaTime * timeDrainMultiplier;
             if (timeLeft <= 0)
                 GameOver();
         }
