@@ -58,12 +58,13 @@ namespace TE
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            gameObject.SetActive(false);
+            Show(false);
         }
 
         public void HandleTimeStamp()
         {
-            savePickedUp = !gameObject.activeSelf;
+            savePickedUp = !gameObject.GetComponent<SpriteRenderer>().enabled;
+            //savePickedUp = !gameObject.activeSelf;
         }
 
         public void HandleTimeTravel()
@@ -71,7 +72,7 @@ namespace TE
             switch (spawnType)
             {
                 case SpawnTypes.ReSpawn:
-                    gameObject.SetActive(!savePickedUp);
+                    Show(!savePickedUp);
                     break;
                 case SpawnTypes.NoRespawn:
                     break;
@@ -83,6 +84,13 @@ namespace TE
         public virtual void GemBehaviour()
         {
             Debug.Log("Picked Up Gem");
+        }
+
+        
+        protected void Show(bool b)
+        {
+            gameObject.GetComponent<SpriteRenderer>().enabled = b;
+            gameObject.GetComponent<CircleCollider2D>().enabled = b;
         }
     }
 }

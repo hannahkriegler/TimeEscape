@@ -74,7 +74,7 @@ namespace TE
                     break;
             }
             
-            //ShowTextinfo();
+            ShowTextinfo();
         }
 
         private void ShowTextinfo()
