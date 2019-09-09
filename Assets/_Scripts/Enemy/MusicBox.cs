@@ -42,7 +42,7 @@ namespace TE
             }
             else
             {
-                timeBtwShots -= Time.deltaTime * Game.instance.worldTimeScale; // TODO: update it with world time
+                timeBtwShots -= Time.deltaTime * Game.instance.worldTimeScale; 
             }
         }
     }
