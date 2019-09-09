@@ -72,6 +72,7 @@ namespace TE
         {
             if (!target.CompareTag("Player")) return;
             
+            //AttackAnim();
             IHit hit = target.GetComponent<IHit>();
             if (hit != null)
             {
@@ -79,6 +80,17 @@ namespace TE
                 Vector2 knockbackDirection = (transform.position  - target.transform.position ).normalized *attackKnockback; 
                 gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
 
+            }
+        }
+
+        protected void AttackAnim(bool b)
+        {
+            if (gameObject.GetComponent<Animator>() != null)
+            {
+                Debug.Log("agro");
+                Animator anim = gameObject.GetComponent<Animator>();
+                anim.SetBool("agro", b);
+                //anim.CrossFade("agro", 0.2f);
             }
         }
 
@@ -119,6 +131,11 @@ namespace TE
         public virtual void OnHit(int damage, GameObject attacker, bool knockBack)
         {
             if(currentKnockbackLength>0) return;
+            if (gameObject.GetComponent<Animator>() != null)
+            {
+                Animator anim = gameObject.GetComponent<Animator>();
+                anim.CrossFade("hit", 0.2f);
+            }
             currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
             Debug.Log(gameObject.name + " took " + damage + " damage!");
             Knockback();
