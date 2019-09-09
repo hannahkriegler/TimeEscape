@@ -113,6 +113,6 @@ MonoBehaviour:
   addedTime: 10
   lootType: 2
   spawnType: 1
-  textBox: {fileID: 0}
   gemType: 0
+  infoTextBox: {fileID: 0}
   info: 

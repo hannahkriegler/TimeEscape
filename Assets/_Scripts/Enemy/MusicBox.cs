@@ -2,7 +2,7 @@
 
 namespace TE
 {
-    public class MusicBox : TE.Enemy
+    public class MusicBox : Enemy
     {
         private float timeBtwShots;
         public float startTimeBtwShots;
@@ -25,7 +25,7 @@ namespace TE
             
         }
 
-       private void LateUpdate()
+       protected override void Tick()
         {
             float enemyDistance = Vector2.Distance(player.position, transform.position);
             if (enemyDistance > attackRange)

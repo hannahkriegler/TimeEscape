@@ -1556,17 +1556,17 @@ PrefabInstance:
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -1608,6 +1608,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.0705
       objectReference: {fileID: 0}
+    - target: {fileID: 4987171292968274548, guid: d5db1b7a1e713ee4db50d70c5d241407,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f99843d895f2fe49a54543337480412,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5db1b7a1e713ee4db50d70c5d241407, type: 3}
 --- !u!4 &456324448 stripped
@@ -2986,6 +2992,7 @@ MonoBehaviour:
   timeStampPrefab: {fileID: 6334274536355022215, guid: e994687be87293d448b1a4de58737b5c,
     type: 3}
   timeBonusOnHit: 0
+  lootInfo: {fileID: 2088231514}
 --- !u!4 &1358705769
 Transform:
   m_ObjectHideFlags: 0
@@ -3012,11 +3019,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DummyGem
       objectReference: {fileID: 0}
-    - target: {fileID: 2984882290947025077, guid: a76f07b5efddc71429025040ac3a5aba,
-        type: 3}
-      propertyPath: textBox
-      value: 
-      objectReference: {fileID: 2088231514}
     - target: {fileID: 2984882290947025077, guid: a76f07b5efddc71429025040ac3a5aba,
         type: 3}
       propertyPath: infoTextBox
