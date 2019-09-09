@@ -26,6 +26,7 @@ namespace TE
         bool jump2;
 
         bool knockBack;
+        float knockBackTimer;
 
         public Movement(Player player, Game game)
         {
@@ -78,17 +79,20 @@ namespace TE
 
         public void Move(Vector2 direction)
         {
+            float delta = _player.fixedDelta;
             //Handle Knockback
             bool isInteracting = _player.IsInteracting();
             if(knockBack)
             {
-                if (isInteracting)
+                if (isInteracting && knockBackTimer < 0.5f)
+                {
+                    knockBackTimer += delta;
                     return;
+                }
                 else
                     knockBack = false;
             }
-
-            float delta = _player.fixedDelta;
+          
             Rigidbody2D rb = _player.rigidBody;
             float h = direction.x;
             if (h > 0 && !facingRight)
@@ -224,10 +228,13 @@ namespace TE
             _player.rigidBody.isKinematic = false;
         }
 
-        public void KnockBack(float strength)
+        public void KnockBack(float strength, Transform attacker)
         {
             knockBack = true;
-            _player.rigidBody.AddForce(strength * -_player.transform.right, ForceMode2D.Force);
+            knockBackTimer = 0;
+            _player.rigidBody.velocity = Vector2.zero;
+            Vector3 dir = _player.transform.position - attacker.transform.position; 
+            _player.rigidBody.AddForce(strength * dir.normalized, ForceMode2D.Force);
         }
     }
 }

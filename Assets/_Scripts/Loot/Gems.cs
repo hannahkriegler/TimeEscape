@@ -79,8 +79,8 @@ namespace TE
 
         private void ShowTextinfo()
         {
-            textBox.SetActive(true);
-            textBox.GetComponentInChildren<TextMeshProUGUI>().text = info;
+            Game.instance.lootInfo.SetActive(true);
+            Game.instance.lootInfo.GetComponentInChildren<TextMeshProUGUI>().text = info;
             StartCoroutine(HideTextBox());
         }
 
@@ -88,7 +88,7 @@ namespace TE
         {
             yield return new WaitForSeconds(2);
             Debug.Log("HERE");
-            textBox.SetActive(false);
+            Game.instance.lootInfo.SetActive(false);
             
         }
     }

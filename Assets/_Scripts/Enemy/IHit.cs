@@ -5,6 +5,6 @@ namespace TE
 {
     public interface IHit
     {
-        void OnHit(int damage);
+        void OnHit(int damage, GameObject attacker, bool knockBack = true);
     }
 }

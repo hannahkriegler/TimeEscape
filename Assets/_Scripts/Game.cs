@@ -31,6 +31,9 @@ namespace TE
 
         [Header("Gem stuff")] 
         public int timeBonusOnHit;
+
+        [Header("References")]
+        public GameObject lootInfo;
         
 
         private void Awake()

@@ -85,20 +85,15 @@ namespace TE
         }
 
 
-        public void OnHit(int damage)
+        public void OnHit(int damage, GameObject attacker, bool knockBack)
         {
             Debug.Log("Player hitted!");
             float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);
-
             animator.CrossFade("Hit", 0.2f);
+            Movement.KnockBack(damage * 30, attacker.transform);
         }
 
-        public void KnockBack(float strength = 150)
-        {
-            animator.CrossFade("Hit", 0.2f);
-            Movement.KnockBack(strength);
-        }
 
         void SetupTrailRenderer()
         {
