@@ -12,10 +12,24 @@ namespace TE
             _game = game;
         }
 
-        public void Attack()
+        public bool Attack()
         {
-            //TODO-Hannah Implement basic melee Attack
-            Debug.Log(("Melee Attack!"));
+            if (!_player.canAttack && !_player.IsInteracting())
+                return false;
+
+            if(_player.Movement.grounded)
+              _player.animator.CrossFade("Attack", 0.2f);
+            else
+                _player.animator.CrossFade("Jump_Attack", 0.2f);
+            _player.sword.AllowHit(true);
+            _player.canAttack = false;
+            return true;
+        }
+
+        public void AllowAttacking()
+        {
+            _player.canAttack = true;
+            _player.sword.AllowHit(false);
         }
     }
 }

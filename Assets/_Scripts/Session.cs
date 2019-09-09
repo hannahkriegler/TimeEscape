@@ -9,9 +9,16 @@ namespace TE
             _game = game;
         }
 
+
         public bool IsDashUnlocked()
         {
            //TODO Implement check
+            return true;
+        }
+
+        public bool IsDoubleJumpUnlocked()
+        {
+            //Implement Check
             return true;
         }
     }

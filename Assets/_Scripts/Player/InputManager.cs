@@ -11,23 +11,26 @@ namespace TE
 
         //Inputs
         private bool active_skill;
-        private bool attack;
-        private bool attack_up;
-        private bool jump;
+        private bool attackPressed;
+        private bool jumpPressed;
         private bool timeStamp;
+        private bool timeTravel;
         private bool timeSkill1, timeSkill2, timeSkill3, timeSkill4;
         private bool dash;
         private bool pause;
         private Vector2 movement;
 
         private bool dashCheck;
-        private float chargeTimer;
+
+        private bool jump;
+        bool didJump;
+        bool attack;
+        bool didAttack;
 
         public void Init(Game game)
         {
             this.game = game;
             player.Init(game);
-            chargeTimer = 0;
             dashCheck = false;
         }
 
@@ -37,19 +40,45 @@ namespace TE
             UpdatePlayer();
         }
 
-   
-
         void UpdateInputs()
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
 
-            attack = Input.GetButton("Attack");
-            attack_up = Input.GetButtonUp("Attack");
-            active_skill = Input.GetButtonDown("Skill");
-            jump = Input.GetButtonDown("Jump");
-            timeStamp = Input.GetButtonDown("TimeStamp");
+            //Handle Attack
+            attackPressed = Input.GetButton("Attack");
+            //Input Buffer
+            if(attackPressed)
+            {
+                if(!didAttack)
+                {
+                    attack = true;
+                }
+            }
+            else
+            {
+                didAttack = false;
+            }
 
+
+            active_skill = Input.GetButtonDown("Skill");
+
+            //Jump Handling
+            jumpPressed = Input.GetButton("Jump");
+            if (jumpPressed)
+            {
+                if (!didJump)
+                {
+                    jump = true;
+                }
+            }
+            else
+            {
+                didJump = false;
+            }
+
+            timeStamp = Input.GetButtonDown("TimeStamp");
+            timeTravel = Input.GetButtonDown("TimeTravel");
             bool controllerDash = Input.GetAxis("Dash") > 0.5f;
             bool keyDash = Input.GetButtonDown("Dash");
             dash = controllerDash || keyDash;
@@ -59,20 +88,25 @@ namespace TE
                 if (!controllerDash && !keyDash)
                     dashCheck = false;
             }
-
-            //TODO Timeskills
         }
 
         void UpdatePlayer()
         {
             //Movement
+            player.Movement.Tick();
             player.Movement.Move(movement);
+            player.Movement.higherJump = jumpPressed;
 
             if (jump)
             {
-                jump = false;
-                player.Movement.Jump();
+                bool jumped = player.Movement.Jump();
+                if (jumped)
+                {
+                    didJump = true;
+                    jump = false;
+                }
             }
+
 
             if (dash && !dashCheck)
             {
@@ -85,21 +119,12 @@ namespace TE
             //Attack Handling
             if (attack)
             {
-                chargeTimer += player.fixedDelta;
-            }
-
-            if (attack_up)
-            {
-                if (chargeTimer < 0.5f)
+                bool attacked = player.CombatMelee.Attack();
+                if(attacked)
                 {
-                    player.CombatMelee.Attack();
+                    didAttack = true;
+                    attack = false;
                 }
-                else
-                {
-                    player.CombatSkill.ActivateChargeSkill();
-                }
-
-                chargeTimer = 0;
             }
 
             //Skills
@@ -107,6 +132,17 @@ namespace TE
             {
                 active_skill = false;
                 player.CombatSkill.ActivateActiveSkill();
+            }
+
+            //Time Skills
+            if (timeStamp)
+            {
+                player.TimeSkills.PlaceTimestamp();
+            }
+            else
+            if (timeTravel)
+            {
+                player.TimeSkills.TimeTravel();
             }
         }
     }

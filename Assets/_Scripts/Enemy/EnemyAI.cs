@@ -4,115 +4,157 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using Pathfinding;
 using TE;
+using UnityEngine.Serialization;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Seeker))]
-public class EnemyAI : MonoBehaviour
+namespace TE
 {
-    // What to chase?
-    public Transform target;
-
-    // How many times each second we will update our path
-    public float updateRate = 2f;
-
-    // chaching
-    private Seeker seeker;
-    private Rigidbody2D rb;
-    
-    // the calculated path
-    public Path path;
-    
-    // the AI's speed per second
-    public float speed = 300f;
-    public ForceMode2D fMode;
-
-    [HideInInspector]
-    public bool pathIsEnded = false;
-
-    // The waypoint we are currently moving towards
-    private int currentWaypoint = 0;
-
-    // The max distance from the AI to a waypoint for it to continure to the next waypoint
-    public float nextWaypointDistance = 3f;
-
-    private void Start()
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Seeker))]
+    public class EnemyAI : MonoBehaviour
     {
-        seeker = GetComponent<Seeker>();
-        rb = GetComponent<Rigidbody2D>();
-
-        if (target == null)
-        {
-            Debug.LogError("No Player found? PANIC!");
-            return;
-        }
+        Transform target;
         
-        // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
+        // How many times each second we will update our path
+        public float updateRate = 2f;
+        public float maxEnemyDistance = 8f;
 
-        StartCoroutine(UpdatePath());
-    }
+        // Flip to right direction
+        public Transform enemyGFX;
+        public float rotationSpeed;
 
-    private IEnumerator UpdatePath()
-    {
-        if (target == null)
+        private Seeker seeker;
+        private Rigidbody2D rb;
+        public Path path;
+
+        // the AI's speed per second
+        public float speed = 200f;
+
+        [FormerlySerializedAs("pathIsEnded")]
+        [HideInInspector]
+        public bool reachedEndOfPath = false;
+
+        private int currentWaypoint = 0;
+        public float nextWaypointDistance = 3f;
+
+        public bool canMove;
+
+        private void Start()
         {
-            // TODO: Insert a player search here
-            yield return false;
-        }
-        // Start a new path to the target position, return the result to the OnPathComplete method
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
-        
-        yield return new WaitForSeconds(1f/updateRate);
-        StartCoroutine(UpdatePath());
-    }
+            seeker = GetComponent<Seeker>();
+            rb = GetComponent<Rigidbody2D>();
 
-    public void OnPathComplete(Path p)
-    {
-        Debug.Log("We got a path. Did it have an error?" + p.error);
-        if (!p.error)
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
-    }
+            //Takes player reference from game manager
+            target = Game.instance.player.transform;
 
-    private void FixedUpdate()
-    {
-        if (target == null)
-        {
-            // TODO: Insert a player search here
-            return ;
-        } 
-        
-        // TODO: Always look at player
-
-        if (path == null)
-        {
-            return;
+            InvokeRepeating("UpdatePath", 0f, .5f);
         }
 
-        if (currentWaypoint >= path.vectorPath.Count) 
+        private void UpdatePath()
         {
-            if(pathIsEnded) return;
-            Debug.Log("End of path reached.");
-            pathIsEnded = true;
+            if (canMove == false)
+                return;
+
+            if (target == null)
+            {
+                Debug.LogError("No Player found? PANIC!");
+                return;
+            }
+            if (seeker.IsDone())
+                seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
 
-        pathIsEnded = false;
-        
-        // Direction to the next waypoint
-        
-        Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
-        dir *= speed * Time.fixedDeltaTime;  // TODO: problem with Game.deltaWorld, static?
-        
-        // Move the AI
-        rb.AddForce(dir, fMode);
-
-        float dist = Vector3.Distance(transform.position, path.vectorPath[currentWaypoint]);
-        if (dist < nextWaypointDistance)
+        public void OnPathComplete(Path p)
         {
-            currentWaypoint++;
-            return;
+            //Debug.Log("We got a path. Did it have an error?" + p.error);
+            if (!p.error)
+            {
+                path = p;
+                currentWaypoint = 0;
+            }
         }
+
+        private void FixedUpdate()
+        {
+            
+            if (target == null)
+            {
+                Debug.LogError("No Player found? PANIC!");
+                return;
+            }
+            
+            if (path == null)
+            {
+                return;
+            }
+
+            if (currentWaypoint >= path.vectorPath.Count)
+            {
+                reachedEndOfPath = true;
+                return;
+            }
+
+            if (!IsInFollowDistance())
+            {
+                return;
+            }
+            if (canMove == false)
+                return;
+            reachedEndOfPath = false;
+            
+
+            // Direction to the next waypoint
+
+            Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector2 force = Time.deltaTime * speed * dir;
+
+            //dir *= speed * Time.fixedDeltaTime;  // TODO: problem with Game.deltaWorld, static?
+
+            // Move the AI
+            rb.AddForce(force);
+
+
+            float dist = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+            
+            if (dist < nextWaypointDistance)
+            {
+                currentWaypoint++;
+                return;
+            }
+
+            if (force.x <= 0.01)
+            {
+                transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                //enemyGFX.localScale = new Vector3(-Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
+            }
+            else if (force.x >= -0.01f)
+            {
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+                //enemyGFX.localScale = new Vector3(Mathf.Abs(enemyGFX.localScale.x), enemyGFX.localScale.y, enemyGFX.localScale.z);
+            }
+
+
+        }
+
+        public bool IsInFollowDistance()
+        {
+            float enemyDistance = path.GetTotalLength();
+            if (enemyDistance > maxEnemyDistance)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void AttackModus(bool modusOn)
+        {
+            if (modusOn)
+            {
+                
+            }
+        }
+        
     }
 }
