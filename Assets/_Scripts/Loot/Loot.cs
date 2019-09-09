@@ -25,7 +25,6 @@ namespace TE
 
         public SpawnTypes spawnType = SpawnTypes.ReSpawn;
 
-        public GameObject textBox;
         bool savePickedUp;
 
         private void Start()

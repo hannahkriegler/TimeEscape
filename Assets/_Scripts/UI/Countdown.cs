@@ -1,6 +1,7 @@
 ﻿using TE;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace TE.UI
 {
@@ -8,7 +9,7 @@ namespace TE.UI
     {
 
         public Image countdownImage;
-        public Text countdownText;
+        public TextMeshProUGUI countdownText;
 
         void Update()
         {

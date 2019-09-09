@@ -75,7 +75,7 @@ namespace TE
             IHit hit = target.GetComponent<IHit>();
             if (hit != null)
             {
-                hit.OnHit(damageAmount);
+                hit.OnHit(damageAmount, gameObject);
                 Vector2 knockbackDirection = (transform.position  - target.transform.position ).normalized *attackKnockback; 
                 gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
 
@@ -116,7 +116,7 @@ namespace TE
             }
         }
 
-        public virtual void OnHit(int damage)
+        public virtual void OnHit(int damage, GameObject attacker, bool knockBack)
         {
             if(currentKnockbackLength>0) return;
             currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;

@@ -24,6 +24,7 @@ namespace TE
 
 
         public GemTypes gemType;
+        public GameObject infoTextBox;
         public string info;
 
         public override void GemBehaviour()
@@ -79,8 +80,8 @@ namespace TE
 
         private void ShowTextinfo()
         {
-            textBox.SetActive(true);
-            textBox.GetComponentInChildren<TextMeshProUGUI>().text = info;
+            infoTextBox.SetActive(true);
+            infoTextBox.GetComponentInChildren<TextMeshProUGUI>().text = info;
             StartCoroutine(HideTextBox());
         }
 
@@ -88,7 +89,7 @@ namespace TE
         {
             yield return new WaitForSeconds(2);
             Debug.Log("HERE");
-            textBox.SetActive(false);
+            infoTextBox.SetActive(false);
             
         }
     }

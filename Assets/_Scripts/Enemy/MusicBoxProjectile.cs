@@ -23,7 +23,7 @@ namespace TE
             transform.position += moveVector * speed * Time.deltaTime;
         } 
 
-        public override void OnHit(int damage)
+        public override void OnHit(int damage, GameObject attacker, bool knockBack)
         {
             Debug.Log("You can't destroy a projectile");
         }
@@ -34,7 +34,7 @@ namespace TE
             if (target.CompareTag("Player"))
             {
                 IHit hit = target.GetComponent<IHit>();
-                hit.OnHit(damageAmount);
+                hit.OnHit(damageAmount, gameObject);
                 Die();
             }
             if(target.CompareTag("Grid")) Die();
