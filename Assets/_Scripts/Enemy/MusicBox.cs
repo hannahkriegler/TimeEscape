@@ -28,7 +28,12 @@ namespace TE
        private void LateUpdate()
         {
             float enemyDistance = Vector2.Distance(player.position, transform.position);
-            if(enemyDistance > attackRange) return;
+            if (enemyDistance > attackRange)
+            {
+                AttackAnim(false);
+                return;
+            }
+            AttackAnim(true);
             if (timeBtwShots <= 0)
             {
                 Instantiate(projectile, transform.position, Quaternion.identity);

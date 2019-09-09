@@ -51623,7 +51623,7 @@ PrefabInstance:
     - target: {fileID: 372650396429658200, guid: f21c965ebbacd46599934366005ee12a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6454797317522371143, guid: f21c965ebbacd46599934366005ee12a,
         type: 3}
@@ -54081,11 +54081,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zeitsplitter
       objectReference: {fileID: 0}
-    - target: {fileID: 4987171292968274550, guid: d5db1b7a1e713ee4db50d70c5d241407,
-        type: 3}
-      propertyPath: spawnType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -54155,6 +54150,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.0705
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987171292968274550, guid: d5db1b7a1e713ee4db50d70c5d241407,
+        type: 3}
+      propertyPath: spawnType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5db1b7a1e713ee4db50d70c5d241407, type: 3}
