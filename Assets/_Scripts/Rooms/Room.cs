@@ -15,6 +15,8 @@ namespace TE
            Boss
         };
 
+        public List<Door> doors;
+
         public RoomTypes roomType;
 
         List<Enemy> allEnemies = new List<Enemy>();
@@ -80,6 +82,11 @@ namespace TE
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        void CloseDoors(bool close)
+        {
+            
         }
     }
 }

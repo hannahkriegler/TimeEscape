@@ -9,8 +9,6 @@ public class RoomBarriers : Enemy
     public GameObject rightSpike;
     public GameObject leftSpike;
 
-    public SpikeDirection spikeDirection;
-
     public Vector2 right_closePosition;
     public Vector2 right_openPosition;
     public Vector2 left_closePosotion;
@@ -21,12 +19,6 @@ public class RoomBarriers : Enemy
 
     private bool toClose = true;
     
-    
-    public enum SpikeDirection
-    {
-        Two_Horizontal,
-        Two_Vertical
-    }
     
     // Start is called before the first frame update
     void Start()
