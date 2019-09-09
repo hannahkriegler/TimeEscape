@@ -26,7 +26,7 @@ namespace TE
         public GemTypes gemType;
         public string info;
 
-        public override void GemBehaviour()
+        public override void CustomBehavior()
         {
             Debug.Log("Picked up a " + gemType + "!");
             switch (gemType)
@@ -37,13 +37,8 @@ namespace TE
                     break;
                 case GemTypes.LessSkillCosts:
                     // TODO Where are skill costs?
-                    Debug.Log("Hannah needs to Implement this gem!");
-                    info = "Keine Funktion, Dumme Programmierer!";
-                    break;
-                case GemTypes.LessTimeMagicCosts:
-                    // TODO Where are magic costs?
-                    Debug.Log("Hannah needs to Implement this gem!");
-                    info = "Keine Funktion, Faule Programmierer!";
+                    info = "Mehr Skills spammen!";
+                    Game.instance.player.skillCostModifier *= 0.8f;
                     break;
                 case GemTypes.IncreasePlayerSpeed:
                     Game.instance.player.moveSpeed *= 1.25f;

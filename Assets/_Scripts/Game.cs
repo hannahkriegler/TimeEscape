@@ -25,6 +25,10 @@ namespace TE
         [Range(0,4)]
         public int timeShardCounter;
 
+        [Header("Cheats")]
+        public bool allMovementSkills;
+        public bool unlimitedTimeTravel;
+
         [Header("Data")]
         public Room[] allRooms;
         public GameObject timeStampPrefab;
@@ -40,7 +44,9 @@ namespace TE
         {
             instance = this;
             timeLeft = startTime;
-            timeShardCounter = 0;
+
+            //Start with sword
+            timeShardCounter = 4;
         }
 
         private void Start()
@@ -55,6 +61,15 @@ namespace TE
         private void Update()
         {
             UpdateTime();
+
+            if (Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.T))
+                GameOver();
+
+            if(Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.P))
+            {
+                allMovementSkills = true;
+                unlimitedTimeTravel = true;
+            }
         }
 
         public void GameOver()
@@ -80,15 +95,26 @@ namespace TE
             timeLeft -= time;
         }
 
-        public void AddTimeShard()
+        public bool AddTimeShard()
         {
-            if (timeShardCounter < 4) timeShardCounter++;
+            if (timeShardCounter < 4)
+            {
+                timeShardCounter++;
+                return true;
+            }
+            return false;
         }
 
-        public void SetTimeShardCounter(int counter)
+        public void SetTimeShardCounter(int count)
         {
-            timeShardCounter = counter;
+            timeShardCounter = count;
         }
+
+        public bool CanTimeTravel()
+        {
+            return timeShardCounter == 4 || unlimitedTimeTravel;
+        }
+
 
         public void HandleTimeStampEnemies()
         {

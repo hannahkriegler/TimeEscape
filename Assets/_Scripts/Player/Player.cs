@@ -41,8 +41,11 @@ namespace TE
         // Gem stuff modifiers
         [HideInInspector]
         public int damageModifier = 1;
+        [HideInInspector]
         public float takenDamageModifier = 1;
-        
+        [HideInInspector]
+        public float skillCostModifier = 1;
+
         public void Init(Game game)
         {
             //Setting References

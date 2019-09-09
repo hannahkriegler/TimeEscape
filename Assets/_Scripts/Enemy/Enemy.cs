@@ -29,6 +29,13 @@ namespace TE
 
         public Room assignedRoom { get; private set; }
 
+        private void Awake()
+        {
+            assignedRoom = GetComponentInParent<Room>();
+            if (assignedRoom != null)
+             assignedRoom.AddEnemyToRoom(this);
+        }
+
         private void Start()
         {
             Setup();   
@@ -41,7 +48,7 @@ namespace TE
 
         protected virtual void Setup()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            player = Game.instance.player.transform;
             
         }
 
@@ -144,11 +151,6 @@ namespace TE
             Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
             if (hitPoints <= 0)
                 Die();
-        }
-
-        public void AssignRoom(Room room)
-        {
-            assignedRoom = room;
         }
 
         public virtual void OnTriggerEnter2D(Collider2D other)

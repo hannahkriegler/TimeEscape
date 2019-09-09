@@ -10,34 +10,29 @@ namespace TE
     {
         public enum RoomTypes
         {
-            Spawn,
-            Tutorial,
-            Loot,
-            Mob,
-            Normal,
-            Boss
+           Normal,
+           CloseDoorsUnitlEnemiesDefeated,
+           Boss
         };
 
         public RoomTypes roomType;
 
-        public Enemy[] allEnemies;
-        List<Enemy> aliveEnemies;
+        List<Enemy> allEnemies = new List<Enemy>();
 
-        public Loot[] allLoot;
-        [HideInInspector]
-        public Loot[] collectedLoot;
+        List<Loot> allLoot = new List<Loot>();
 
         public int RoomID;
 
-        private void Start()
+        public void AddEnemyToRoom(Enemy enemy)
         {
-            aliveEnemies = new List<Enemy>();
-            aliveEnemies.AddRange(allEnemies);
+            if (!allEnemies.Contains(enemy))
+                allEnemies.Add(enemy);
+        }
 
-            foreach (Enemy enemy in allEnemies)
-            {
-                enemy.AssignRoom(this);
-            }
+        public void AddLootToRoom(Loot loot)
+        {
+            if (!allLoot.Contains(loot))
+                allLoot.Add(loot);
         }
 
         public void HandleTimeTravel()
@@ -67,8 +62,7 @@ namespace TE
 
         public void NotifyEnemyDied(Enemy enemy)
         {
-            if (aliveEnemies.Contains(enemy))
-                aliveEnemies.Remove(enemy);
+        
         }
 
         public void OnTriggerEnter2D(Collider2D player)
@@ -77,63 +71,15 @@ namespace TE
 
             switch (roomType)
             {
-                case RoomTypes.Tutorial:
-                    TutorialRoomBehaviour();
-                    break;
-                case RoomTypes.Spawn:
-                    SpawnRoomBehaviour();
-                    break;
                 case RoomTypes.Normal:
-                    NormalRoomBehaviour();
                     break;
-                case RoomTypes.Mob:
-                    MobRoomBehaviour();
-                    break;
-                case RoomTypes.Loot:
-                    LootRoomBehaviour();
+                case RoomTypes.CloseDoorsUnitlEnemiesDefeated:
                     break;
                 case RoomTypes.Boss:
-                    BossRoomBehaviour();
                     break;
-
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            Debug.Log("Enemies alive: " + aliveEnemies.Count);
         }
-
-
-        private void TutorialRoomBehaviour()
-        {
-            Debug.Log("Welcome to the Tutorial Room!");
-        }
-
-        private void SpawnRoomBehaviour()
-        {
-            Debug.Log(("Welcome to the Spawn Romm!"));
-        }
-
-        private void NormalRoomBehaviour()
-        {
-            Debug.Log("Welcome to a Normal Room!");
-        }
-
-        private void MobRoomBehaviour()
-        {
-            Debug.Log("Welcome to a Mob Room!");
-        }
-
-        private void BossRoomBehaviour()
-        {
-            Debug.Log("Welcome to a Boss Room!");
-        }
-
-        private void LootRoomBehaviour()
-        {
-            Debug.Log("Welcome to a Loot Room!");
-        }
-
-
     }
 }

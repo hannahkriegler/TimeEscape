@@ -36,9 +36,13 @@ namespace TE
         
         public void TimeTravel()
         {
+            if (!_game.CanTimeTravel())
+                return;
+
             if (!timeStampSpawn)
                 return;
 
+            _game.SetTimeShardCounter(0);
             _game.timeStorage.LoadTimeStamp(_player);
             _player.animator.CrossFade("Dizzy", 0.2f);
             Debug.Log("Time traveled");

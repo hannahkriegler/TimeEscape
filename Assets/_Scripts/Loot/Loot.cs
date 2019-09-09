@@ -11,6 +11,8 @@ namespace TE
         {
             Time,
             Zeitsplitter,
+            MovementSkills,
+            ActiveSkills,
             Gem
         }
 
@@ -27,9 +29,18 @@ namespace TE
 
         bool savePickedUp;
 
+        public Room assignedRoom { get; private set; }
+
+        private void Awake()
+        {
+            assignedRoom = GetComponentInParent<Room>();
+            if(assignedRoom != null)
+                assignedRoom.AddLootToRoom(this);
+        }
+
         private void Start()
         {
-            //textBox = GameObject.FindGameObjectWithTag("LootInfo");
+            
         }
 
         public void OnTriggerEnter2D(Collider2D player)
@@ -41,6 +52,7 @@ namespace TE
 
         public virtual void PickUpLoot()
         {
+            bool disableAfterPickup = true;
             switch (lootType)
             {
                 case LootTypes.Time:
@@ -49,15 +61,19 @@ namespace TE
                     break;
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
-                    Game.instance.AddTimeShard();
+                    disableAfterPickup = Game.instance.AddTimeShard();
                     break;
                 case LootTypes.Gem:
-                    GemBehaviour();
+                    CustomBehavior();
+                    break;
+                case LootTypes.MovementSkills:
+                    CustomBehavior();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            Show(false);
+            if(disableAfterPickup)
+             Show(false);
         }
 
         public void HandleTimeStamp()
@@ -80,7 +96,7 @@ namespace TE
             }
         }
 
-        public virtual void GemBehaviour()
+        public virtual void CustomBehavior()
         {
             Debug.Log("Picked Up Gem");
         }
