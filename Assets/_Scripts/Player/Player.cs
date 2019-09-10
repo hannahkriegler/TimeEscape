@@ -30,7 +30,7 @@ namespace TE
         public float fallMultiplier = 2.5f;
         public float gravityMultiplier = 2f;
         public float dashVelocity = 500;
-
+        
 
         [Header("States")]
         public bool canAttack;
@@ -45,6 +45,8 @@ namespace TE
         public float takenDamageModifier = 1;
         [HideInInspector]
         public float skillCostModifier = 1;
+        [HideInInspector]
+        public float enemyKnockBackMultiplier = 1;
 
         public void Init(Game game)
         {

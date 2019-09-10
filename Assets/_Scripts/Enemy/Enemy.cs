@@ -29,6 +29,9 @@ namespace TE
 
         public Room assignedRoom { get; private set; }
 
+        public Rigidbody2D rb { get; private set; }
+        public Animator animator { get; private set; }
+
         private void Awake()
         {
             assignedRoom = GetComponentInParent<Room>();
@@ -38,6 +41,8 @@ namespace TE
 
         private void Start()
         {
+            rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
             Setup();   
         }
 
@@ -138,14 +143,14 @@ namespace TE
         public virtual void OnHit(int damage, GameObject attacker, bool knockBack)
         {
             if(currentKnockbackLength>0) return;
-            if (gameObject.GetComponent<Animator>() != null)
+            if (animator != null)
             {
                 Animator anim = gameObject.GetComponent<Animator>();
                 anim.CrossFade("hit", 0.2f);
             }
             currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
             Debug.Log(gameObject.name + " took " + damage + " damage!");
-            Knockback();
+            Knockback(damage);
             StartCoroutine(KnockbackCountdown());
             hitPoints -= damage;
             Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
@@ -158,11 +163,12 @@ namespace TE
             Attack(other.gameObject);
         }
 
-        protected virtual void Knockback()
+        protected virtual void Knockback(int damage)
         {
-            var sword = player.GetComponent<Player>().sword;
-            Vector2 knockbackDirection = (transform.position  - player.transform.position ).normalized *sword.knockback; 
-            gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
+            Player playerRef = player.GetComponent<Player>();
+            rb.velocity = Vector2.zero;
+            Vector3 dir = transform.position - player.transform.position;
+            rb.AddForce(500 * damage * playerRef.enemyKnockBackMultiplier * dir.normalized, ForceMode2D.Force);
         }
         
         public float GetDamageAmount()
