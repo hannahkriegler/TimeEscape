@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: box-l-up
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 24420f5242fb16a4d83ddaba7f361ad9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9882353}
+  m_Sprite: {fileID: 21300000, guid: be134c6e6dfa7804bbe45d4ccb5fd6ec, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

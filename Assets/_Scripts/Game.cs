@@ -9,8 +9,14 @@ namespace TE
     public class Game : MonoBehaviour
     {
         //Custom Deltas
-        public float playerTimeScale { get; private set; }
-        public float worldTimeScale { get; set; }
+        [HideInInspector]
+        public float playerTimeScale = 1;
+
+        [HideInInspector]
+        public float worldTimeScale = 1;
+
+        [HideInInspector]
+        public float countDownScale = 1;
        
 
         public InputManager inputManager;
@@ -53,8 +59,6 @@ namespace TE
         {
             session = new Session(this);
             timeStorage = new TimeStorage(this);
-            playerTimeScale = 1;
-            worldTimeScale = 1;
             inputManager.Init(this);
         }
 
@@ -79,7 +83,7 @@ namespace TE
         
         void UpdateTime()
         {
-            timeLeft -= Time.deltaTime * timeDrainMultiplier;
+            timeLeft -= Time.deltaTime * timeDrainMultiplier * countDownScale;
             if (timeLeft <= 0)
                 GameOver();
         }
