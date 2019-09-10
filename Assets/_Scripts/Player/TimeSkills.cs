@@ -47,5 +47,26 @@ namespace TE
             _player.animator.CrossFade("Dizzy", 0.2f);
             Debug.Log("Time traveled");
         }
+
+        public void NormalTime()
+        {
+            _game.playerTimeScale = 1;
+            _game.worldTimeScale = 1;
+            _game.countDownScale = 1;
+        }
+
+        public void SlowDownTime()
+        {
+            _game.playerTimeScale = 1.0f;
+            _game.worldTimeScale = 0.4f;
+            _game.countDownScale = 3.0f;
+        }
+
+        public void SpeedUpTime()
+        {
+            _game.playerTimeScale = 1.0f;
+            _game.worldTimeScale = 3.0f;
+            _game.countDownScale = 0.6f;
+        }
     }
 }

@@ -18,11 +18,10 @@ namespace TE
             attackKnockback = 0;
         }
 
-        protected override void Knockback()
+        protected override void Knockback(int damage)
         {
             // No Knockback in this enemy
-            return;
-            
+            return;       
         }
 
        protected override void Tick()

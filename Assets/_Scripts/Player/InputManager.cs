@@ -15,7 +15,7 @@ namespace TE
         private bool jumpPressed;
         private bool timeStamp;
         private bool timeTravel;
-        private bool timeSkill1, timeSkill2, timeSkill3, timeSkill4;
+        private bool timeSkill_slow, timeSkill_fast;
         private bool dash;
         private bool pause;
         private Vector2 movement;
@@ -88,6 +88,17 @@ namespace TE
                 if (!controllerDash && !keyDash)
                     dashCheck = false;
             }
+
+            //TODO TimeSkills
+            timeSkill_slow = Input.GetKey(KeyCode.Z);
+            timeSkill_fast = Input.GetKey(KeyCode.U);
+
+            //Both Skills counter itselfs
+            if(timeSkill_slow && timeSkill_fast)
+            {
+                timeSkill_slow = false;
+                timeSkill_fast = false;
+            }
         }
 
         void UpdatePlayer()
@@ -143,6 +154,20 @@ namespace TE
             if (timeTravel)
             {
                 player.TimeSkills.TimeTravel();
+            }
+
+            if (timeSkill_fast)
+            {
+                player.TimeSkills.SpeedUpTime();
+            }
+            else
+            if (timeSkill_slow)
+            {
+                player.TimeSkills.SlowDownTime();
+            }
+            else
+            {
+                player.TimeSkills.NormalTime();
             }
         }
     }
