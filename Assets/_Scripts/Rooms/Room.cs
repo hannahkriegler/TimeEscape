@@ -25,6 +25,34 @@ namespace TE
 
         public int RoomID;
 
+        private bool doorsDown = false;
+
+        private void Start()
+        {
+            
+        }
+
+        private void Update()
+        {
+            
+            if (roomType == RoomTypes.CloseDoorsUnitlEnemiesDefeated && doorsDown)
+            {
+                if (AllEnemiesAreDead())
+                {
+                    MoveDoorsDown(false);
+                }
+            }
+        }
+
+        private bool AllEnemiesAreDead()
+        {
+            foreach (Enemy enemy in allEnemies)
+            {
+                if(!enemy.IsDead()) return true;
+            }
+            return false;
+        }
+
         public void AddEnemyToRoom(Enemy enemy)
         {
             if (!allEnemies.Contains(enemy))
@@ -76,6 +104,7 @@ namespace TE
                 case RoomTypes.Normal:
                     break;
                 case RoomTypes.CloseDoorsUnitlEnemiesDefeated:
+                    MoveDoorsDown(true);
                     break;
                 case RoomTypes.Boss:
                     break;
@@ -84,9 +113,26 @@ namespace TE
             }
         }
 
-        void CloseDoors(bool close)
+        void MoveDoorsDown(bool down)
         {
-            
+            if (!down)
+            {
+                Debug.Log("Open all Doors");
+                doorsDown = false;
+                foreach (Door door in doors)
+                {
+                    door.MoveDoor(down);
+                }
+            }
+            else
+            {
+                Debug.Log("Close all Doors");
+                doorsDown = true;
+                foreach (Door door in doors)
+                {
+                    door.MoveDoor(down);
+                }
+            }
         }
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    [HideInInspector] 
+    public bool isDown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,20 @@ public class Door : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MoveDoor(bool down)
+    {
+        if (down)
+        {
+            Debug.Log("Moved Door Down");
+            isDown = true;
+        }
+        else
+        {
+            Debug.Log("Moved Door Up");
+
+            isDown = false;
+        }
     }
 }

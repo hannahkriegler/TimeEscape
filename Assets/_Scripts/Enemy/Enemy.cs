@@ -18,7 +18,7 @@ namespace TE
         
         [HideInInspector]
         public Transform player;
-
+        
         // Knockbacks
         private float currentKnockbackLength = 0f;
         public float knockbackLength;
@@ -179,6 +179,12 @@ namespace TE
         {
             yield return new WaitForSeconds(currentKnockbackLength * Game.instance.worldTimeScale);
             currentKnockbackLength = 0;
+        }
+
+        public bool IsDead()
+        {
+            if (hitPoints > 0) return false;
+            return true;
         }
     }
     
