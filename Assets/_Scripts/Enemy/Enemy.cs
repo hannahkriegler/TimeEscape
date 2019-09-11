@@ -184,6 +184,7 @@ namespace TE
             return hitPoints;
         }
 
+        float flashEffectLength = 0.35f;
         IEnumerator KnockbackCountdown()
         {
             while (currentKnockbackLength > 0)
@@ -194,8 +195,8 @@ namespace TE
                 //Handle Flash Effect
                 float a = 1 - currentKnockbackLength / knockbackLength;
                 float flashStrength = 0;
-                if(a <= 0.5f)
-                  flashStrength  = Mathf.Sin(a * Mathf.PI * 2) * 0.8f;
+                if(a <= flashEffectLength)
+                  flashStrength  = Mathf.Sin(a * Mathf.PI / flashEffectLength) * 0.8f;
                 FlashEffect(flashStrength);
             }
           

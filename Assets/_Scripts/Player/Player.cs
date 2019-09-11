@@ -102,11 +102,12 @@ namespace TE
             _game.DecreaseTime(f);
             animator.CrossFade("Hit", 0.2f);
             Movement.KnockBack(damage * 30, attacker.transform);
-            currentFlashEffectTimer = 0.5f;
+            currentFlashEffectTimer = flashEffectLength;
             StartCoroutine(FlashEffect());
         }
 
         float currentFlashEffectTimer;
+        float flashEffectLength = 0.35f;
         IEnumerator FlashEffect()
         {
             while (currentFlashEffectTimer > 0)
@@ -115,8 +116,8 @@ namespace TE
                 currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
 
                 //Handle Flash Effect
-                float a = 0.5f - currentFlashEffectTimer;
-                float flashStrength = Mathf.Sin(a * Mathf.PI * 2) * 0.8f;
+                float a = flashEffectLength - currentFlashEffectTimer;
+                float flashStrength = Mathf.Sin(a * Mathf.PI / flashEffectLength) * 0.8f;
                 FlashEffect(flashStrength);
             }
 
