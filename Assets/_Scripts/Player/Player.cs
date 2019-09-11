@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TE
@@ -20,6 +22,9 @@ namespace TE
         public Animator animator { get; private set; }
 
         public DamageCollider sword  { get; private set; }
+
+        SpriteRenderer[] all_Sprites;
+
         [Header("References")]
         public LayerMask groundLayerCheck;
         public Transform groundCheck;
@@ -57,8 +62,8 @@ namespace TE
             animator = GetComponentInChildren<Animator>();
             col = GetComponent<Collider2D>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
-           
-            
+            all_Sprites = GetComponentsInChildren<SpriteRenderer>();
+
             //Init Subsystems
             Movement = new Movement(this, _game);
             TimeSkills = new TimeSkills(this, _game);
@@ -97,8 +102,25 @@ namespace TE
             _game.DecreaseTime(f);
             animator.CrossFade("Hit", 0.2f);
             Movement.KnockBack(damage * 30, attacker.transform);
+            currentFlashEffectTimer = 0.5f;
+            StartCoroutine(FlashEffect());
         }
 
+        float currentFlashEffectTimer;
+        IEnumerator FlashEffect()
+        {
+            while (currentFlashEffectTimer > 0)
+            {
+                yield return new WaitForEndOfFrame();
+                currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
+
+                //Handle Flash Effect
+                float a = 0.5f - currentFlashEffectTimer;
+                float flashStrength = Mathf.Sin(a * Mathf.PI * 2) * 0.8f;
+                FlashEffect(flashStrength);
+            }
+
+        }
 
         void SetupTrailRenderer()
         {
@@ -108,6 +130,14 @@ namespace TE
             curve.AddKey(1.0f, 0.2f);
             trailRenderer.widthCurve = curve;
             trailRenderer.enabled = false;
+        }
+
+        protected void FlashEffect(float strength)
+        {
+            foreach (SpriteRenderer rend in all_Sprites)
+            {
+                rend.material.SetFloat("_flash", strength);
+            }
         }
     }
 }

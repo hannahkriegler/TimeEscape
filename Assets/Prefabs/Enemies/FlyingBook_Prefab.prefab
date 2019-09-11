@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 123f441f1b0001b4d8cc445243867dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1946166229499285088, guid: cd033cbb1f4dcfb4cbaed30af1a5ae6a,
     type: 3}
-  m_Color: {r: 0.078431375, g: 0.078431375, b: 0.078431375, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 6048208016722337940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.61, y: -3.26, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.03596203, y: 0.082299225, z: 0.1}
   m_Children:
   - {fileID: 6048208015106270167}
   m_Father: {fileID: 0}
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c6ca0d7fc0d4446acc3657f23b5c57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 3
-  hitPoints: 5
+  damageAmount: 10
+  hitPoints: 3
   hasLootDrop: 1
   lootTypes: 0
   player: {fileID: 0}

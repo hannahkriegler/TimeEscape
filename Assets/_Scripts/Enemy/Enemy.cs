@@ -18,6 +18,8 @@ namespace TE
         
         [HideInInspector]
         public Transform player;
+
+        SpriteRenderer[] all_Sprites;
         
         // Knockbacks
         private float currentKnockbackLength = 0f;
@@ -43,6 +45,8 @@ namespace TE
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            player = Game.instance.player.transform;
+            all_Sprites = GetComponentsInChildren<SpriteRenderer>();
             Setup();   
         }
 
@@ -53,7 +57,7 @@ namespace TE
 
         protected virtual void Setup()
         {
-            player = Game.instance.player.transform;
+            
             
         }
 
@@ -186,13 +190,29 @@ namespace TE
             {
                 yield return new WaitForEndOfFrame();
                 currentKnockbackLength -= Time.deltaTime * Game.instance.worldTimeScale;
+
+                //Handle Flash Effect
+                float a = 1 - currentKnockbackLength / knockbackLength;
+                float flashStrength = 0;
+                if(a <= 0.5f)
+                  flashStrength  = Mathf.Sin(a * Mathf.PI * 2) * 0.8f;
+                FlashEffect(flashStrength);
             }
+          
         }
 
         public bool IsDead()
         {
             if (hitPoints > 0) return false;
             return true;
+        }
+
+        protected void FlashEffect(float strength)
+        {
+            foreach (SpriteRenderer rend in all_Sprites)
+            {
+                rend.material.SetFloat("_flash", strength);
+            }
         }
     }
     

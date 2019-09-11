@@ -12,9 +12,8 @@ namespace TE
 
         public GameObject projectile;
 
-        private void Start()
+        protected override void Setup()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
             attackKnockback = 0;
         }
 
