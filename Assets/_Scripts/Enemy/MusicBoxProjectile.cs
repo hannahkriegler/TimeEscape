@@ -14,6 +14,7 @@ namespace TE
         {
             player = GameObject.FindGameObjectWithTag("Player").transform;
             var position = player.position;
+            hitPoints = 0;
 
             moveVector = (position - transform.position).normalized;
         }
