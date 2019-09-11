@@ -226,8 +226,13 @@ namespace TE
             knockBack = true;
             knockBackTimer = 0;
             _player.rigidBody.velocity = Vector2.zero;
-            Vector3 dir = _player.transform.position - attacker.transform.position; 
-            _player.rigidBody.AddForce(strength * dir.normalized, ForceMode2D.Force);
+            Vector3 dir = _player.transform.position - attacker.transform.position;      
+            dir.Normalize();
+            if (dir.x < 0)
+                dir -= Vector3.right * 0.2f;
+            else
+                dir += Vector3.right * 0.2f;
+            _player.rigidBody.AddForce(strength * dir, ForceMode2D.Force);
         }
     }
 }

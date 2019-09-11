@@ -3,55 +3,87 @@ using UnityEngine;
 
 namespace TE
 {
-    public class MusicBoxProjectile : TE.Enemy
+    public class MusicBoxProjectile : MonoBehaviour
     {
         public float speed;
 
-        private Vector3 moveVector;
+        private Vector2 moveVector;
         private Vector2 target;
+
+        private Player _player;
+        public int damageAmount = 1;
+
+        Rigidbody2D rigid;
+        Collider2D col;
+
+        bool follow;
+        bool right;
+        bool toClose;
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-            var position = player.position;
-            hitPoints = 0;
+            _player = Game.instance.player;
+            rigid = GetComponent<Rigidbody2D>();
+            col = GetComponent<Collider2D>();
 
-            moveVector = (position - transform.position).normalized;
+            right = _player.transform.position.x > transform.position.x;
+
+            timer = 0;
+            follow = false;
         }
 
-        private void LateUpdate()
+        float timer;
+        private void Update()
         {
-            transform.position += moveVector * speed * Time.deltaTime;
-        } 
-
-        public override void OnHit(int damage, GameObject attacker, bool knockBack)
-        {
-            Debug.Log("You can't destroy a projectile");
-        }
-
-        protected override void Attack(GameObject target)
-        {
-            
-            if (target.CompareTag("Player"))
+            if (timer > 0.2f && !follow)
             {
-                IHit hit = target.GetComponent<IHit>();
+                moveVector = (_player.transform.position - transform.position + Vector3.up * 
+                    Random.Range(-0.1f, 0.1f));
+                moveVector.Normalize();
+                follow = true;
+                if (Vector2.Distance(_player.transform.position, transform.position) < 0.8f)
+                {
+                    toClose = true;
+                }
+            }
+            else if (timer <= 0.2f)
+            {
+                timer += Time.deltaTime * Game.instance.worldTimeScale;
+            }
+
+            if (follow && !toClose)
+            {
+                transform.position += (Vector3) moveVector * speed  * Time.deltaTime *
+                   Game.instance.worldTimeScale;
+            }
+            else
+            {
+                Vector2 dir = right ? Vector2.right : Vector2.left;
+                transform.position += (Vector3)dir * speed  * Time.deltaTime *
+               Game.instance.worldTimeScale;
+            }
+        }
+
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                IHit hit = other.gameObject.GetComponent<IHit>();
                 hit.OnHit(damageAmount, gameObject);
-                Die();
+                Destroy(gameObject);
             }
-            if(target.CompareTag("Grid")) Die();
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        float destroyTick = 0;
+        private void OnTriggerStay2D(Collider2D collision)
         {
-            if (other.collider.gameObject.CompareTag("Grid"))
+            if (collision.gameObject.CompareTag("Grid"))
             {
-                Die();
+                destroyTick += Time.deltaTime;
+                if(destroyTick > 0.1f)
+                 Destroy(gameObject);
             }
-        }
-
-        protected override void Die()
-        {
-            Destroy(gameObject);
         }
     }
 }

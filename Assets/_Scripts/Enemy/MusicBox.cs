@@ -34,7 +34,8 @@ namespace TE
             AttackAnim(true);
             if (timeBtwShots <= 0)
             {
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                Instantiate(projectile, transform.position + Vector3.up * 0.2f, 
+                    Quaternion.identity);
                 counter++;
                 timeBtwShots = counter % 3 == 0 ? startTimeBtwShots : timeBtwTripleShots;
             }

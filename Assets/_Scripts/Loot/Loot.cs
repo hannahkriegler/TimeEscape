@@ -29,11 +29,19 @@ namespace TE
 
         bool savePickedUp;
 
+        bool visible;
+
+        SpriteRenderer[] sprites;
+        Collider2D col;
+
         public Room assignedRoom { get; private set; }
 
         private void Awake()
         {
+            sprites = GetComponentsInChildren<SpriteRenderer>();
+            col = GetComponent<Collider2D>();
             assignedRoom = GetComponentInParent<Room>();
+            visible = true;
             if(assignedRoom != null)
                 assignedRoom.AddLootToRoom(this);
         }
@@ -74,8 +82,7 @@ namespace TE
 
         public void HandleTimeStamp()
         {
-            savePickedUp = !gameObject.GetComponent<SpriteRenderer>().enabled;
-            //savePickedUp = !gameObject.activeSelf;
+            savePickedUp = !visible;
         }
 
         public void HandleTimeTravel()
@@ -100,8 +107,12 @@ namespace TE
         
         protected void Show(bool b)
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = b;
-            gameObject.GetComponent<CircleCollider2D>().enabled = b;
+            col.enabled = b;
+            foreach (SpriteRenderer rend in sprites)
+            {
+                rend.enabled = b;
+            }
+            visible = b;
         }
     }
 }
