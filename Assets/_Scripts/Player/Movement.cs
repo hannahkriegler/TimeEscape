@@ -186,12 +186,12 @@ namespace TE
         {
             grounded = false;
 
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Vector2 rayOrigin = _player.groundCheck.position;
-                rayOrigin += Vector2.right * (i - 6) * 0.035f;
+                rayOrigin += Vector2.right * (i - 5) * 0.025f;
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, _player.groundLayerCheck);
-              
+
                 if (hit)
                 {
                     Debug.DrawRay(rayOrigin, Vector2.down * 0.1f, Color.blue);
@@ -211,13 +211,6 @@ namespace TE
 
             if (readyToJump < jumpWindow)
                 readyToJump += delta;
-
-            //Addtional raycast with furter distance to let jumping feel more responsive
-            RaycastHit2D hit = Physics2D.Raycast(_player.groundCheck.position, Vector2.down, 0.15f, _player.groundLayerCheck);
-            if (hit)
-            {
-                readyToJump = 0;
-            }
         }
 
         public void Teleport(Vector2 teleportPos)

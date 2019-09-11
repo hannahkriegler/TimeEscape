@@ -143,8 +143,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16608417, y: 0.55707335}
-  m_Size: {x: 1.2823427, y: 3.469839}
+  m_Offset: {x: -0, y: 0.274235}
+  m_Size: {x: 1.2823427, y: 2.9041624}
   m_Direction: 0
 --- !u!114 &5181368187397513308
 MonoBehaviour:
@@ -168,6 +168,10 @@ MonoBehaviour:
   gravityMultiplier: 2
   dashVelocity: 500
   canAttack: 0
+  damageModifier: 1
+  takenDamageModifier: 1
+  skillCostModifier: 1
+  enemyKnockBackMultiplier: 1
 --- !u!114 &5181368187397513299
 MonoBehaviour:
   m_ObjectHideFlags: 0
