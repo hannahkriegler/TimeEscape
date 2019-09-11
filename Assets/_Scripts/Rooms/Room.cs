@@ -12,7 +12,8 @@ namespace TE
         {
            Normal,
            CloseDoorsUnitlEnemiesDefeated,
-           Boss
+           Boss, 
+           SpecialTimeRoom
         };
 
         public List<Door> doors;
@@ -25,32 +26,50 @@ namespace TE
 
         public int RoomID;
 
-        private bool doorsDown = false;
+        protected bool doorsDown = false;
+
+        [Header("Special Time Rooms Infos")]
+        public int secondsLeftToOpen;
+        public GameObject textInfo;
 
         private void Start()
         {
-            
+            Debug.Log("Mob Room has " + allEnemies.Count + " Enemies");
         }
 
         private void Update()
         {
-            
             if (roomType == RoomTypes.CloseDoorsUnitlEnemiesDefeated && doorsDown)
             {
-                if (AllEnemiesAreDead())
+                if (AllEnemiesAreDead() )
                 {
                     MoveDoorsDown(false);
+                    
                 }
+            }
+            if (roomType == RoomTypes.SpecialTimeRoom && !doorsDown
+                                                      && Game.instance.timeLeft <= secondsLeftToOpen)
+            {
+                MoveDoorsDown(true);
             }
         }
 
         private bool AllEnemiesAreDead()
         {
+            
+            
             foreach (Enemy enemy in allEnemies)
             {
-                if(!enemy.IsDead()) return true;
+                Debug.Log("Enemy has " + enemy.hitPoints + " hitPoints");
+                if (!enemy.IsDead())
+                {
+                    
+                    return false;
+                }
             }
-            return false;
+           
+            Debug.Log("All Dead");
+            return true;
         }
 
         public void AddEnemyToRoom(Enemy enemy)
@@ -108,20 +127,24 @@ namespace TE
                     break;
                 case RoomTypes.Boss:
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                case RoomTypes.SpecialTimeRoom:
+                    if (doorsDown) break; // bei der tür genau inverse
+                    textInfo.SetActive(true);
+                    StartCoroutine(HideTextBox());
+                    break;
             }
         }
 
-        void MoveDoorsDown(bool down)
+
+        protected void MoveDoorsDown(bool b)
         {
-            if (!down)
+            if (!b)
             {
                 Debug.Log("Open all Doors");
                 doorsDown = false;
                 foreach (Door door in doors)
                 {
-                    door.MoveDoor(down);
+                    door.MoveDoor(b);
                 }
             }
             else
@@ -130,9 +153,17 @@ namespace TE
                 doorsDown = true;
                 foreach (Door door in doors)
                 {
-                    door.MoveDoor(down);
+                    door.MoveDoor(b);
                 }
             }
         }
+        
+        IEnumerator HideTextBox()
+        {
+            yield return new WaitForSeconds(2);
+            textInfo.SetActive(false);
+            
+        }
+
     }
 }
