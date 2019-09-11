@@ -90,8 +90,8 @@ namespace TE
             }
 
             //TODO TimeSkills
-            timeSkill_slow = Input.GetKey(KeyCode.Z);
-            timeSkill_fast = Input.GetKey(KeyCode.U);
+            timeSkill_slow = Input.GetButton("SlowDown");
+            timeSkill_fast = Input.GetButton("SpeedUp");
 
             //Both Skills counter itselfs
             if(timeSkill_slow && timeSkill_fast)

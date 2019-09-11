@@ -10,10 +10,10 @@ namespace TE
     {
         public enum RoomTypes
         {
-           Normal,
-           CloseDoorsUnitlEnemiesDefeated,
-           Boss, 
-           SpecialTimeRoom
+            Normal,
+            CloseDoorsUnitlEnemiesDefeated,
+            Boss,
+            SpecialTimeRoom
         };
 
         public List<Door> doors;
@@ -41,10 +41,10 @@ namespace TE
         {
             if (roomType == RoomTypes.CloseDoorsUnitlEnemiesDefeated && doorsDown)
             {
-                if (AllEnemiesAreDead() )
+                if (AllEnemiesAreDead())
                 {
                     MoveDoorsDown(false);
-                    
+
                 }
             }
             if (roomType == RoomTypes.SpecialTimeRoom && !doorsDown
@@ -56,18 +56,18 @@ namespace TE
 
         private bool AllEnemiesAreDead()
         {
-            
-            
+
+
             foreach (Enemy enemy in allEnemies)
             {
                 Debug.Log("Enemy has " + enemy.hitPoints + " hitPoints");
                 if (!enemy.IsDead())
                 {
-                    
+
                     return false;
                 }
             }
-           
+
             Debug.Log("All Dead");
             return true;
         }
@@ -100,18 +100,20 @@ namespace TE
         {
             foreach (Enemy enemy in allEnemies)
             {
-                enemy.HandleTimeStamp();
+                if (enemy != null)
+                    enemy.HandleTimeStamp();
             }
             foreach (Loot loot in allLoot)
             {
-                loot.HandleTimeStamp();
+                if (loot != null)
+                    loot.HandleTimeStamp();
             }
         }
 
 
         public void NotifyEnemyDied(Enemy enemy)
         {
-        
+
         }
 
         public void OnTriggerEnter2D(Collider2D player)
@@ -157,12 +159,12 @@ namespace TE
                 }
             }
         }
-        
+
         IEnumerator HideTextBox()
         {
             yield return new WaitForSeconds(2);
             textInfo.SetActive(false);
-            
+
         }
 
     }

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 887641814}
   - component: {fileID: 887641820}
   m_Layer: 0
-  m_Name: FlyingBook_Prefab
+  m_Name: FlyingBook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
