@@ -99,10 +99,9 @@ namespace TE
         {
             if (gameObject.GetComponent<Animator>() != null)
             {
-                Debug.Log("agro");
                 Animator anim = gameObject.GetComponent<Animator>();
                 anim.SetBool("agro", b);
-                //anim.CrossFade("agro", 0.2f);
+                
             }
         }
 

@@ -38,10 +38,6 @@ namespace TE
                 assignedRoom.AddLootToRoom(this);
         }
 
-        private void Start()
-        {
-            
-        }
 
         public void OnTriggerEnter2D(Collider2D player)
         {

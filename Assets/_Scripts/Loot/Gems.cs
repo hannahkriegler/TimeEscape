@@ -82,7 +82,6 @@ namespace TE
         IEnumerator HideTextBox()
         {
             yield return new WaitForSeconds(2);
-            Debug.Log("HERE");
             Game.instance.lootInfo.SetActive(false);
             
         }
