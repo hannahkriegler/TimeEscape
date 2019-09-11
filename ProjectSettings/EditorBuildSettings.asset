@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TrueDungeon.unity
-    guid: eca3b0a508399cf4da2552a5562559cc
+    path: Assets/Scenes/TrueDungeon2.unity
+    guid: 5b18e5c56ba0f5f4d96447f06f8aa607
   m_configObjects: {}
