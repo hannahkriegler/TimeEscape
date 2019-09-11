@@ -21,7 +21,7 @@ namespace TE
 
         // Knockbacks
         private float currentKnockbackLength = 0f;
-        public float knockbackLength;
+        public float knockbackLength = 1;
         protected float attackKnockback = 3f;
 
         private Vector3 savePos;
@@ -183,8 +183,11 @@ namespace TE
 
         IEnumerator KnockbackCountdown()
         {
-            yield return new WaitForSeconds(currentKnockbackLength * Game.instance.worldTimeScale);
-            currentKnockbackLength = 0;
+            while (currentKnockbackLength > 0)
+            {
+                yield return new WaitForEndOfFrame();
+                currentKnockbackLength -= Time.deltaTime * Game.instance.worldTimeScale;
+            }
         }
     }
     
