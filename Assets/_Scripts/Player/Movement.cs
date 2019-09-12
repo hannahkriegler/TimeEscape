@@ -135,7 +135,7 @@ namespace TE
         public bool Jump()
         {
             //Short Window for Jump to improve responsiveness
-            if (readyToJump < jumpWindow)
+            if (readyToJump < jumpWindow && !jump1)
             {
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
@@ -186,15 +186,15 @@ namespace TE
         {
             grounded = false;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Vector2 rayOrigin = _player.groundCheck.position;
-                rayOrigin += Vector2.right * (i - 5) * 0.025f;
+                rayOrigin += Vector2.right * (i - 4) * 0.025f;
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, _player.groundLayerCheck);
 
                 if (hit)
                 {
-                    Debug.DrawRay(rayOrigin, Vector2.down * 0.1f, Color.blue);
+                    Debug.DrawRay(rayOrigin, Vector2.down * 0.1f, Color.red);
                     grounded = true;
                     break;
                 }

@@ -17,7 +17,7 @@ namespace TE
         public Loot.LootTypes lootTypes;
         
         [HideInInspector]
-        public Transform player;
+        public Player player;
 
         SpriteRenderer[] all_Sprites;
         
@@ -45,7 +45,7 @@ namespace TE
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            player = Game.instance.player.transform;
+            player = Game.instance.player;
             all_Sprites = GetComponentsInChildren<SpriteRenderer>();
             Setup();   
         }
@@ -93,6 +93,7 @@ namespace TE
             if (hit != null)
             {
                 hit.OnHit(damageAmount, gameObject);
+                AttackKnockback();
                 Vector2 knockbackDirection = (transform.position  - target.transform.position ).normalized *attackKnockback; 
                 gameObject.GetComponent<Rigidbody2D>().velocity = knockbackDirection;
 
@@ -153,7 +154,7 @@ namespace TE
             }
             currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
             Debug.Log(gameObject.name + " took " + damage + " damage!");
-            Knockback(damage);
+            Knockback(damage * 500 * player.enemyKnockBackMultiplier);
             StartCoroutine(KnockbackCountdown());
             hitPoints -= damage;
             Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
@@ -166,12 +167,18 @@ namespace TE
             Attack(other.gameObject);
         }
 
-        protected virtual void Knockback(int damage)
+        protected virtual void Knockback(float strength)
         {
-            Player playerRef = player.GetComponent<Player>();
             rb.velocity = Vector2.zero;
             Vector3 dir = transform.position - player.transform.position;
-            rb.AddForce(500 * damage * playerRef.enemyKnockBackMultiplier * dir.normalized, ForceMode2D.Force);
+            rb.AddForce(strength  * dir.normalized, ForceMode2D.Force);
+        }
+
+        protected virtual void AttackKnockback()
+        {
+            bool right = player.transform.position.x < transform.position.x;
+            rb.AddForce(200 * (right ? transform.right: -transform.right), ForceMode2D.Force);
+            rb.AddForce(80 * transform.up, ForceMode2D.Force);
         }
         
         public float GetDamageAmount()
