@@ -3,47 +3,60 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+namespace TE
 {
-    public Vector2 down;
-    private Vector2 up;
-
-    [HideInInspector] 
-    public bool isDown = false;
-    // Start is called before the first frame update
-    void Start()
+    public class Door : MonoBehaviour, ITimeTravel
     {
-        up = new Vector2(transform.localPosition.x, transform.localPosition.y);
-        
-    }
+        public Vector2 down;
+        private Vector2 up;
 
-   public void MoveDoor(bool down)
-    {
-        if (down)
+        [HideInInspector]
+        public bool isDown = false;
+
+        bool savedDown;
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.Log("Moved Door Down");
-            StartCoroutine(MoveTo(this.down));
-            isDown = true;
+            up = new Vector2(transform.localPosition.x, transform.localPosition.y);
+
         }
-        else
+
+        public void MoveDoor(bool down)
         {
-            Debug.Log("Moved Door Up");
-            StartCoroutine(MoveTo(up));
-            isDown = false;
+            if (down)
+            {
+                Debug.Log("Moved Door Down");
+                StartCoroutine(MoveTo(this.down));
+                isDown = true;
+            }
+            else
+            {
+                Debug.Log("Moved Door Up");
+                StartCoroutine(MoveTo(up));
+                isDown = false;
+            }
+        }
+
+        IEnumerator MoveTo(Vector2 target)
+        {
+            while (Mathf.Abs(transform.localPosition.y - target.y) > 0.01f)
+            {
+                transform.localPosition = Vector2.MoveTowards(new Vector2(transform.localPosition.x, transform.localPosition.y),
+                    target, 3f * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+            yield return true;
+
+        }
+
+        public void HandleTimeStamp()
+        {
+            savedDown = isDown;
+        }
+
+        public void HandleTimeTravel()
+        {
+            MoveDoor(savedDown);
         }
     }
-
-    IEnumerator MoveTo(Vector2 target)
-    {
-        while (Mathf.Abs(transform.localPosition.y - target.y) > 0.01f)
-        {
-            transform.localPosition = Vector2.MoveTowards(new Vector2(transform.localPosition.x, transform.localPosition.y),
-                target, 3f * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
-        yield return true;
-
-    }
-    
-    
 }

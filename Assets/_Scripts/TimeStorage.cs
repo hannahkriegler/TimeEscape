@@ -34,4 +34,11 @@ namespace TE
             _game.HandleTimeTravelEnemies();
         }
     }
+
+    public interface ITimeTravel
+    {
+        void HandleTimeStamp();
+
+        void HandleTimeTravel();
+    }
 }

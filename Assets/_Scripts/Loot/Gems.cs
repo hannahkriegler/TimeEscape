@@ -33,11 +33,11 @@ namespace TE
             {
                 case GemTypes.SwordBuff:
                     Game.instance.timeBonusOnHit += 2;
-                    info = "Schlag dir deine Zeit zusammen!";
+                    info = "Bonus Zeit beim Schlag auf einem Gegner";
                     break;
                 case GemTypes.LessSkillCosts:
                     // TODO Where are skill costs?
-                    info = "Mehr Skills spammen!";
+                    info = "Skills kosten weniger!";
                     Game.instance.player.skillCostModifier *= 0.8f;
                     break;
                 case GemTypes.IncreasePlayerSpeed:

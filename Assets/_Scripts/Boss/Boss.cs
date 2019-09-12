@@ -15,25 +15,28 @@ public class Boss : Enemy
     private float timeToRecoverAfterSpit = 2f;
     private float timeToRecoverAfterSpawn = 5f;
     private int _rndm;
-    
-    [HideInInspector] 
-    public Animator anim;
+   
     [HideInInspector] 
     public bool isInAttackRange;
 
-    [HideInInspector] public Transform playerPos;
-    // Start is called before the first frame update
-    void Start()
+    bool activated = false;
+   
+
+    protected override void Setup()
     {
-        playerPos = Game.instance.player.transform;
-        anim = GetComponent<Animator>();
-        base.rb = GetComponent<Rigidbody2D>();
-        player = Game.instance.player;
+        base.Setup();
     }
 
     // Update is called once per frame
     protected override void Tick()
     {
+        if (!activated)
+        {
+            if (Vector2.Distance(player.transform.position, transform.position) < 8)
+                activated = true;
+            else return;
+        }
+
         CheckRotation();
         CheckDistance();
         
@@ -42,24 +45,24 @@ public class Boss : Enemy
             timeBtwDamage -= Time.deltaTime;
             if (!isInAttackRange)
             {
-                anim.SetTrigger("walk");
+                animator.SetTrigger("walk");
             }
             else
             {
-                anim.SetTrigger("idle");
+                animator.SetTrigger("idle");
             }
         }
         else
         {
             if (!isInAttackRange)
             {
-                anim.SetTrigger("walk");
+                animator.SetTrigger("walk");
             }
             else
             {
                 if (timeBtwDamage <= 0)
                 {
-                    anim.SetTrigger("spit");
+                    animator.SetTrigger("spit");
                     timeBtwDamage = timeToRecoverAfterSpit;
                     
                     /*
@@ -83,13 +86,13 @@ public class Boss : Enemy
 
     private void CheckDistance()
     {
-        var distance = Vector3.Distance(playerPos.position, transform.position);
+        var distance = Vector3.Distance(player.transform.position, transform.position);
         isInAttackRange = !(distance > 10f);
     }
 
     private void CheckRotation()
     {
-        var direction = (playerPos.transform.position- transform.position).normalized;
+        var direction = (player.transform.position- transform.position).normalized;
         if (direction.x > 0) // go right
         {
             transform.localRotation = new Quaternion(0, -180,0,0);
@@ -104,8 +107,8 @@ public class Boss : Enemy
     public override void OnHit(int damage, GameObject attacker, bool knockBack = true)
     {
         if(currentKnockbackLength>0) return;
-        anim.SetTrigger("hit");
-        base.currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
+        animator.SetTrigger("hit");
+        currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
         Debug.Log(gameObject.name + " took " + damage + " damage!");
         Knockback(damage * 500 * player.enemyKnockBackMultiplier);
         StartCoroutine(KnockbackCountdown());
@@ -116,7 +119,11 @@ public class Boss : Enemy
             Die();
         }
 
-        anim.SetTrigger("spit");
+        animator.SetTrigger("spit");
+
+        //Flash
+        currentFlashEffectTimer = flashEffectLength;
+        StartCoroutine(FlashEffect());
     }
 
 
@@ -141,10 +148,13 @@ public class Boss : Enemy
     
     protected override void Die()
     {
-        anim.SetTrigger("dead");
+        animator.SetTrigger("dead");
         // TODO: wait for die animation
         StartCoroutine(WaitToDie(2));
         if(hasLootDrop) DropLoot();
+
+        //Unlocks time skills
+        Game.instance.session.UnlockTimeSkills();
     }
 
     IEnumerator WaitToDie(float timeToWait)
@@ -153,8 +163,20 @@ public class Boss : Enemy
         gameObject.SetActive(false);
     }
 
-    protected override void FlashEffect(float strength)
+
+    float currentFlashEffectTimer;
+    float flashEffectLength = 0.35f;
+    IEnumerator FlashEffect()
     {
-        Debug.Log("Philip, Fix this pls");
+        while (currentFlashEffectTimer > 0)
+        {
+            currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
+            //Handle Flash Effect
+            float a = flashEffectLength - currentFlashEffectTimer;
+            float flashStrength = Mathf.Sin(a * Mathf.PI / flashEffectLength) * 0.8f;
+            FlashEffect(flashStrength);
+            yield return new WaitForEndOfFrame();
+        }
+        FlashEffect(0);
     }
 }

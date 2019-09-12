@@ -76,12 +76,9 @@ public class RoomBarriers : Enemy
     {
         Debug.Log("You can't destroy a trap");
     }
-    
-    
 
-    
-
-
-
-
+    public override bool IsDead()
+    {
+        return true;
+    }
 }

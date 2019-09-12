@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TE
 {
-    public class Loot : MonoBehaviour
+    public class Loot : MonoBehaviour, ITimeTravel
     {
         public enum LootTypes
         {

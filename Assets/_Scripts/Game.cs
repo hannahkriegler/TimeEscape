@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace TE
 {
@@ -17,34 +18,41 @@ namespace TE
 
         [HideInInspector]
         public float countDownScale = 1;
-       
+
 
         public InputManager inputManager;
         public Player player { get => inputManager.player; }
-       
+
         public Session session;
         public TimeStorage timeStorage { get; private set; }
         public static Game instance;
         public float startTime = 600;
         public float timeDrainMultiplier = 1;
         public float timeLeft;
-        [Range(0,4)]
+        [Range(0, 4)]
         public int timeShardCounter;
 
         [Header("Cheats")]
         public bool allMovementSkills;
         public bool unlimitedTimeTravel;
+        public bool allTimeSkills;
 
         [Header("Data")]
         public Room[] allRooms;
         public GameObject timeStampPrefab;
 
-        [Header("Gem stuff")] 
+        [Header("Gem stuff")]
         public int timeBonusOnHit;
 
         [Header("References")]
         public GameObject lootInfo;
-        
+
+        public GameObject systemMessage;
+
+
+        float gameOverTimer;
+        bool gameOver;
+
 
         private void Awake()
         {
@@ -69,23 +77,40 @@ namespace TE
             if (Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.T))
                 GameOver();
 
-            if(Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.P))
+            if (Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.P))
             {
                 allMovementSkills = true;
                 unlimitedTimeTravel = true;
+                allTimeSkills = true;
+            }
+
+            if (gameOver)
+            {
+                gameOverTimer -= Time.deltaTime;
+                if(gameOverTimer <= 0)
+                    SceneManager.LoadScene(0);
             }
         }
 
         public void GameOver()
         {
-            SceneManager.LoadScene(0);
+            if (gameOver)
+                return;
+
+            player.GameOver();
+            gameOver = true;
+            gameOverTimer = 1.1f;
         }
-        
+
         void UpdateTime()
         {
-            timeLeft -= Time.deltaTime * timeDrainMultiplier * countDownScale;
-            if (timeLeft <= 0)
+            if (timeLeft > 0)
+                timeLeft -= Time.deltaTime * timeDrainMultiplier * countDownScale;
+            else
+            {
+                timeLeft = 0;
                 GameOver();
+            }
         }
 
 
@@ -135,8 +160,21 @@ namespace TE
                 room.HandleTimeTravel();
             }
         }
-        
+
+        public void ShowInfo(string message, float duration = 8.0f)
+        {
+            systemMessage.SetActive(true);
+            systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
+            StopAllCoroutines();
+            StartCoroutine(CloseMessage(duration));
+        }
+
+        IEnumerator CloseMessage(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+            systemMessage.SetActive(false);
+        }
     }
-    
-    
+
+
 }

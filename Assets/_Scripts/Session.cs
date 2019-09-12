@@ -8,6 +8,7 @@ namespace TE
 
         int dashCollected;
         bool jumpCollected;
+        bool timeSkills;
         
         public Session(Game game)
         {
@@ -25,6 +26,13 @@ namespace TE
             jumpCollected = true;
         }
 
+        public void UnlockTimeSkills()
+        {
+            //TODO Permanent unlock
+            timeSkills = true;
+            _game.ShowInfo("Du kannst jetzt die Zeit verlangsamen mit LB !");
+        }
+
 
         public bool IsDashUnlocked()
         {
@@ -34,6 +42,11 @@ namespace TE
         public bool IsDoubleJumpUnlocked()
         {
             return jumpCollected || _game.allMovementSkills;
+        }
+
+        public bool HasTimeSkills()
+        {
+            return timeSkills || _game.allTimeSkills;
         }
     }
 }

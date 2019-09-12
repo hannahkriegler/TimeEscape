@@ -108,9 +108,7 @@ MonoBehaviour:
   knockbackLength: 1
   spitProjectile: {fileID: 3638391196057604192}
   spitStart: {fileID: 0}
-  anim: {fileID: 0}
   isInAttackRange: 0
-  playerPos: {fileID: 0}
 --- !u!60 &3638391197579294771
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -356,11 +354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shroomie_Spit
       objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7567030493801181820, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -421,41 +414,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.034960747
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.4464569
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.08157444
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493022481908, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7567030493022481910, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
       propertyPath: m_Enabled
@@ -468,14 +426,39 @@ PrefabInstance:
       objectReference: {fileID: 3638391197160370417}
     - target: {fileID: 7567030494127598172, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030494127598172, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
       propertyPath: middle
       value: 
       objectReference: {fileID: 3638391197603228740}
+    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.034960747
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.08157444
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181821, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.4464569
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7567030494137873592, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
       propertyPath: m_LocalPosition.x

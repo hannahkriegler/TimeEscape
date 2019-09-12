@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TE
 {
-    public class Room : MonoBehaviour
+    public class Room : MonoBehaviour, ITimeTravel
     {
         public enum RoomTypes
         {
@@ -56,8 +56,6 @@ namespace TE
 
         private bool AllEnemiesAreDead()
         {
-
-
             foreach (Enemy enemy in allEnemies)
             {
                 Debug.Log("Enemy has " + enemy.hitPoints + " hitPoints");
@@ -94,6 +92,11 @@ namespace TE
             {
                 loot.HandleTimeTravel();
             }
+            foreach (Door door in doors)
+            {
+                if (door != null)
+                    door.HandleTimeTravel();
+            }
         }
 
         public void HandleTimeStamp()
@@ -107,6 +110,11 @@ namespace TE
             {
                 if (loot != null)
                     loot.HandleTimeStamp();
+            }
+            foreach (Door door in doors)
+            {
+                if (door != null)
+                    door.HandleTimeStamp();
             }
         }
 

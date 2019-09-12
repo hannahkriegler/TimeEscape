@@ -57,6 +57,9 @@ namespace TE
 
         public void SlowDownTime()
         {
+            if (!_game.session.HasTimeSkills())
+                return;
+
             _game.playerTimeScale = 0.7f;
             _game.worldTimeScale = 0.25f;
             _game.countDownScale = 4.0f;
@@ -64,6 +67,9 @@ namespace TE
 
         public void SpeedUpTime()
         {
+            if (!_game.session.HasTimeSkills())
+                return;
+
             _game.playerTimeScale = 2.0f;
             _game.worldTimeScale = 2.0f;
             _game.countDownScale = 2.0f;

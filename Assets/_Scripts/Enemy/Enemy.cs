@@ -8,7 +8,7 @@ using Debug = UnityEngine.Debug;
 
 namespace TE
 {
-    public abstract class Enemy : MonoBehaviour, IHit
+    public abstract class Enemy : MonoBehaviour, IHit, ITimeTravel
     {
         
         public int damageAmount = 10;
@@ -212,13 +212,12 @@ namespace TE
           
         }
 
-        public bool IsDead()
+        public virtual bool IsDead()
         {
-            if (hitPoints > 0) return false;
-            return true;
+            return hitPoints <= 0;
         }
 
-        protected virtual void FlashEffect(float strength)
+        protected void FlashEffect(float strength)
         {
             foreach (SpriteRenderer rend in all_Sprites)
             {

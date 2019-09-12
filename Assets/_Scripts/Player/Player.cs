@@ -53,6 +53,9 @@ namespace TE
         [HideInInspector]
         public float enemyKnockBackMultiplier = 1;
 
+        [HideInInspector]
+        public bool dead;
+
         public void Init(Game game)
         {
             //Setting References
@@ -138,6 +141,12 @@ namespace TE
             {
                 rend.material.SetFloat("_flash", strength);
             }
+        }
+
+        public void GameOver()
+        {
+            dead = true;
+            animator.Play("Die");
         }
     }
 }
