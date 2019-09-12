@@ -5,8 +5,8 @@ using UnityEngine;
 public class Boss_SpitBehaviour : StateMachineBehaviour
 {
     public GameObject boss;
-
     private Boss_Projectile spit;
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -17,7 +17,6 @@ public class Boss_SpitBehaviour : StateMachineBehaviour
         spit.enabled = true;
         spit.GetComponentInChildren<SpriteRenderer>().enabled = true;
         spit.GetComponent<Collider2D>().enabled = true;
-        //Instantiate(boss.spitProjectile, boss.spitStart.transform.position + Vector3.up * 0.2f, Quaternion.identity);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
