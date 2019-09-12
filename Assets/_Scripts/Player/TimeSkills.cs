@@ -57,16 +57,16 @@ namespace TE
 
         public void SlowDownTime()
         {
-            _game.playerTimeScale = 1.0f;
-            _game.worldTimeScale = 0.4f;
-            _game.countDownScale = 3.0f;
+            _game.playerTimeScale = 0.7f;
+            _game.worldTimeScale = 0.25f;
+            _game.countDownScale = 4.0f;
         }
 
         public void SpeedUpTime()
         {
-            _game.playerTimeScale = 1.0f;
-            _game.worldTimeScale = 3.0f;
-            _game.countDownScale = 0.6f;
+            _game.playerTimeScale = 2.0f;
+            _game.worldTimeScale = 2.0f;
+            _game.countDownScale = 2.0f;
         }
     }
 }

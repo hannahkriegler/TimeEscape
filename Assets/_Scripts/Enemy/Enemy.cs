@@ -45,6 +45,9 @@ namespace TE
         {
             rb = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
+
             player = Game.instance.player;
             all_Sprites = GetComponentsInChildren<SpriteRenderer>();
             Setup();   
@@ -149,8 +152,7 @@ namespace TE
             if(currentKnockbackLength>0) return;
             if (animator != null)
             {
-                Animator anim = gameObject.GetComponent<Animator>();
-                anim.CrossFade("hit", 0.2f);
+                animator.CrossFade("hit", 0.2f);
             }
             currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
             Debug.Log(gameObject.name + " took " + damage + " damage!");

@@ -105,7 +105,7 @@ namespace TE
             // Direction to the next waypoint
 
             Vector2 dir = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-            Vector2 force = Time.deltaTime * speed * dir;
+            Vector2 force = Time.deltaTime * speed * dir * Game.instance.worldTimeScale;
 
             //dir *= speed * Time.fixedDeltaTime;  // TODO: problem with Game.deltaWorld, static?
 
