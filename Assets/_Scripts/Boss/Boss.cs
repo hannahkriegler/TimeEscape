@@ -12,6 +12,9 @@ public class Boss : MonoBehaviour, IHit
 
     public int damage;
 
+    public GameObject spitProjectile;
+    public GameObject spitStart;
+
     private float timeBtwDamage = 0f; // give the player time to recover before taking more damage
     private float timeToRecoverAfterSpit = 4f;
     private float timeToRecoverAfterSpawn = 5f;
@@ -50,16 +53,16 @@ public class Boss : MonoBehaviour, IHit
         if (isInAttackRange && timeBtwDamage <= 0)
         {
             _rndm = Random.Range(0, 2);
-            if (_rndm == 0)
-            {
+            //if (_rndm == 0)
+            //{
                 anim.SetTrigger("spit");
                 timeBtwDamage = timeToRecoverAfterSpit;
-            }
-            else
-            {
-                anim.SetTrigger("spawn");
-                timeBtwDamage = timeToRecoverAfterSpawn;
-            }
+            //}
+            //else
+            //{
+            //    anim.SetTrigger("spawn");
+            //    timeBtwDamage = timeToRecoverAfterSpawn;
+            //}
             
             
         }
