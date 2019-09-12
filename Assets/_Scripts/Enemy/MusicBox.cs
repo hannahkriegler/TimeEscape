@@ -17,7 +17,7 @@ namespace TE
             attackKnockback = 0;
         }
 
-        protected override void Knockback(int damage)
+        protected override void Knockback(float strength)
         {
             // No Knockback in this enemy
             return;       
@@ -25,7 +25,7 @@ namespace TE
 
        protected override void Tick()
         {
-            float enemyDistance = Vector2.Distance(player.position, transform.position);
+            float enemyDistance = Vector2.Distance(player.transform.position, transform.position);
             if (enemyDistance > attackRange)
             {
                 AttackAnim(false);

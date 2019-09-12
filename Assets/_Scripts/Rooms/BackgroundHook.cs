@@ -12,6 +12,7 @@ namespace TE
         private void Start()
         {
             mat = GetComponent<Renderer>().material;
+            mat.SetVector("_Tiling", transform.lossyScale);
         }
         private void Update()
         {

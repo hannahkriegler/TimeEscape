@@ -53,14 +53,14 @@ namespace TE
 
             if (follow && !toClose)
             {
-                transform.position += (Vector3) moveVector * speed  * Time.deltaTime *
-                   Game.instance.worldTimeScale;
+                transform.position += Game.instance.worldTimeScale * speed  * Time.deltaTime *
+                   (Vector3) moveVector;
             }
             else
             {
                 Vector2 dir = right ? Vector2.right : Vector2.left;
-                transform.position += (Vector3)dir * speed  * Time.deltaTime *
-               Game.instance.worldTimeScale;
+                transform.position += Game.instance.worldTimeScale * speed  * Time.deltaTime *
+               (Vector3)dir;
             }
         }
 
