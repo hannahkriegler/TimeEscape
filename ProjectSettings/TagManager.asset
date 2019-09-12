@@ -7,6 +7,7 @@ TagManager:
   - Grid
   - PlayerProjectileCollider
   - LootInfo
+  - Boss
   layers:
   - Default
   - TransparentFX
