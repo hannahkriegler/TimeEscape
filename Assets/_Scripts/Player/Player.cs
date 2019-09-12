@@ -111,16 +111,15 @@ namespace TE
         IEnumerator FlashEffect()
         {
             while (currentFlashEffectTimer > 0)
-            {
-                yield return new WaitForEndOfFrame();
+            {         
                 currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
-
                 //Handle Flash Effect
                 float a = flashEffectLength - currentFlashEffectTimer;
                 float flashStrength = Mathf.Sin(a * Mathf.PI / flashEffectLength) * 0.8f;
                 FlashEffect(flashStrength);
+                yield return new WaitForEndOfFrame();
             }
-
+            FlashEffect(0);
         }
 
         void SetupTrailRenderer()

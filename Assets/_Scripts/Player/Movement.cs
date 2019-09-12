@@ -28,6 +28,8 @@ namespace TE
         bool knockBack;
         float knockBackTimer;
 
+        float moveTimer = 0;
+
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -103,7 +105,12 @@ namespace TE
             if (Mathf.Abs(h) < 0.1)
             {
                 h = 0;
+                moveTimer = 0;
             }
+
+            if(moveTimer < 0.2f)
+             moveTimer += Time.deltaTime;
+            float percentage = moveTimer / 0.2f;
 
             _player.animator.SetFloat("MoveSpeed", Mathf.Abs(h));
 
@@ -127,9 +134,7 @@ namespace TE
                 _player.trailRenderer.enabled = false;
             }
 
-            rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
-
-    
+            rb.velocity = new Vector2(h * percentage * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
         }
 
         public bool Jump()
@@ -186,10 +191,10 @@ namespace TE
         {
             grounded = false;
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Vector2 rayOrigin = _player.groundCheck.position;
-                rayOrigin += Vector2.right * (i - 4) * 0.025f;
+                rayOrigin += Vector2.right * (i - 5) * 0.025f;
                 RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, _player.groundLayerCheck);
 
                 if (hit)
