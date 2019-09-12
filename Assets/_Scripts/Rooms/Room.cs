@@ -34,7 +34,7 @@ namespace TE
 
         private void Start()
         {
-            Debug.Log("Mob Room has " + allEnemies.Count + " Enemies");
+            //Debug.Log("Mob Room has " + allEnemies.Count + " Enemies");
         }
 
         private void Update()
