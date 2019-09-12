@@ -22,7 +22,7 @@ namespace TE
         SpriteRenderer[] all_Sprites;
         
         // Knockbacks
-        private float currentKnockbackLength = 0f;
+        protected float currentKnockbackLength = 0f;
         public float knockbackLength = 1;
         protected float attackKnockback = 3f;
 
@@ -31,7 +31,7 @@ namespace TE
 
         public Room assignedRoom { get; private set; }
 
-        public Rigidbody2D rb { get; private set; }
+        public Rigidbody2D rb { get; set; }
         public Animator animator { get; private set; }
 
         private void Awake()
@@ -194,7 +194,8 @@ namespace TE
         }
 
         float flashEffectLength = 0.35f;
-        IEnumerator KnockbackCountdown()
+
+        protected IEnumerator KnockbackCountdown()
         {
             while (currentKnockbackLength > 0)
             {
@@ -217,7 +218,7 @@ namespace TE
             return true;
         }
 
-        protected void FlashEffect(float strength)
+        protected virtual void FlashEffect(float strength)
         {
             foreach (SpriteRenderer rend in all_Sprites)
             {

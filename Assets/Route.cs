@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Route : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Route : MonoBehaviour
     public Transform start;
     public Transform target;
     public Transform middle;
+
+    private float randomHeight;
 
     private Vector2 gizmosPosition;
 
@@ -37,7 +40,7 @@ public class Route : MonoBehaviour
             new Vector2(controlPoints[3].position.x, controlPoints[3].position.y));
     }
 
-    private void Update()
+    public void Calculate()
     {
         controlPoints[0].transform.position = start.transform.position;
         controlPoints[3].transform.position = new Vector2(target.position.x, -4.5f);
@@ -55,7 +58,9 @@ public class Route : MonoBehaviour
         //Debug.DrawLine(t, start.position, Color.cyan);
         //Debug.DrawLine(controlPoints[0].transform.position, controlPoints[3].transform.position, Color.red);
         //Debug.Log(x);
-        controlPoints[1].transform.position = middle.position;
-        controlPoints[2].transform.position = middle.position; //new Vector2(c, controlPoints[2].transform.position.y);
+        randomHeight = Random.Range(middle.position.y - 0.2f, middle.position.y + 0.8f);
+        var position = new Vector2(middle.position.x, randomHeight);
+        controlPoints[1].transform.position = position;
+        controlPoints[2].transform.position = position; //new Vector2(c, controlPoints[2].transform.position.y);
     }
 }

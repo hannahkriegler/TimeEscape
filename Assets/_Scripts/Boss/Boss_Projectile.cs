@@ -27,7 +27,7 @@ public class Boss_Projectile : MonoBehaviour
     {
         routeToGo = 0;
         tParam = 0f;
-        speedModifier = 0.5f;
+        speedModifier = 1f;
         // = false;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _collider2D = GetComponent<Collider2D>();
@@ -59,6 +59,7 @@ public class Boss_Projectile : MonoBehaviour
     {
         Debug.Log("running");
         //canSpit = false;
+        routes[routeNumber].GetComponent<Route>().Calculate();
 
         Vector2 p0 = routes[routeNumber].GetChild(0).position;
         Vector2 p1 = routes[routeNumber].GetChild(1).position;
