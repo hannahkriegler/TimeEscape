@@ -66,6 +66,8 @@ namespace TE
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
                     disableAfterPickup = Game.instance.AddTimeShard();
+                    if (!disableAfterPickup)
+                        Game.instance.ShowInfo("Du hast bereits 4 Zeitsplitter!", 1.5f);
                     break;
                 case LootTypes.Gem:
                     CustomBehavior();

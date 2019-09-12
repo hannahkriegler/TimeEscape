@@ -26,7 +26,7 @@ namespace TE
             switch (skillType)
             {
                 case MovementSkillTypes.DASH:
-                    info = session.IsDashUnlocked() ? "Du hast den Doppel-DASH freigeschaltet!" : "Du hast den DASH freigeschaltet!";
+                    info = session.IsDashUnlocked() ? "Du hast den Doppel-DASH freigeschaltet!" : "Du kannst nun mit RT dashen.";
                     session.CollectedDashLoot();
                     break;
                 case MovementSkillTypes.JUMP:
@@ -49,7 +49,7 @@ namespace TE
 
         IEnumerator HideTextBox()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             Game.instance.lootInfo.SetActive(false);
 
         }
