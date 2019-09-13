@@ -101,6 +101,11 @@ namespace TE
             }
         }
 
+        public bool SomethingWasPressed()
+        {
+            return attackPressed || active_skill || jumpPressed || timeStamp || timeTravel || dash || timeSkill_slow || timeSkill_fast;
+        }
+
         void UpdatePlayer()
         {
             //Movement

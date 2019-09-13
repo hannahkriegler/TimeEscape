@@ -717,6 +717,7 @@ Transform:
   - {fileID: 5846986966212241239}
   - {fileID: 197149367}
   - {fileID: 1086220907}
+  - {fileID: 2125203079}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1022,13 +1023,18 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: "Dr\xFCcke <color=red>B</color>  um einen Zeitstempel zu platzieren.
-        Mit <color=yellow>Y</color> kannst du in der Zeit zur\xFCckreisen. Dabei beh\xE4lst
-        du alle Upgrades aber verlierst deine Zeitsplitter. (oben links)"
+        Diesen kannst du als Sicherungspunkt nutzen um in einer brenzlingen Situation
+        zur\xFCckzukehren."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: duration
-      value: 14
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: canSkip
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
@@ -3626,7 +3632,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: duration
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
@@ -56533,6 +56539,11 @@ PrefabInstance:
       propertyPath: duration
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: canSkip
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!4 &2021640375 stripped
@@ -56989,6 +57000,108 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2125203078
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 119412241}
+    m_Modifications:
+    - target: {fileID: 2964011557278543374, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_Name
+      value: InfoTrigger_TimeTravel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 23.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.658943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: message
+      value: "Mit <color=yellow>Y</color> kannst du in der Zeit zur\xFCckreisen zu
+        dem von dir platzierten Zeitstempel. Dabei beh\xE4lst du alle Upgrades aber
+        verlierst deine Zeitsplitter. (oben links)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: duration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: canSkip
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
+--- !u!4 &2125203079 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+    type: 3}
+  m_PrefabInstance: {fileID: 2125203078}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2132354971 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
@@ -57080,7 +57193,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: duration
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}

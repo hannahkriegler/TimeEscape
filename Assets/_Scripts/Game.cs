@@ -90,6 +90,12 @@ namespace TE
                 if(gameOverTimer <= 0)
                     SceneManager.LoadScene(0);
             }
+
+            if (cancelMessage)
+            {
+                if(inputManager.SomethingWasPressed())
+                    systemMessage.SetActive(false);
+        }
         }
 
         public void GameOver()
@@ -161,12 +167,14 @@ namespace TE
             }
         }
 
-        public void ShowInfo(string message, float duration = 8.0f)
+        bool cancelMessage;
+        public void ShowInfo(string message, float duration = 8.0f, bool canCancel = true)
         {
             systemMessage.SetActive(true);
             systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
             StopAllCoroutines();
             StartCoroutine(CloseMessage(duration));
+            cancelMessage = canCancel;
         }
 
         IEnumerator CloseMessage(float duration)

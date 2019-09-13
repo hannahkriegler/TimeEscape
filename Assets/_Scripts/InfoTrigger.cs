@@ -9,6 +9,7 @@ namespace TE
         [TextArea]
         public string message;
         public float duration = 3.0f;
+        public bool canSkip = true;
 
         bool triggerd;
 
@@ -19,7 +20,7 @@ namespace TE
 
             if (collision.gameObject.CompareTag("Player"))
             {
-                Game.instance.ShowInfo(message, duration);
+                Game.instance.ShowInfo(message, duration, canSkip);
                 triggerd = true;
             }
         }
