@@ -43,7 +43,7 @@ public class Route : MonoBehaviour
     public void Calculate()
     {
         controlPoints[0].transform.position = start.transform.position;
-        controlPoints[3].transform.position = new Vector2(target.position.x, -4.5f);
+        controlPoints[3].transform.position = new Vector2(target.position.x, -6f);
         //controlPoints[3].transform.position = target.transform.position;
         //Debug.Log("startposition: " +  start.position);
         //Debug.Log("targetposition: " +  target.position);

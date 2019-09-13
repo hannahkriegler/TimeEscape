@@ -30,7 +30,7 @@ namespace TE
         {
             //TODO Permanent unlock
             timeSkills = true;
-            _game.ShowInfo("Du kannst jetzt die Zeit verlangsamen mit LB !");
+            _game.ShowInfo("Du kannst jetzt die Zeit verlangsamen mit LB !", 6.0f, false);
         }
 
 
