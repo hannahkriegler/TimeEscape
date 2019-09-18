@@ -145,6 +145,7 @@ namespace TE
             {
                 gameObject.SetActive(true);
             }
+            currentKnockbackLength = 0;
         }
 
         public virtual void OnHit(int damage, GameObject attacker, bool knockBack)

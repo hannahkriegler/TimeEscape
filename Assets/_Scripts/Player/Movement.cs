@@ -28,8 +28,6 @@ namespace TE
         bool knockBack;
         float knockBackTimer;
 
-        float moveTimer = 0;
-
         public Movement(Player player, Game game)
         {
             _player = player;
@@ -108,12 +106,7 @@ namespace TE
             if (Mathf.Abs(h) < 0.1)
             {
                 h = 0;
-                moveTimer = 0;
             }
-
-            if(moveTimer < 0.2f)
-             moveTimer += Time.deltaTime;
-            float percentage = moveTimer / 0.2f;
 
             _player.animator.SetFloat("MoveSpeed", Mathf.Abs(h));
 
@@ -137,7 +130,7 @@ namespace TE
                 _player.trailRenderer.enabled = false;
             }
 
-            rb.velocity = new Vector2(h * percentage * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
+            rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
         }
 
         public bool Jump()
