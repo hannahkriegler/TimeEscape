@@ -56,7 +56,6 @@ namespace TE
 
         public virtual void PickUpLoot()
         {
-            bool disableAfterPickup = true;
             switch (lootType)
             {
                 case LootTypes.Time:
@@ -65,9 +64,7 @@ namespace TE
                     break;
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
-                    disableAfterPickup = Game.instance.AddTimeShard();
-                    if (!disableAfterPickup)
-                        Game.instance.ShowInfo("Du hast bereits 4 Zeitsplitter!", 1.5f);
+                    Game.instance.AddTimeShard();
                     break;
                 case LootTypes.Gem:
                     CustomBehavior();
@@ -78,8 +75,7 @@ namespace TE
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            if(disableAfterPickup)
-             Show(false);
+            Show(false);
         }
 
         public void HandleTimeStamp()

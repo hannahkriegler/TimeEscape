@@ -34,7 +34,7 @@ namespace TE
             dashCheck = false;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             UpdateInputs();
             UpdatePlayer();
@@ -44,6 +44,9 @@ namespace TE
         {
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
+
+            pause = Input.GetButtonDown("Pause");
+            
 
             //Handle Attack
             attackPressed = Input.GetButton("Attack");
@@ -99,6 +102,12 @@ namespace TE
                 timeSkill_slow = false;
                 timeSkill_fast = false;
             }
+
+            //Next
+            if(jumpPressed)
+            {
+                game.NextButtonPressed();
+            }
         }
 
         public bool SomethingWasPressed()
@@ -108,6 +117,19 @@ namespace TE
 
         void UpdatePlayer()
         {
+            //Pause
+            if (pause)
+            {
+                game.PausePressed();
+            }
+            if (game.gameIsPaused)
+            {
+                //Fix Jump Issue
+                didJump = true;
+                jump = false;
+                return;
+            }
+
             //Movement
             player.Movement.Tick();
             player.Movement.Move(movement);

@@ -46,12 +46,13 @@ namespace TE
 
         [Header("References")]
         public GameObject lootInfo;
-
+        public GameObject pauseScreen;
         public GameObject systemMessage;
 
 
         float gameOverTimer;
         bool gameOver;
+        public bool gameIsPaused { get; private set; }
 
 
         private void Awake()
@@ -68,6 +69,8 @@ namespace TE
             session = new Session(this);
             timeStorage = new TimeStorage(this);
             inputManager.Init(this);
+            gameIsPaused = false;
+            Time.timeScale = 1;
         }
 
         private void Update()
@@ -167,20 +170,53 @@ namespace TE
             }
         }
 
+        bool textBoxOpen;
+        public void PausePressed()
+        {
+            if (textBoxOpen)
+                return;
+
+            Pause(!gameIsPaused);
+            pauseScreen.SetActive(gameIsPaused);
+        }
+
+        public void  NextButtonPressed()
+        {
+            if (!textBoxOpen)
+                return ;
+
+            CloseTextBox();
+            return;
+        }
+
+        public void Pause(bool pause = true)
+        {
+            if (pause)
+            {
+                Time.timeScale = 0;
+                gameIsPaused = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                gameIsPaused = false;
+            }
+        }
+
         bool cancelMessage;
-        public void ShowInfo(string message, float duration = 8.0f, bool canCancel = true)
+        public void ShowTextBox(string message)
         {
             systemMessage.SetActive(true);
             systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
-            StopAllCoroutines();
-            StartCoroutine(CloseMessage(duration));
-            cancelMessage = canCancel;
+            Pause(true);
+            textBoxOpen = true;
         }
 
-        IEnumerator CloseMessage(float duration)
+        public void CloseTextBox()
         {
-            yield return new WaitForSeconds(duration);
             systemMessage.SetActive(false);
+            Pause(false);
+            textBoxOpen = false;
         }
     }
 

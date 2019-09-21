@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 495795663}
   - component: {fileID: 495795662}
   - component: {fileID: 495795664}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MusicBox_black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2415372655012247697}
   - component: {fileID: 3004531748075186239}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_hit_augen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 397392381375194268}
   - component: {fileID: 5245235501086881165}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_augen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 4036158991605581866}
   - component: {fileID: 242887888512565126}
   - component: {fileID: 5305611143901062975}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_mb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8004456991655193323}
   - component: {fileID: 390835792242125945}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_offen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706218448965274025}
   - component: {fileID: 7308856814887612480}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9158618661786346725}
   - component: {fileID: 3176285735692768527}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_hit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6632655727917811023}
   - component: {fileID: 6351050417796617396}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_unten
   m_TagString: Untagged
   m_Icon: {fileID: 0}
