@@ -19,11 +19,13 @@ namespace TE
         {
             dashCollected++;
             dashCollected = Mathf.Clamp(dashCollected, 0, 2);
+            _game.dashIcon.SetActive(true);
         }
 
         public void CollectedJumpLoot()
         {
             jumpCollected = true;
+            _game.jumpIcon.SetActive(true);
         }
 
         public void UnlockTimeSkills()

@@ -259,7 +259,7 @@ MonoBehaviour:
   lootTypes: 0
   player: {fileID: 0}
   knockbackLength: 0
-  startTimeBtwShots: 2
+  startTimeBtwShots: 4
   attackRange: 10
   projectile: {fileID: 7127996635800894455, guid: 63924227f4e6a4586b37086a6375e2cf,
     type: 3}

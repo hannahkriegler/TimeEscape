@@ -48,7 +48,8 @@ namespace TE
         public GameObject lootInfo;
         public GameObject pauseScreen;
         public GameObject systemMessage;
-
+        public GameObject dashIcon;
+        public GameObject jumpIcon;
 
         float gameOverTimer;
         bool gameOver;

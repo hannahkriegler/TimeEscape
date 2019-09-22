@@ -104,7 +104,8 @@ namespace TE
             }
 
             //Next
-            if(jumpPressed)
+            bool nextButtonPressed = Input.GetButtonDown("Jump");
+            if(nextButtonPressed)
             {
                 game.NextButtonPressed();
             }
