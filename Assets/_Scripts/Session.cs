@@ -9,10 +9,23 @@ namespace TE
         int dashCollected;
         bool jumpCollected;
         bool timeSkills;
-        
+
+        public bool canTimeTravel { get; private set; }
+        public bool canPlaceTimeStamp { get; private set; }
+
         public Session(Game game)
         {
             _game = game;
+        }
+
+        public void UnlockTimeTravel()
+        {
+            canTimeTravel = true;
+        }
+
+        public void UnlockTimestamp()
+        {
+            canPlaceTimeStamp = true;
         }
 
         public void CollectedDashLoot()

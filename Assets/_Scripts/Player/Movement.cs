@@ -37,9 +37,6 @@ namespace TE
 
         public void Tick()
         {
-            if (_player.dead)
-                return;
-
             float delta = _player.fixedDelta;
 
             UpdateGrounded();

@@ -91,15 +91,17 @@ namespace TE
             if (gameOver)
             {
                 gameOverTimer -= Time.deltaTime;
-                if(gameOverTimer <= 0)
+                if (gameOverTimer <= 0)
                     SceneManager.LoadScene(0);
             }
 
             if (cancelMessage)
             {
-                if(inputManager.SomethingWasPressed())
+                if (inputManager.SomethingWasPressed())
                     systemMessage.SetActive(false);
-        }
+            }
+
+            TutorialTimeTravel();
         }
 
         public void GameOver()
@@ -181,10 +183,10 @@ namespace TE
             pauseScreen.SetActive(gameIsPaused);
         }
 
-        public void  NextButtonPressed()
+        public void NextButtonPressed()
         {
             if (!textBoxOpen)
-                return ;
+                return;
 
             CloseTextBox();
             return;
@@ -204,6 +206,29 @@ namespace TE
             }
         }
 
+        bool tutorialTimeTravelTriggered;
+        void TutorialTimeTravel()
+        {
+            if (tutorialTimeTravelTriggered)
+                return;
+
+            if (!session.canTimeTravel)
+                return;
+
+            if (player.TimeSkills.firstTimeTravel)
+            {
+                tutorialTimeTravelTriggered = true;
+                return;
+            }
+
+            if (timeLeft <= 60)
+            {
+                ShowTextBox("Drücke <color=yellow>Y</color> um in der Zeit zurückzureisen." +
+                    "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
+                tutorialTimeTravelTriggered = true;
+            }
+        }
+
         bool cancelMessage;
         public void ShowTextBox(string message)
         {
@@ -218,6 +243,14 @@ namespace TE
             systemMessage.SetActive(false);
             Pause(false);
             textBoxOpen = false;
+        }
+
+        public float CalculateAmbientPitch()
+        {
+            if (timeLeft > startTime * 0.9f)
+                return 1;
+
+            return 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
         }
     }
 

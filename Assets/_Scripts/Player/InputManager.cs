@@ -118,6 +118,9 @@ namespace TE
 
         void UpdatePlayer()
         {
+            if (player.dead)
+                return;
+
             //Pause
             if (pause)
             {

@@ -30,7 +30,6 @@ namespace TE
 
         [Header("Special Time Rooms Infos")]
         public int secondsLeftToOpen;
-        public GameObject textInfo;
 
         private void Start()
         {
@@ -139,8 +138,7 @@ namespace TE
                     break;
                 case RoomTypes.SpecialTimeRoom:
                     if (doorsDown) break; // bei der tür genau inverse
-                    textInfo.SetActive(true);
-                    StartCoroutine(HideTextBox());
+                    Game.instance.ShowTextBox("Verbleibende Zeit Muss kleiner 2 Minuten sein!");
                     break;
             }
         }
@@ -167,13 +165,6 @@ namespace TE
                 }
             }
         }
-
-        IEnumerator HideTextBox()
-        {
-            yield return new WaitForSeconds(2);
-            textInfo.SetActive(false);
-
-        }
-
     }
 }
+    

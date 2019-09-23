@@ -10,6 +10,9 @@ namespace TE
         private Skill _activeSkill;
 
         GameObject timeStampSpawn;
+
+        public bool firstTimeTravel;
+        public bool firstTimeStamp;
         
         public TimeSkills(Player player, Game game)
         {
@@ -19,9 +22,14 @@ namespace TE
 
         public void PlaceTimestamp()
         {
+            if (!_game.session.canPlaceTimeStamp)
+                return;
+
             //Cannot Place Timestamps in Mid-Air
             if (!_player.Movement.grounded)
                 return;
+
+            firstTimeStamp = true;
 
             if (timeStampSpawn != null)
                 GameObject.Destroy(timeStampSpawn);
@@ -36,12 +44,16 @@ namespace TE
         
         public void TimeTravel()
         {
+            if (!_game.session.canTimeTravel)
+                return;
+
             if (!_game.CanTimeTravel())
                 return;
 
             if (!timeStampSpawn)
                 return;
 
+            firstTimeTravel = true;
             _game.SetTimeShardCounter(0);
             _game.timeStorage.LoadTimeStamp(_player);
             _player.animator.CrossFade("Dizzy", 0.2f);

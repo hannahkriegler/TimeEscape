@@ -34,6 +34,8 @@ namespace TE
         SpriteRenderer[] sprites;
         Collider2D col;
 
+        bool messageShown;
+
         public Room assignedRoom { get; private set; }
 
         private void Awake()
@@ -42,7 +44,7 @@ namespace TE
             col = GetComponent<Collider2D>();
             assignedRoom = GetComponentInParent<Room>();
             visible = true;
-            if(assignedRoom != null)
+            if (assignedRoom != null)
                 assignedRoom.AddLootToRoom(this);
         }
 
@@ -54,8 +56,10 @@ namespace TE
             PickUpLoot();
         }
 
+
         public virtual void PickUpLoot()
         {
+            bool doHide = true;
             switch (lootType)
             {
                 case LootTypes.Time:
@@ -64,7 +68,17 @@ namespace TE
                     break;
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
-                    Game.instance.AddTimeShard();
+                    if (Game.instance.timeShardCounter >= 4)
+                    {
+                        doHide = false;
+                        if (!messageShown)
+                        {
+                            messageShown = true;
+                            Game.instance.ShowTextBox("Du hast bereits 4 Zeitsplitter");
+                        }
+                    }
+                    else
+                        Game.instance.AddTimeShard();
                     break;
                 case LootTypes.Gem:
                     CustomBehavior();
@@ -75,7 +89,11 @@ namespace TE
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            Show(false);
+            if (doHide)
+            {
+                SoundManager.instance.PlayPickup();
+                Show(false);
+            }
         }
 
         public void HandleTimeStamp()
@@ -102,7 +120,7 @@ namespace TE
             Debug.Log("Picked Up Gem");
         }
 
-        
+
         protected void Show(bool b)
         {
             col.enabled = b;

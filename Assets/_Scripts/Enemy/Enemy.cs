@@ -161,6 +161,7 @@ namespace TE
             StartCoroutine(KnockbackCountdown());
             hitPoints -= damage;
             Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
+            SoundManager.instance.PlayHit();
             if (hitPoints <= 0)
                 Die();
         }

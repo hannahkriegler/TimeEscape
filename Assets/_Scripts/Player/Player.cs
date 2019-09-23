@@ -100,6 +100,7 @@ namespace TE
 
         public void OnHit(int damage, GameObject attacker, bool knockBack)
         {
+            SoundManager.instance.PlayHit();
             Debug.Log("Player hitted!");
             float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);

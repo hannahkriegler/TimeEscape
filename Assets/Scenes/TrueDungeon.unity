@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 5182171709427668794, guid: ed842561718a9ff44b811dd50cf44118,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5182171709427668794, guid: ed842561718a9ff44b811dd50cf44118,
         type: 3}
@@ -489,7 +489,7 @@ Transform:
   - {fileID: 869573339}
   - {fileID: 1547059444}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &62637611
 PrefabInstance:
@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 2984882290947025072, guid: a76f07b5efddc71429025040ac3a5aba,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.39
+      value: -5.331
       objectReference: {fileID: 0}
     - target: {fileID: 2984882290947025072, guid: a76f07b5efddc71429025040ac3a5aba,
         type: 3}
@@ -596,7 +596,7 @@ PrefabInstance:
     - target: {fileID: 4987171292968274545, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_Name
-      value: Zeitsplitter
+      value: TimeShard
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -720,6 +720,8 @@ Transform:
   - {fileID: 197149367}
   - {fileID: 1086220907}
   - {fileID: 2125203079}
+  - {fileID: 2135353002}
+  - {fileID: 1569795671}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -848,7 +850,7 @@ Transform:
   - {fileID: 1398999263}
   - {fileID: 1790199090}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &162838901
 GameObject:
@@ -1102,7 +1104,7 @@ PrefabInstance:
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 1.47
       objectReference: {fileID: 0}
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -1180,6 +1182,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canSkip
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: unlockTimeStamp
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
@@ -1434,12 +1441,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 297330944}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &319491241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8098811096954446703, guid: ed842561718a9ff44b811dd50cf44118,
-    type: 3}
-  m_PrefabInstance: {fileID: 36663867}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &355816938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,7 +1472,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1173021723}
-  - {fileID: 858831804}
   m_Father: {fileID: 41116255}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1491,7 +1491,6 @@ MonoBehaviour:
   roomType: 0
   RoomID: 0
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &355816941
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1924,6 +1923,7 @@ Transform:
   - {fileID: 690676715}
   - {fileID: 169298687}
   - {fileID: 1514372454}
+  - {fileID: 858831804}
   m_Father: {fileID: 41116255}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1944,7 +1944,6 @@ MonoBehaviour:
   roomType: 1
   RoomID: 2
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &493893665
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2960,7 +2959,7 @@ PrefabInstance:
     - target: {fileID: 4987171292968274545, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_Name
-      value: Zeitsplitter
+      value: TimeShard
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -3292,7 +3291,6 @@ MonoBehaviour:
   roomType: 3
   RoomID: 0
   secondsLeftToOpen: 120
-  textInfo: {fileID: 319491241}
 --- !u!1001 &873841388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3691,7 +3689,7 @@ PrefabInstance:
     - target: {fileID: 4987171292968274545, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_Name
-      value: Zeitsplitter
+      value: TimeShard
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -3786,7 +3784,7 @@ PrefabInstance:
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.91
+      value: 12.61
       objectReference: {fileID: 0}
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -3886,7 +3884,7 @@ PrefabInstance:
     - target: {fileID: 6048208016722337929, guid: b29ad50f0911f2e4e9834d2fde309e75,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.61
+      value: 6.16
       objectReference: {fileID: 0}
     - target: {fileID: 6048208016722337929, guid: b29ad50f0911f2e4e9834d2fde309e75,
         type: 3}
@@ -4032,42 +4030,42 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 355816939}
+    m_TransformParent: {fileID: 493893663}
     m_Modifications:
     - target: {fileID: 4987171292968274545, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_Name
-      value: Zeitsplitter
+      value: TimeShard
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.76
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09
+      value: -3.729
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.535156
+      value: 12.685156
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -4077,7 +4075,7 @@ PrefabInstance:
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4987171292968274549, guid: d5db1b7a1e713ee4db50d70c5d241407,
         type: 3}
@@ -4335,7 +4333,6 @@ MonoBehaviour:
   roomType: 0
   RoomID: 2
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &1210923765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4957,7 +4954,7 @@ Transform:
   - {fileID: 1943461529}
   - {fileID: 1569830937}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1331135487 stripped
 Transform:
@@ -5012,7 +5009,7 @@ MonoBehaviour:
   worldTimeScale: 1
   countDownScale: 1
   inputManager: {fileID: 1358705767}
-  startTime: 300
+  startTime: 240
   timeDrainMultiplier: 1
   timeLeft: 0
   timeShardCounter: 0
@@ -7619,7 +7616,6 @@ MonoBehaviour:
   roomType: 1
   RoomID: 3
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &1507445011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7981,7 +7977,6 @@ MonoBehaviour:
   roomType: 1
   RoomID: 2
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &1547059446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8008,6 +8003,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 25.389229, y: 11.545727}
   m_EdgeRadius: 0
+--- !u!4 &1569795671 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+    type: 3}
+  m_PrefabInstance: {fileID: 1619162744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1569830936
 GameObject:
   m_ObjectHideFlags: 0
@@ -8411,6 +8412,110 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 33.551907, y: 2.9527478}
   m_EdgeRadius: 0
+--- !u!1001 &1619162744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 119412241}
+    m_Modifications:
+    - target: {fileID: 2964011557278543374, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_Name
+      value: InfoTrigger_Timestamp_Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.658943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: message
+      value: "Dr\xFCcke <color=red>B</color>  um einen Zeitstempel zu platzieren."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: canSkip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: unlockTimeStamp
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: specialTimeStampBlock
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!1 &1721059676
 GameObject:
   m_ObjectHideFlags: 0
@@ -8441,7 +8546,7 @@ Transform:
   - {fileID: 397388968}
   - {fileID: 2109482258}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785059112
 GameObject:
@@ -8494,7 +8599,6 @@ MonoBehaviour:
   roomType: 0
   RoomID: 1
   secondsLeftToOpen: 0
-  textInfo: {fileID: 0}
 --- !u!61 &1785059115
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -57548,7 +57652,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClip: {fileID: 8300000, guid: f90a8979432b99e479bdff62c061b69f, type: 3}
-  musicGroup: {fileID: 0}
+  slash: {fileID: 8300000, guid: 30008b2d6b8fa6c408ff165fc14e3ef4, type: 3}
+  hit: {fileID: 8300000, guid: 949bb055132e1f04ca702e5b130f5fdb, type: 3}
+  pickup: {fileID: 8300000, guid: 4fbe18a6d66e75f439c64206366761ef, type: 3}
+  musicGroup: {fileID: -2712697402574383786, guid: 6728fc6cc0bcf97469c58d687caf10e7,
+    type: 2}
+  sfxGroup: {fileID: -5102913425254487285, guid: 6728fc6cc0bcf97469c58d687caf10e7,
+    type: 2}
+  pickUpGroup: {fileID: 2129158595810494190, guid: 6728fc6cc0bcf97469c58d687caf10e7,
+    type: 2}
 --- !u!4 &1996925611
 Transform:
   m_ObjectHideFlags: 0
@@ -57561,7 +57673,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2021640374
 PrefabInstance:
@@ -58075,7 +58187,7 @@ Transform:
   - {fileID: 1960316551}
   - {fileID: 1391618236}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2125203078
 PrefabInstance:
@@ -58092,7 +58204,7 @@ PrefabInstance:
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.26
+      value: 22.16
       objectReference: {fileID: 0}
     - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -58158,8 +58270,7 @@ PrefabInstance:
         type: 3}
       propertyPath: message
       value: "Mit <color=yellow>Y</color> kannst du in der Zeit zur\xFCckreisen zu
-        dem von dir platzierten Zeitstempel. Dabei beh\xE4lst du alle Upgrades aber
-        verlierst deine Zeitsplitter. (oben links)"
+        dem von dir platzierten Zeitstempel. "
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -58170,6 +58281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canSkip
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: unlockTimeTravel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
@@ -58184,6 +58300,112 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6048208016722337929, guid: 15f532553eb9bd5449374714237e56d2,
     type: 3}
   m_PrefabInstance: {fileID: 361242259}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2135353001
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 119412241}
+    m_Modifications:
+    - target: {fileID: 2964011557278543374, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_Name
+      value: InfoTrigger_TimeTravel2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.658943
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: message
+      value: "Zum Zeitreisen ben\xF6tigst du 4 Zeitsplitter (oben links). Wenn du
+        Zeitreist beh\xE4lst du deine Upgrades und gewinnst deine verloren Zeit zur\xFCck."
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: duration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: canSkip
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: unlockTimeTravel
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
+--- !u!4 &2135353002 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3934348500191942929, guid: 6e066ceccf3818742a98fd6ab1281616,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135353001}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5846986966212241238
 PrefabInstance:
@@ -58335,7 +58557,7 @@ PrefabInstance:
     - target: {fileID: 1180005406430295820, guid: 230844db625fa914aa6db043ec6c204b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1180005406430295820, guid: 230844db625fa914aa6db043ec6c204b,
         type: 3}
@@ -58362,6 +58584,11 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7899112613676978208, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ea494c40c62720247a4c8dbead069eb1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230844db625fa914aa6db043ec6c204b, type: 3}
 --- !u!4 &8272463343506712550 stripped
