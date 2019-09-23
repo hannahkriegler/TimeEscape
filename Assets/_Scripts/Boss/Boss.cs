@@ -11,7 +11,7 @@ public class Boss : Enemy
     public GameObject spitProjectile;
     public GameObject spitStart;
 
-    private float timeBtwDamage = 0f; // give the player time to recover before taking more damage
+    protected float timeBtwDamage = 0f; // give the player time to recover before taking more damage
     private float timeToRecoverAfterSpit = 2f;
     private float timeToRecoverAfterSpawn = 5f;
     private int _rndm;
@@ -90,7 +90,7 @@ public class Boss : Enemy
         isInAttackRange = !(distance > 10f);
     }
 
-    private void CheckRotation()
+    protected void CheckRotation()
     {
         var direction = (player.transform.position- transform.position).normalized;
         if (direction.x > 0) // go right
@@ -157,16 +157,16 @@ public class Boss : Enemy
         Game.instance.session.UnlockTimeSkills();
     }
 
-    IEnumerator WaitToDie(float timeToWait)
+    protected IEnumerator WaitToDie(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
         gameObject.SetActive(false);
     }
 
 
-    float currentFlashEffectTimer;
-    float flashEffectLength = 0.35f;
-    IEnumerator FlashEffect()
+    protected float currentFlashEffectTimer;
+    protected float flashEffectLength = 0.35f;
+    protected IEnumerator FlashEffect()
     {
         while (currentFlashEffectTimer > 0)
         {

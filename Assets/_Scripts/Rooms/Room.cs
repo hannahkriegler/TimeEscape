@@ -58,7 +58,7 @@ namespace TE
         {
             foreach (Enemy enemy in allEnemies)
             {
-                Debug.Log("Enemy has " + enemy.hitPoints + " hitPoints");
+                //Debug.Log("Enemy has " + enemy.hitPoints + " hitPoints");
                 if (!enemy.IsDead())
                 {
 

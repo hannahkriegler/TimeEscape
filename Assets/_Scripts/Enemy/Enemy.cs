@@ -32,7 +32,7 @@ namespace TE
         public Room assignedRoom { get; private set; }
 
         public Rigidbody2D rb { get; set; }
-        public Animator animator { get; private set; }
+        public Animator animator { get; protected set; }
 
         private void Awake()
         {
@@ -103,7 +103,7 @@ namespace TE
             }
         }
 
-        protected void AttackAnim(bool b)
+        protected virtual void AttackAnim(bool b)
         {
             if (gameObject.GetComponent<Animator>() != null)
             {
