@@ -36,7 +36,7 @@ public class Shroomie_JR : Boss
         animator.SetTrigger("GettingHit");
         currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
         Debug.Log(gameObject.name + " took " + damage + " damage!");
-        Knockback(damage * 100 * player.enemyKnockBackMultiplier);
+        Knockback(damage * 250 * player.enemyKnockBackMultiplier);
         StartCoroutine(KnockbackCountdown());
         Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
         hitPoints--;

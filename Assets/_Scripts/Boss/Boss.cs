@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TE;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Boss : Enemy
@@ -20,7 +21,10 @@ public class Boss : Enemy
     public bool isInAttackRange;
 
     bool activated = false;
-   
+
+    public GameObject bossInfo;
+    public GameObject healthbar;
+    private int maxHealth;
 
     protected override void Setup()
     {
@@ -34,7 +38,12 @@ public class Boss : Enemy
         if (!activated)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 8)
+            {
                 activated = true;
+                bossInfo.SetActive(true);
+                maxHealth = hitPoints;
+            }
+                
             else return;
         }
         
@@ -62,13 +71,9 @@ public class Boss : Enemy
             else
             {
                 if (timeBtwDamage <= 0)
-                {
-                    Debug.Log(animator);
-                    //animator.SetTrigger("spit");
-                    timeBtwDamage = timeToRecoverAfterSpit;
+                { 
                     
-                    
-                   _rndm = Random.Range(0, 2);
+                    _rndm = Random.Range(0, 2);
                    if (_rndm == 0)
                    {
                        animator.SetTrigger("spit");
@@ -78,6 +83,7 @@ public class Boss : Enemy
                    {
                        animator.SetTrigger("spawn");
                        timeBtwDamage = timeToRecoverAfterSpawn;
+                       Knockback(10 * 500 * player.enemyKnockBackMultiplier);
                    }
                 }
             }
@@ -116,6 +122,7 @@ public class Boss : Enemy
         StartCoroutine(KnockbackCountdown());
         Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
         hitPoints--;
+        healthbar.GetComponent<Image>().fillAmount = (float) hitPoints / maxHealth;
         if (hitPoints == 0)
         {
             Die();
@@ -152,9 +159,9 @@ public class Boss : Enemy
     {
         animator.SetTrigger("dead");
         // TODO: wait for die animation
-        StartCoroutine(WaitToDie(2));
+        StartCoroutine(WaitToDie(0.5f));
         if(hasLootDrop) DropLoot();
-
+        bossInfo.SetActive(false);
         //Unlocks time skills
         Game.instance.session.UnlockTimeSkills();
     }

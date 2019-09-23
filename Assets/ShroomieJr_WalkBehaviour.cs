@@ -6,12 +6,15 @@ using UnityEngine;
 public class ShroomieJr_WalkBehaviour : StateMachineBehaviour
 {
     private Transform playerPos;
-    public float speed;
+    public float maxSpeed;
+    public float minSpeed;
+    private float speed;
 
     private GameObject shroomieJR;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        speed = Random.Range(maxSpeed, minSpeed);
         shroomieJR = animator.GetComponentInParent<Shroomie_JR>().gameObject;
         playerPos = Game.instance.player.transform;
         Debug.Log("shroomie: " + shroomieJR);

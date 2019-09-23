@@ -49,7 +49,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 123f441f1b0001b4d8cc445243867dc6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  hitPoints: 2
+  hitPoints: 1
   hasLootDrop: 0
   lootTypes: 0
   player: {fileID: 0}
@@ -156,6 +156,8 @@ MonoBehaviour:
   spitProjectile: {fileID: 0}
   spitStart: {fileID: 0}
   isInAttackRange: 0
+  bossInfo: {fileID: 0}
+  healthbar: {fileID: 0}
 --- !u!70 &1400434447554934443
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
