@@ -16,10 +16,6 @@ public class Route : MonoBehaviour
 
     private Vector2 gizmosPosition;
 
-    private void Start()
-    {
-        
-    }
 
     private void OnDrawGizmos()
     {
@@ -44,22 +40,11 @@ public class Route : MonoBehaviour
     {
         controlPoints[0].transform.position = start.transform.position;
         controlPoints[3].transform.position = new Vector2(target.position.x, -6f);
-        //controlPoints[3].transform.position = target.transform.position;
-        //Debug.Log("startposition: " +  start.position);
-        //Debug.Log("targetposition: " +  target.position);
 
-
-        //var x = ((controlPoints[0].transform.position - controlPoints[3].transform.position) ).x * (1.0f / 3.0f);
-        //var t = (controlPoints[0].transform.position - controlPoints[3].transform.position);
-        //var c = start.position.x + (start.position.x - target.position.x) /2f;
-        //Debug.Log("t: " +  t);
+        var middlePos = start.transform.position + (target.transform.position - start.transform.position) * 0.3f;
         
-        //Debug.DrawLine(t, target.position, Color.blue);
-        //Debug.DrawLine(t, start.position, Color.cyan);
-        //Debug.DrawLine(controlPoints[0].transform.position, controlPoints[3].transform.position, Color.red);
-        //Debug.Log(x);
         randomHeight = Random.Range(middle.position.y - 0.2f, middle.position.y + 0.8f);
-        var position = new Vector2(middle.position.x, randomHeight);
+        var position = new Vector2(middlePos.x, randomHeight);
         controlPoints[1].transform.position = position;
         controlPoints[2].transform.position = position; //new Vector2(c, controlPoints[2].transform.position.y);
     }

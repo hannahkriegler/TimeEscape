@@ -30,13 +30,14 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Tick()
     {
+        
         if (!activated)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 8)
                 activated = true;
             else return;
         }
-
+        
         CheckRotation();
         CheckDistance();
         
@@ -62,21 +63,22 @@ public class Boss : Enemy
             {
                 if (timeBtwDamage <= 0)
                 {
-                    animator.SetTrigger("spit");
+                    Debug.Log(animator);
+                    //animator.SetTrigger("spit");
                     timeBtwDamage = timeToRecoverAfterSpit;
                     
-                    /*
+                    
                    _rndm = Random.Range(0, 2);
                    if (_rndm == 0)
                    {
-                       anim.SetTrigger("spit");
+                       animator.SetTrigger("spit");
                        timeBtwDamage = timeToRecoverAfterSpit;
                    }
                    else
                    {
-                       anim.SetTrigger("spawn");
+                       animator.SetTrigger("spawn");
                        timeBtwDamage = timeToRecoverAfterSpawn;
-                   }*/
+                   }
                 }
             }
         }

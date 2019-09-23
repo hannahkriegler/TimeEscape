@@ -7,7 +7,7 @@ public class Shroomie_JR : Boss
 {
     protected override void Setup()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         timeBtwDamage = 0;
     }
 
@@ -54,7 +54,5 @@ public class Shroomie_JR : Boss
     protected override void Die()
     {
         animator.SetTrigger("dead");
-        // TODO: wait for die animation
-        StartCoroutine(WaitToDie(2));
         if(hasLootDrop) DropLoot();    }
 }

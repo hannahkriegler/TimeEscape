@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShroomieJr_DieBehaviour : StateMachineBehaviour
 {
+    private GameObject _shroomieJr;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _shroomieJr = animator.GetComponentInParent<Shroomie_JR>().gameObject;
         Debug.Log("JR died");
     }
 
@@ -19,6 +21,6 @@ public class ShroomieJr_DieBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        Destroy(_shroomieJr);
     }
 }
