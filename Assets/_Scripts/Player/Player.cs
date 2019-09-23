@@ -28,6 +28,7 @@ namespace TE
         [Header("References")]
         public LayerMask groundLayerCheck;
         public Transform groundCheck;
+        public ButtomPrompt buttomPrompt;
         
         [Header("Settings")]
         public float moveSpeed = 300;
@@ -74,6 +75,7 @@ namespace TE
             CombatSkill = new CombatSkill(this, _game);
             canAttack = true;
             SetupTrailRenderer();
+            buttomPrompt.gameObject.SetActive(false);
         }
 
         private void Update()

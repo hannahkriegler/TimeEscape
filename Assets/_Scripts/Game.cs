@@ -223,7 +223,7 @@ namespace TE
 
             if (timeLeft <= 60)
             {
-                ShowTextBox("Drücke <color=yellow>Y</color> um in der Zeit zurückzureisen." +
+                ShowTextBox("Halte <color=yellow>Y</color> gedrückt um in der Zeit zurückzureisen." +
                     "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
                 tutorialTimeTravelTriggered = true;
             }

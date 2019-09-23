@@ -1169,7 +1169,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Dr\xFCcke <color=red>B</color>  um einen Zeitstempel zu platzieren.
+      value: "Halte  <color=red>B</color> gedr\xFCckt um einen Zeitstempel zu platzieren.
         Diesen kannst du als Sicherungspunkt nutzen um in einer brenzlingen Situation
         zur\xFCckzukehren."
       objectReference: {fileID: 0}
@@ -8492,7 +8492,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Dr\xFCcke <color=red>B</color>  um einen Zeitstempel zu platzieren."
+      value: "Halte  <color=red>B</color> gedr\xFCckt um einen Zeitstempel zu platzieren."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -57755,8 +57755,8 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Oben in der Mitte siehst du deine verbleibende Zeit. Wenn sie auf 0
-        sinkt ist GameOver. Sammle Uhren um Zeit zur\xFCckzugewinnen."
+      value: "Oben in der Mitte siehst du deine verbleibende Zeit. Wenn sie auf Null
+        sinkt ist das Spiel vorbei. Sammle Uhren um Zeit zur\xFCckzugewinnen."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -58269,8 +58269,8 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Mit <color=yellow>Y</color> kannst du in der Zeit zur\xFCckreisen zu
-        dem von dir platzierten Zeitstempel. "
+      value: "Halte <color=yellow>Y</color> gedr\xFCckt um in der Zeit zur\xFCckreisen
+        zu dem von dir platzierten Zeitstempel. "
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}

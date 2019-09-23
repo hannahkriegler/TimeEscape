@@ -178,6 +178,8 @@ namespace TE
             Vector3 playerScale = _player.transform.localScale;
             playerScale.x *= -1;
             _player.transform.localScale = playerScale;
+
+            _player.buttomPrompt.transform.localScale = new Vector2(_player.buttomPrompt.transform.localScale.x * -1 , 0.01f);
         }
 
         void UpdateGrounded()
