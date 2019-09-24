@@ -188,8 +188,10 @@ namespace TE
             if (!textBoxOpen)
                 return;
 
+            if (Time.realtimeSinceStartup - textBoxTime < 0.5f)
+                return;
+
             CloseTextBox();
-            return;
         }
 
         public void Pause(bool pause = true)
@@ -230,8 +232,10 @@ namespace TE
         }
 
         bool cancelMessage;
+        float textBoxTime;
         public void ShowTextBox(string message)
         {
+            textBoxTime = Time.realtimeSinceStartup;
             systemMessage.SetActive(true);
             systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
             Pause(true);

@@ -42,16 +42,14 @@ namespace TE
 
         private void Update()
         {
-            if (waitForTrigger)
+            if (specialTimeStampBlock)
             {
-                if (specialTimeStampBlock)
+                if (Game.instance.player.TimeSkills.firstTimeStamp)
                 {
-                    if (Game.instance.player.TimeSkills.firstTimeStamp)
-                    {
-                        triggerd = true;
-                    }
+                    triggerd = true;
                 }
             }
-        }
+        }   
+        
     }
 }
