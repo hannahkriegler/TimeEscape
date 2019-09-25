@@ -27,6 +27,12 @@ namespace TE
         bool attack;
         bool didAttack;
 
+        float timeStampTimer;
+        bool didPlaceTimeStamp;
+        float timeTravelTimer;
+        bool didTimeTravel;
+        const float longPressDuration = 0.8f;
+
         public void Init(Game game)
         {
             this.game = game;
@@ -34,7 +40,7 @@ namespace TE
             dashCheck = false;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             UpdateInputs();
             UpdatePlayer();
@@ -45,12 +51,15 @@ namespace TE
             movement.x = Input.GetAxis("Horizontal");
             movement.y = Input.GetAxis("Vertical");
 
+            pause = Input.GetButtonDown("Pause");
+
+
             //Handle Attack
             attackPressed = Input.GetButton("Attack");
             //Input Buffer
-            if(attackPressed)
+            if (attackPressed)
             {
-                if(!didAttack)
+                if (!didAttack)
                 {
                     attack = true;
                 }
@@ -77,8 +86,57 @@ namespace TE
                 didJump = false;
             }
 
-            timeStamp = Input.GetButtonDown("TimeStamp");
-            timeTravel = Input.GetButtonDown("TimeTravel");
+            bool timeStampPressed = Input.GetButton("TimeStamp");
+            timeStamp = false;
+            if (timeStampPressed && game.session.canPlaceTimeStamp && player.Movement.grounded)
+            {
+                if (!didPlaceTimeStamp)
+                {
+                    player.buttomPrompt.Init(ButtonType.B);
+                    timeStampTimer += Time.deltaTime;
+                    player.buttomPrompt.SetFillAmount(timeStampTimer / longPressDuration);
+                    if (timeStampTimer > longPressDuration)
+                    {
+                        didPlaceTimeStamp = true;
+                        timeStamp = true;
+                        player.buttomPrompt.Disable();
+                    }
+                }
+            }
+            else
+            {
+                didPlaceTimeStamp = false;
+                timeStampTimer = 0;
+            }
+
+
+            bool timeTravelPressed = Input.GetButton("TimeTravel");
+
+            if (timeTravelPressed && game.session.canTimeTravel && game.CanTimeTravel())
+            {
+                if (!didTimeTravel)
+                {
+                    player.buttomPrompt.Init(ButtonType.Y);
+                    timeTravelTimer += Time.deltaTime;
+                    player.buttomPrompt.SetFillAmount(timeTravelTimer / longPressDuration);
+                    if (timeTravelTimer > longPressDuration)
+                    {
+                        didTimeTravel = true;
+                        timeTravel = true;
+                        player.buttomPrompt.Disable();
+                    }
+                }
+            }
+            else
+            {
+                didTimeTravel = false;
+                timeTravelTimer = 0;
+            }
+
+            if (!timeTravelPressed && !timeStampPressed)
+                player.buttomPrompt.Disable();
+
+
             bool controllerDash = Input.GetAxis("Dash") > 0.5f;
             bool keyDash = Input.GetButtonDown("Dash");
             dash = controllerDash || keyDash;
@@ -94,10 +152,17 @@ namespace TE
             timeSkill_fast = Input.GetButton("SpeedUp");
 
             //Both Skills counter itselfs
-            if(timeSkill_slow && timeSkill_fast)
+            if (timeSkill_slow && timeSkill_fast)
             {
                 timeSkill_slow = false;
                 timeSkill_fast = false;
+            }
+
+            //Next
+            bool nextButtonPressed = Input.GetButtonDown("Jump");
+            if (nextButtonPressed)
+            {
+                game.NextButtonPressed();
             }
         }
 
@@ -108,6 +173,22 @@ namespace TE
 
         void UpdatePlayer()
         {
+            if (player.dead)
+                return;
+
+            //Pause
+            if (pause)
+            {
+                game.PausePressed();
+            }
+            if (game.gameIsPaused)
+            {
+                //Fix Jump Issue
+                didJump = true;
+                jump = false;
+                return;
+            }
+
             //Movement
             player.Movement.Tick();
             player.Movement.Move(movement);
@@ -136,7 +217,7 @@ namespace TE
             if (attack)
             {
                 bool attacked = player.CombatMelee.Attack();
-                if(attacked)
+                if (attacked)
                 {
                     didAttack = true;
                     attack = false;

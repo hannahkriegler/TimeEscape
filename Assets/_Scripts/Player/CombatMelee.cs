@@ -23,6 +23,7 @@ namespace TE
                 _player.animator.CrossFade("Jump_Attack", 0.2f);
             _player.sword.AllowHit(true);
             _player.canAttack = false;
+            SoundManager.instance.PlaySlash();
             return true;
         }
 

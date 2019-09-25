@@ -46,12 +46,14 @@ namespace TE
 
         [Header("References")]
         public GameObject lootInfo;
-
+        public GameObject pauseScreen;
         public GameObject systemMessage;
-
+        public GameObject dashIcon;
+        public GameObject jumpIcon;
 
         float gameOverTimer;
         bool gameOver;
+        public bool gameIsPaused { get; private set; }
 
 
         private void Awake()
@@ -68,6 +70,8 @@ namespace TE
             session = new Session(this);
             timeStorage = new TimeStorage(this);
             inputManager.Init(this);
+            gameIsPaused = false;
+            Time.timeScale = 1;
         }
 
         private void Update()
@@ -87,15 +91,17 @@ namespace TE
             if (gameOver)
             {
                 gameOverTimer -= Time.deltaTime;
-                if(gameOverTimer <= 0)
+                if (gameOverTimer <= 0)
                     SceneManager.LoadScene(0);
             }
 
             if (cancelMessage)
             {
-                if(inputManager.SomethingWasPressed())
+                if (inputManager.SomethingWasPressed())
                     systemMessage.SetActive(false);
-        }
+            }
+
+            TutorialTimeTravel();
         }
 
         public void GameOver()
@@ -167,20 +173,88 @@ namespace TE
             }
         }
 
-        bool cancelMessage;
-        public void ShowInfo(string message, float duration = 8.0f, bool canCancel = true)
+        bool textBoxOpen;
+        public void PausePressed()
         {
-            systemMessage.SetActive(true);
-            systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
-            StopAllCoroutines();
-            StartCoroutine(CloseMessage(duration));
-            cancelMessage = canCancel;
+            if (textBoxOpen)
+                return;
+
+            Pause(!gameIsPaused);
+            pauseScreen.SetActive(gameIsPaused);
         }
 
-        IEnumerator CloseMessage(float duration)
+        public void NextButtonPressed()
         {
-            yield return new WaitForSeconds(duration);
+            if (!textBoxOpen)
+                return;
+
+            if (Time.realtimeSinceStartup - textBoxTime < 0.5f)
+                return;
+
+            CloseTextBox();
+        }
+
+        public void Pause(bool pause = true)
+        {
+            if (pause)
+            {
+                Time.timeScale = 0;
+                gameIsPaused = true;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                gameIsPaused = false;
+            }
+        }
+
+        bool tutorialTimeTravelTriggered;
+        void TutorialTimeTravel()
+        {
+            if (tutorialTimeTravelTriggered)
+                return;
+
+            if (!session.canTimeTravel)
+                return;
+
+            if (player.TimeSkills.firstTimeTravel)
+            {
+                tutorialTimeTravelTriggered = true;
+                return;
+            }
+
+            if (timeLeft <= 60)
+            {
+                ShowTextBox("Halte <color=yellow>Y</color> gedrückt um in der Zeit zurückzureisen." +
+                    "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
+                tutorialTimeTravelTriggered = true;
+            }
+        }
+
+        bool cancelMessage;
+        float textBoxTime;
+        public void ShowTextBox(string message)
+        {
+            textBoxTime = Time.realtimeSinceStartup;
+            systemMessage.SetActive(true);
+            systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
+            Pause(true);
+            textBoxOpen = true;
+        }
+
+        public void CloseTextBox()
+        {
             systemMessage.SetActive(false);
+            Pause(false);
+            textBoxOpen = false;
+        }
+
+        public float CalculateAmbientPitch()
+        {
+            if (timeLeft > startTime * 0.9f)
+                return 1;
+
+            return 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
         }
     }
 

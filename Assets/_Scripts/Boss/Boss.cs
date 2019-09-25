@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TE;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Boss : Enemy
@@ -11,7 +12,7 @@ public class Boss : Enemy
     public GameObject spitProjectile;
     public GameObject spitStart;
 
-    private float timeBtwDamage = 0f; // give the player time to recover before taking more damage
+    protected float timeBtwDamage = 0f; // give the player time to recover before taking more damage
     private float timeToRecoverAfterSpit = 2f;
     private float timeToRecoverAfterSpawn = 5f;
     private int _rndm;
@@ -20,7 +21,10 @@ public class Boss : Enemy
     public bool isInAttackRange;
 
     bool activated = false;
-   
+
+    public GameObject bossInfo;
+    public GameObject healthbar;
+    private int maxHealth;
 
     protected override void Setup()
     {
@@ -30,13 +34,19 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Tick()
     {
+        
         if (!activated)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 8)
+            {
                 activated = true;
+                bossInfo.SetActive(true);
+                maxHealth = hitPoints;
+            }
+                
             else return;
         }
-
+        
         CheckRotation();
         CheckDistance();
         
@@ -61,22 +71,20 @@ public class Boss : Enemy
             else
             {
                 if (timeBtwDamage <= 0)
-                {
-                    animator.SetTrigger("spit");
-                    timeBtwDamage = timeToRecoverAfterSpit;
+                { 
                     
-                    /*
-                   _rndm = Random.Range(0, 2);
+                    _rndm = Random.Range(0, 2);
                    if (_rndm == 0)
                    {
-                       anim.SetTrigger("spit");
+                       animator.SetTrigger("spit");
                        timeBtwDamage = timeToRecoverAfterSpit;
                    }
                    else
                    {
-                       anim.SetTrigger("spawn");
+                       animator.SetTrigger("spawn");
                        timeBtwDamage = timeToRecoverAfterSpawn;
-                   }*/
+                       Knockback(10 * 500 * player.enemyKnockBackMultiplier);
+                   }
                 }
             }
         }
@@ -90,7 +98,7 @@ public class Boss : Enemy
         isInAttackRange = !(distance > 10f);
     }
 
-    private void CheckRotation()
+    protected void CheckRotation()
     {
         var direction = (player.transform.position- transform.position).normalized;
         if (direction.x > 0) // go right
@@ -114,6 +122,7 @@ public class Boss : Enemy
         StartCoroutine(KnockbackCountdown());
         Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
         hitPoints--;
+        healthbar.GetComponent<Image>().fillAmount = (float) hitPoints / maxHealth;
         if (hitPoints == 0)
         {
             Die();
@@ -150,23 +159,23 @@ public class Boss : Enemy
     {
         animator.SetTrigger("dead");
         // TODO: wait for die animation
-        StartCoroutine(WaitToDie(2));
+        StartCoroutine(WaitToDie(0.5f));
         if(hasLootDrop) DropLoot();
-
+        bossInfo.SetActive(false);
         //Unlocks time skills
         Game.instance.session.UnlockTimeSkills();
     }
 
-    IEnumerator WaitToDie(float timeToWait)
+    protected IEnumerator WaitToDie(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
         gameObject.SetActive(false);
     }
 
 
-    float currentFlashEffectTimer;
-    float flashEffectLength = 0.35f;
-    IEnumerator FlashEffect()
+    protected float currentFlashEffectTimer;
+    protected float flashEffectLength = 0.35f;
+    protected IEnumerator FlashEffect()
     {
         while (currentFlashEffectTimer > 0)
         {

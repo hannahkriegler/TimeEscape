@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3646806843645744764}
   - component: {fileID: 3646806843645744755}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_augen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3646806843727999600}
   - component: {fileID: 3646806843727999607}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_hit_augen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 6153833616342410430}
   - component: {fileID: 8476150523087011325}
   - component: {fileID: 7456971299251821527}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MusicBox_white
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   lootTypes: 0
   player: {fileID: 0}
   knockbackLength: 0
-  startTimeBtwShots: 2
+  startTimeBtwShots: 4
   attackRange: 10
   projectile: {fileID: 7127996635800894455, guid: 63924227f4e6a4586b37086a6375e2cf,
     type: 3}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 3646806844233030270}
   - component: {fileID: 3646806844233030269}
   - component: {fileID: 3646806844233030268}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_mb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3646806844353331279}
   - component: {fileID: 3646806844353331278}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_unten
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3646806844559720306}
   - component: {fileID: 3646806844559720305}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_offen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3646806844669030670}
   - component: {fileID: 3646806844669030669}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_m_oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,13 +639,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8198790849889709693}
   - component: {fileID: 443712220811858871}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: MB_w_hit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8198790849889709693
 Transform:
   m_ObjectHideFlags: 0
