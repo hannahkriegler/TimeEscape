@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1373,9 +1373,9 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Halte  <color=red>B</color> gedr\xFCckt um einen Zeitstempel zu platzieren.
-        Diesen kannst du als Sicherungspunkt nutzen um in einer brenzlingen Situation
-        zur\xFCckzukehren."
+      value: "Halte  <sprite name=\"XboxOne_B\"> gedr\xFCckt um einen Zeitstempel
+        zu platzieren. Diesen kannst du als Sicherungspunkt nutzen um in einer brenzlingen
+        Situation zur\xFCckzukehren."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -1392,6 +1392,12 @@ PrefabInstance:
       propertyPath: unlockTimeStamp
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a7f782ebf36dd484f94f358eb0cb304c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!4 &197149367 stripped
@@ -4136,7 +4142,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: Greife Gegner mit <color=blue>X</color> an.
+      value: Greife Gegner mit <sprite name="XboxOne_X"> an.
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -7900,16 +7906,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1547059444}
     m_Modifications:
-    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Name
-      value: Shroomie_Spit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 7567030493801181820, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7964,6 +7960,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Name
+      value: Shroomie_Spit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
@@ -9025,7 +9031,8 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Halte  <color=red>B</color> gedr\xFCckt um einen Zeitstempel zu platzieren."
+      value: "Halte <sprite name=\"XboxOne_B\"> gedr\xFCckt um einen Zeitstempel zu
+        platzieren."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -9047,6 +9054,12 @@ PrefabInstance:
       propertyPath: specialTimeStampBlock
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: a7f782ebf36dd484f94f358eb0cb304c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!1 &1721059676
@@ -58802,7 +58815,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Halte <color=yellow>Y</color> gedr\xFCckt um in der Zeit zur\xFCckreisen
+      value: "Halte <sprite name=\"XboxOne_Y\"> gedr\xFCckt um in der Zeit zur\xFCckreisen
         zu dem von dir platzierten Zeitstempel. "
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
@@ -58820,6 +58833,12 @@ PrefabInstance:
       propertyPath: unlockTimeTravel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9485125b46891c94bb1d7039d796c0bc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!4 &2125203079 stripped
@@ -58932,6 +58951,12 @@ PrefabInstance:
       propertyPath: unlockTimeTravel
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 9485125b46891c94bb1d7039d796c0bc,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!4 &2135353002 stripped
@@ -59020,7 +59045,7 @@ PrefabInstance:
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
       propertyPath: message
-      value: "Dr\xFCcke <color=green>A</color>  um zu Springen."
+      value: "Dr\xFCcke <sprite name=\"XboxOne_A\"> um zu Springen."
       objectReference: {fileID: 0}
     - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
         type: 3}
@@ -59032,6 +59057,12 @@ PrefabInstance:
       propertyPath: canSkip
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3411352882149018421, guid: 6e066ceccf3818742a98fd6ab1281616,
+        type: 3}
+      propertyPath: spriteAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c78e6b42f4a63f4286d911e1a5c8f79,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e066ceccf3818742a98fd6ab1281616, type: 3}
 --- !u!4 &5846986966212241239 stripped
@@ -59122,6 +59153,36 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: ea494c40c62720247a4c8dbead069eb1, type: 2}
+    - target: {fileID: 5504519251893168925, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750375845859343517, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.10178682
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750375845859343517, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.5225618
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750375845859343517, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.036224723
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750375845859343517, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.7846313
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750375845859343517, guid: 230844db625fa914aa6db043ec6c204b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230844db625fa914aa6db043ec6c204b, type: 3}
 --- !u!4 &8272463343506712550 stripped

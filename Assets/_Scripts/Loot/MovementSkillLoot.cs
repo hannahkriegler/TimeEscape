@@ -26,7 +26,9 @@ namespace TE
             switch (skillType)
             {
                 case MovementSkillTypes.DASH:
-                    info = session.IsDashUnlocked() ? "Du hast den Doppel-DASH freigeschaltet!" : "Du kannst nun mit RT dashen.";
+                    Game.instance.ChangeInfoTextSprite("XboxOne_RT");
+                    info = session.IsDashUnlocked() ? "Du hast den Doppel-DASH freigeschaltet!" :
+                        "Du kannst nun mit <sprite name=\"XboxOne_RT\"> dashen.";
                     session.CollectedDashLoot();
                     break;
                 case MovementSkillTypes.JUMP:
@@ -37,21 +39,8 @@ namespace TE
                     break;
             }
 
-            ShowTextinfo();
-        }
-
-        private void ShowTextinfo()
-        {
-            Game.instance.lootInfo.SetActive(true);
-            Game.instance.lootInfo.GetComponentInChildren<TextMeshProUGUI>().text = info;
-            StartCoroutine(HideTextBox());
-        }
-
-        IEnumerator HideTextBox()
-        {
-            yield return new WaitForSeconds(3);
-            Game.instance.lootInfo.SetActive(false);
-
+            
+            Game.instance.ShowTextBox(info);
         }
     }
 }

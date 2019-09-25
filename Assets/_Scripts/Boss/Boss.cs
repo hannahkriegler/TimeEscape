@@ -174,7 +174,7 @@ public class Boss : Enemy
 
 
     protected float currentFlashEffectTimer;
-    protected float flashEffectLength = 0.35f;
+  
     protected IEnumerator FlashEffect()
     {
         while (currentFlashEffectTimer > 0)

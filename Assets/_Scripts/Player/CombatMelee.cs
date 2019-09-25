@@ -6,6 +6,7 @@ namespace TE
     {
         private Player _player;
         private Game _game;
+
         public CombatMelee(Player player, Game game)
         {
             _player = player;
@@ -14,13 +15,15 @@ namespace TE
 
         public bool Attack()
         {
-            if (!_player.canAttack && !_player.IsInteracting())
+            if (!_player.canAttack)
                 return false;
 
+            Debug.Log("+++");
+       
             if(_player.Movement.grounded)
-              _player.animator.CrossFade("Attack", 0.2f);
+              _player.animator.Play("Attack");
             else
-                _player.animator.CrossFade("Jump_Attack", 0.2f);
+                _player.animator.Play("Jump_Attack");
             _player.sword.AllowHit(true);
             _player.canAttack = false;
             SoundManager.instance.PlaySlash();

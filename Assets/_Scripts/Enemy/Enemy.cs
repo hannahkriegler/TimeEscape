@@ -221,7 +221,7 @@ namespace TE
             return hitPoints;
         }
 
-        float flashEffectLength = 0.35f;
+        protected float flashEffectLength = 0.35f;
 
         protected IEnumerator KnockbackCountdown()
         {

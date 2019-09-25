@@ -82,10 +82,10 @@ namespace TE
         {
             delta = Time.deltaTime * _game.playerTimeScale;
             fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
-            UpdateAttack();
+          
         }
 
-        void UpdateAttack()
+        private void LateUpdate()
         {
             if (!IsInteracting())
             {

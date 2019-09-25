@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace TE
 {
@@ -8,6 +9,8 @@ namespace TE
     {
         [TextArea]
         public string message;
+
+        public TMP_SpriteAsset spriteAsset;
 
         bool triggerd;
 
@@ -24,11 +27,12 @@ namespace TE
 
             if (collision.gameObject.CompareTag("Player"))
             {
+                Game.instance.systemMessage.GetComponentInChildren<TextMeshProUGUI>().spriteAsset = spriteAsset;
                 Game.instance.ShowTextBox(message);
                 if (specialTimeStampBlock)
                 {
                     waitForTrigger = true;
-                    Game.instance.player.Movement.KnockBack(200, transform);
+                    Game.instance.player.Movement.KnockBack(800, transform);
                 }
 
                 if(!waitForTrigger)

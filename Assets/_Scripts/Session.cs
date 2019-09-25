@@ -45,7 +45,8 @@ namespace TE
         {
             //TODO Permanent unlock
             timeSkills = true;
-            _game.ShowTextBox("Du kannst jetzt die Zeit verlangsamen mit LB !");
+            Game.instance.ChangeInfoTextSprite("XboxOne_LB");
+            _game.ShowTextBox("Du kannst jetzt die Zeit verlangsamen mit <sprite name=\"XboxOne_LB\"> !");
         }
 
 

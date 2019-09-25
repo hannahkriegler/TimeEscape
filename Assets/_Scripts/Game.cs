@@ -225,7 +225,8 @@ namespace TE
 
             if (timeLeft <= 60)
             {
-                ShowTextBox("Halte <color=yellow>Y</color> gedrückt um in der Zeit zurückzureisen." +
+                ChangeInfoTextSprite("XboxOne_Y");
+                ShowTextBox("Halte <sprite name='XboxOne_Y'> gedrückt um in der Zeit zurückzureisen." +
                     "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
                 tutorialTimeTravelTriggered = true;
             }
@@ -240,6 +241,12 @@ namespace TE
             systemMessage.GetComponentInChildren<TextMeshProUGUI>().text = message;
             Pause(true);
             textBoxOpen = true;
+        }
+
+        public void ChangeInfoTextSprite(string spriteName)
+        {
+            TMP_SpriteAsset spriteAsset = Resources.Load<TMP_SpriteAsset>("Controller/" + spriteName);
+            systemMessage.GetComponentInChildren<TextMeshProUGUI>().spriteAsset = spriteAsset;           
         }
 
         public void CloseTextBox()
