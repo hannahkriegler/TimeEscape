@@ -1,12 +1,20 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: ff310ee58334d47d4a40c0f07294e4de
+=======
 guid: bca3a628c026c4b0495fa2b7eaa97c99
+>>>>>>> 83bb79a9aac09feb0ef703f3504f4a63a97dbfc4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
     mipMapMode: 0
+<<<<<<< HEAD
+    enableMipMap: 0
+=======
     enableMipMap: 1
+>>>>>>> 83bb79a9aac09feb0ef703f3504f4a63a97dbfc4
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -45,7 +53,11 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
+  spritePixelsToUnits: 100
+=======
   spritePixelsToUnits: 500
+>>>>>>> 83bb79a9aac09feb0ef703f3504f4a63a97dbfc4
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,6 +82,8 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
+=======
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -94,6 +108,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+>>>>>>> 83bb79a9aac09feb0ef703f3504f4a63a97dbfc4
   spriteSheet:
     serializedVersion: 2
     sprites: []
@@ -109,7 +124,11 @@ TextureImporter:
     secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
+<<<<<<< HEAD
+  pSDShowRemoveMatteOption: 0
+=======
   pSDShowRemoveMatteOption: 1
+>>>>>>> 83bb79a9aac09feb0ef703f3504f4a63a97dbfc4
   userData: 
   assetBundleName: 
   assetBundleVariant: 
