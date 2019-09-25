@@ -31,8 +31,7 @@ namespace TE
                 Game.instance.ShowTextBox(message);
                 if (specialTimeStampBlock)
                 {
-                    waitForTrigger = true;
-                    Game.instance.player.Movement.KnockBack(800, transform);
+                    waitForTrigger = true;         
                 }
 
                 if(!waitForTrigger)
@@ -48,6 +47,12 @@ namespace TE
         {
             if (specialTimeStampBlock)
             {
+                if (waitForTrigger && !Game.instance.IsTextBoxOpen())
+                {
+                    Game.instance.player.Movement.KnockBack(800, transform);
+                    waitForTrigger = false;
+                }
+
                 if (Game.instance.player.TimeSkills.firstTimeStamp)
                 {
                     triggerd = true;

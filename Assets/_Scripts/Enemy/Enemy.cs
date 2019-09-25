@@ -258,6 +258,7 @@ namespace TE
         IEnumerator DieRoutine()
         {
             dieTimer = 0;
+            SoundManager.instance.PlayDie();
             while (dieTimer < 1.2f)
             {
                 foreach (SpriteRenderer rend in all_Sprites)

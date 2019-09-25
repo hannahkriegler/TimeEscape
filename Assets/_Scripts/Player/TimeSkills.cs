@@ -39,6 +39,7 @@ namespace TE
 
             _game.timeStorage.CreateTimeStamp(_player);
             _player.animator.CrossFade("Cast", 0.2f);
+            SoundManager.instance.PlayPortal();
             Debug.Log("Timestamp placed!");
         }
         
@@ -57,6 +58,7 @@ namespace TE
             _game.SetTimeShardCounter(0);
             _game.timeStorage.LoadTimeStamp(_player);
             _player.animator.CrossFade("Dizzy", 0.2f);
+            SoundManager.instance.PlayTimeTravel();
             Debug.Log("Time traveled");
         }
 

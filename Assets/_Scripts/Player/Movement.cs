@@ -39,7 +39,13 @@ namespace TE
         {
             float delta = _player.fixedDelta;
 
+            bool prevGrounded = grounded;
+
             UpdateGrounded();
+
+            if (grounded && prevGrounded == false)
+                SoundManager.instance.PlayLand();
+
             UpdateReadyToJump(delta);
 
             if (grounded)
@@ -140,6 +146,7 @@ namespace TE
                 jump1 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
                 _player.CombatMelee.AllowAttacking();
+                SoundManager.instance.PlayJump();
                 return true;
             }
 
@@ -150,6 +157,7 @@ namespace TE
                 jump2 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
                 _player.CombatMelee.AllowAttacking();
+                SoundManager.instance.PlayJump();
                 return true;
             }
 
@@ -160,13 +168,13 @@ namespace TE
         {
             if (_game.session.IsDashUnlocked())
             {
-                Debug.Log("Player dashed!");
                 if(dashCDTimer >= dashCD)
                 {
                     dashDir = facingRight ? Vector2.right : Vector2.left;
                     dashActiveTimer = 0;
                     dashCDTimer = 0;
                     _player.animator.CrossFade("Dash", 0.2f);
+                    SoundManager.instance.PlayDash();
                     _player.CombatMelee.AllowAttacking();
                 }
             }

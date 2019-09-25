@@ -226,7 +226,7 @@ namespace TE
             if (timeLeft <= 60)
             {
                 ChangeInfoTextSprite("XboxOne_Y");
-                ShowTextBox("Halte <sprite name='XboxOne_Y'> gedrückt um in der Zeit zurückzureisen." +
+                ShowTextBox("Halte <sprite name=\"XboxOne_Y\"> gedrückt um in der Zeit zurückzureisen." +
                     "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
                 tutorialTimeTravelTriggered = true;
             }
@@ -254,6 +254,11 @@ namespace TE
             systemMessage.SetActive(false);
             Pause(false);
             textBoxOpen = false;
+        }
+
+        public bool IsTextBoxOpen()
+        {
+            return textBoxOpen;
         }
 
         public float CalculateAmbientPitch()

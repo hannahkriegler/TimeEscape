@@ -17,8 +17,6 @@ namespace TE
         {
             if (!_player.canAttack)
                 return false;
-
-            Debug.Log("+++");
        
             if(_player.Movement.grounded)
               _player.animator.Play("Attack");
