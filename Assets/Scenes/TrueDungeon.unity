@@ -2455,6 +2455,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6153833616342410430, guid: 965a49a6d890b459ba224f9bc6c3fc1c,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965a49a6d890b459ba224f9bc6c3fc1c, type: 3}
 --- !u!1001 &567747299
@@ -2731,6 +2736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153833616342410430, guid: 965a49a6d890b459ba224f9bc6c3fc1c,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965a49a6d890b459ba224f9bc6c3fc1c, type: 3}
@@ -5473,6 +5483,11 @@ PrefabInstance:
       propertyPath: bossInfo
       value: 
       objectReference: {fileID: 1616384942}
+    - target: {fileID: 3638391197579294770, guid: f2bce77840493834c809c39483fff112,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2bce77840493834c809c39483fff112, type: 3}
 --- !u!4 &1316772748 stripped
@@ -8176,6 +8191,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1547059444}
     m_Modifications:
+    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Name
+      value: Shroomie_Spit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7567030493801181820, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8230,16 +8255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Name
-      value: Shroomie_Spit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567030493801181818, guid: d3a3cc6d47b461f4d91af41adb7fa158,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 7567030493022481909, guid: d3a3cc6d47b461f4d91af41adb7fa158,
         type: 3}
@@ -59200,6 +59215,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153833616342410430, guid: 965a49a6d890b459ba224f9bc6c3fc1c,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 965a49a6d890b459ba224f9bc6c3fc1c, type: 3}
