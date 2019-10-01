@@ -21,6 +21,7 @@ public class Boss : Enemy
     public bool isInAttackRange;
 
     bool activated = false;
+    private bool isDead = false;
 
     public GameObject bossInfo;
     public GameObject healthbar;
@@ -34,6 +35,7 @@ public class Boss : Enemy
     // Update is called once per frame
     protected override void Tick()
     {
+        if(isDead) return;
         
         if (!activated)
         {
@@ -114,6 +116,7 @@ public class Boss : Enemy
 
     public override void OnHit(int damage, GameObject attacker, bool knockBack = true)
     {
+        if(isDead) return;
         if(currentKnockbackLength>0) return;
         animator.SetTrigger("hit");
         currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
@@ -125,7 +128,9 @@ public class Boss : Enemy
         healthbar.GetComponent<Image>().fillAmount = (float) hitPoints / maxHealth;
         if (hitPoints == 0)
         {
-            Die();
+            animator.SetTrigger("dead");
+            isDead = true;
+            return;
         }
 
         animator.SetTrigger("spit");
@@ -155,13 +160,14 @@ public class Boss : Enemy
     }*/
 
     
-    protected override void Die()
+    public override void Die()
     {
-        animator.SetTrigger("dead");
+        
         // TODO: wait for die animation
-        StartCoroutine(WaitToDie(0.5f));
+        //StartCoroutine(WaitToDie(0.5f));
         if(hasLootDrop) DropLoot();
         bossInfo.SetActive(false);
+        gameObject.SetActive(false);
         //Unlocks time skills
         Game.instance.session.UnlockTimeSkills();
     }
