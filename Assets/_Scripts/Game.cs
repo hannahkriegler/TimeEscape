@@ -10,18 +10,19 @@ namespace TE
     public class Game : MonoBehaviour
     {
         //Custom Deltas
-        [HideInInspector]
-        public float playerTimeScale = 1;
+        [HideInInspector] public float playerTimeScale = 1;
 
-        [HideInInspector]
-        public float worldTimeScale = 1;
+        [HideInInspector] public float worldTimeScale = 1;
 
-        [HideInInspector]
-        public float countDownScale = 1;
+        [HideInInspector] public float countDownScale = 1;
 
 
         public InputManager inputManager;
-        public Player player { get => inputManager.player; }
+
+        public Player player
+        {
+            get => inputManager.player;
+        }
 
         public Session session;
         public TimeStorage timeStorage { get; private set; }
@@ -29,23 +30,19 @@ namespace TE
         public float startTime = 600;
         public float timeDrainMultiplier = 1;
         public float timeLeft;
-        [Range(0, 4)]
-        public int timeShardCounter;
+        [Range(0, 4)] public int timeShardCounter;
 
-        [Header("Cheats")]
-        public bool allMovementSkills;
+        [Header("Cheats")] public bool allMovementSkills;
         public bool unlimitedTimeTravel;
         public bool allTimeSkills;
+        public bool skipTutorials;
 
-        [Header("Data")]
-        public Room[] allRooms;
+        [Header("Data")] public Room[] allRooms;
         public GameObject timeStampPrefab;
 
-        [Header("Gem stuff")]
-        public int timeBonusOnHit;
+        [Header("Gem stuff")] public int timeBonusOnHit;
 
-        [Header("References")]
-        public GameObject lootInfo;
+        [Header("References")] public GameObject lootInfo;
         public GameObject pauseScreen;
         public GameObject systemMessage;
         public GameObject dashIcon;
@@ -72,21 +69,22 @@ namespace TE
             inputManager.Init(this);
             gameIsPaused = false;
             Time.timeScale = 1;
+
+            if (skipTutorials)
+            {
+                session.UnlockTimeTravel();
+                session.UnlockTimestamp();
+            }
         }
 
         private void Update()
         {
             UpdateTime();
 
+            Cheats();
+
             if (Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.T))
                 GameOver();
-
-            if (Input.GetKey(KeyCode.I) && Input.GetKey(KeyCode.O) && Input.GetKey(KeyCode.P))
-            {
-                allMovementSkills = true;
-                unlimitedTimeTravel = true;
-                allTimeSkills = true;
-            }
 
             if (gameOver)
             {
@@ -102,6 +100,31 @@ namespace TE
             }
 
             TutorialTimeTravel();
+        }
+
+        void Cheats()
+        {
+            if (Application.isEditor)
+            {
+                if (Input.GetKey(KeyCode.Alpha1))
+                    timeLeft = 60;
+                if (Input.GetKey(KeyCode.Alpha2))
+                    timeLeft = 120;
+                if (Input.GetKey(KeyCode.Alpha3))
+                    timeLeft = 180;
+                if (Input.GetKey(KeyCode.Alpha4))
+                    timeLeft = 240;
+
+                if (Input.GetKeyDown(KeyCode.T))
+                    AddTimeShard();
+                
+                if (Input.GetKey(KeyCode.P))
+                {
+                    allMovementSkills = true;
+                    unlimitedTimeTravel = true;
+                    allTimeSkills = true;
+                }
+            }
         }
 
         public void GameOver()
@@ -143,6 +166,7 @@ namespace TE
                 timeShardCounter++;
                 return true;
             }
+
             return false;
         }
 
@@ -174,6 +198,7 @@ namespace TE
         }
 
         bool textBoxOpen;
+
         public void PausePressed()
         {
             if (textBoxOpen)
@@ -209,6 +234,7 @@ namespace TE
         }
 
         bool tutorialTimeTravelTriggered;
+
         void TutorialTimeTravel()
         {
             if (tutorialTimeTravelTriggered)
@@ -227,13 +253,14 @@ namespace TE
             {
                 ChangeInfoTextSprite("XboxOne_Y");
                 ShowTextBox("Halte <sprite name=\"XboxOne_Y\"> gedrückt um in der Zeit zurückzureisen." +
-                    "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
+                            "So gewinnst du deine verlorene Zeit zurück, aber behälst deine Upgrades!");
                 tutorialTimeTravelTriggered = true;
             }
         }
 
         bool cancelMessage;
         float textBoxTime;
+
         public void ShowTextBox(string message)
         {
             textBoxTime = Time.realtimeSinceStartup;
@@ -246,7 +273,7 @@ namespace TE
         public void ChangeInfoTextSprite(string spriteName)
         {
             TMP_SpriteAsset spriteAsset = Resources.Load<TMP_SpriteAsset>("Controller/" + spriteName);
-            systemMessage.GetComponentInChildren<TextMeshProUGUI>().spriteAsset = spriteAsset;           
+            systemMessage.GetComponentInChildren<TextMeshProUGUI>().spriteAsset = spriteAsset;
         }
 
         public void CloseTextBox()
@@ -269,6 +296,4 @@ namespace TE
             return 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
         }
     }
-
-
 }

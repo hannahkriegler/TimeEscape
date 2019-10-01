@@ -22,6 +22,9 @@ namespace TE
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            if (Game.instance.skipTutorials)
+                return;
+            
             if (triggerd)
                 return;
 

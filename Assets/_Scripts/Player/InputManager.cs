@@ -109,7 +109,7 @@ namespace TE
                 timeStampTimer = 0;
             }
 
-
+            timeTravel = false;
             bool timeTravelPressed = Input.GetButton("TimeTravel");
 
             if (timeTravelPressed && game.session.canTimeTravel && game.CanTimeTravel())

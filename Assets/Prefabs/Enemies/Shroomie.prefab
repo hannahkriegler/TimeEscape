@@ -79,7 +79,7 @@ Animator:
   m_GameObject: {fileID: 3638391197579294733}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f70ca13300ff974894233b565e339ff, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -109,6 +109,8 @@ MonoBehaviour:
   spitProjectile: {fileID: 0}
   spitStart: {fileID: 0}
   isInAttackRange: 0
+  bossInfo: {fileID: 0}
+  healthbar: {fileID: 0}
 --- !u!60 &3638391197579294771
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -353,7 +355,7 @@ Animator:
   m_GameObject: {fileID: 3638391198021000843}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f70ca13300ff974894233b565e339ff, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -28,6 +28,8 @@ namespace TE
 
         protected bool doorsDown = false;
 
+        private bool saveDoorsDown;
+
         [Header("Special Time Rooms Infos")]
         public int secondsLeftToOpen;
 
@@ -96,6 +98,8 @@ namespace TE
                 if (door != null)
                     door.HandleTimeTravel();
             }
+
+            doorsDown = saveDoorsDown;
         }
 
         public void HandleTimeStamp()
@@ -115,6 +119,9 @@ namespace TE
                 if (door != null)
                     door.HandleTimeStamp();
             }
+            
+
+            saveDoorsDown = doorsDown;
         }
 
 
