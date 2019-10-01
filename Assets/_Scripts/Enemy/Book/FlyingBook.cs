@@ -4,11 +4,10 @@ using UnityEngine;
 
 namespace TE
 {
-    public class DummyBook : Enemy
+    public class FlyingBook : Enemy
     {
       
         
-
         
     }
 }
