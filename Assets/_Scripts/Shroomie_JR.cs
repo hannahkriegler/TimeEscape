@@ -51,7 +51,7 @@ public class Shroomie_JR : Boss
         StartCoroutine(FlashEffect());
     }
 
-    protected override void Die()
+    public override void Die()
     {
         animator.SetTrigger("dead");
         if(hasLootDrop) DropLoot();    }

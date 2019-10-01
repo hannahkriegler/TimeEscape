@@ -129,7 +129,7 @@ namespace TE
             enemyAi.canMove = enemyAi.IsInFollowDistance();
         }
 
-        protected virtual void Die()
+        public virtual void Die()
         {
             if (died)
                 return;

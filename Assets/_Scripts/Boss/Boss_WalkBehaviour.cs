@@ -21,7 +21,7 @@ public class Boss_WalkBehaviour : StateMachineBehaviour
         var direction = (playerPos.transform.position- animator.transform.position).normalized;
         
         direction.y = 0;
-        animator.transform.position += speed * Time.deltaTime * Game.instance.worldTimeScale * direction;
+        animator.transform.parent.position += speed * Time.deltaTime * Game.instance.worldTimeScale * direction;
 
     }
 
