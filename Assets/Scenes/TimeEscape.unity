@@ -3041,7 +3041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &733754874
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5486,7 +5486,7 @@ PrefabInstance:
     - target: {fileID: 3638391197579294768, guid: f2bce77840493834c809c39483fff112,
         type: 3}
       propertyPath: hitPoints
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3638391197579294768, guid: f2bce77840493834c809c39483fff112,
         type: 3}
