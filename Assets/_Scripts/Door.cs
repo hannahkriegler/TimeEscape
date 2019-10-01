@@ -12,6 +12,7 @@ namespace TE
 
         [HideInInspector]
         public bool isDown = false;
+        
 
         bool savedDown;
         // Start is called before the first frame update
