@@ -23,8 +23,6 @@ public class Boss : Enemy
     bool activated = false;
     private bool isDead = false;
 
-    public GameObject bossInfo;
-    public GameObject healthbar;
     private int maxHealth;
 
     protected override void Setup()
@@ -42,7 +40,7 @@ public class Boss : Enemy
             if (Vector2.Distance(player.transform.position, transform.position) < 8)
             {
                 activated = true;
-                bossInfo.SetActive(true);
+                Game.instance.bossHealthBar.Activate("Shroomie");
                 maxHealth = hitPoints;
             }
                 
@@ -125,7 +123,7 @@ public class Boss : Enemy
         StartCoroutine(KnockbackCountdown());
         Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
         hitPoints--;
-        healthbar.GetComponent<Image>().fillAmount = (float) hitPoints / maxHealth;
+        Game.instance.bossHealthBar.UpdateBar(hitPoints, maxHealth);
         if (hitPoints == 0)
         {
             animator.SetTrigger("dead");
@@ -166,7 +164,7 @@ public class Boss : Enemy
         // TODO: wait for die animation
         //StartCoroutine(WaitToDie(0.5f));
         if(hasLootDrop) DropLoot();
-        bossInfo.SetActive(false);
+        Game.instance.bossHealthBar.DeActivate();
         gameObject.SetActive(false);
         //Unlocks time skills
         Game.instance.session.UnlockTimeSkills();

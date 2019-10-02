@@ -52,6 +52,8 @@ namespace TE
         bool gameOver;
         public bool gameIsPaused { get; private set; }
 
+        public Healthbar bossHealthBar;
+
 
         private void Awake()
         {

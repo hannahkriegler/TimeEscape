@@ -11,7 +11,8 @@ public class Boss_SpitBehaviour : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("Boss entered Spit State");
-        boss = GameObject.FindGameObjectWithTag("Boss");
+        //boss = GameObject.FindGameObjectWithTag("Boss");
+        boss = animator.transform.parent.gameObject;
 
         spit = boss.GetComponent<Boss>().spitProjectile.GetComponent<Boss_Projectile>();
         spit.enabled = true;
