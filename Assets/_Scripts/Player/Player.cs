@@ -29,6 +29,7 @@ namespace TE
         public LayerMask groundLayerCheck;
         public Transform groundCheck;
         public ButtomPrompt buttomPrompt;
+        public GameObject fireBall;
         
         [Header("Settings")]
         public float moveSpeed = 300;

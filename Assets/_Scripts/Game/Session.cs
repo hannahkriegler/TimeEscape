@@ -9,6 +9,7 @@ namespace TE
         int dashCollected;
         bool jumpCollected;
         bool timeSkills;
+        bool fireBall;
 
         public bool canTimeTravel { get; private set; }
         public bool canPlaceTimeStamp { get; private set; }
@@ -49,6 +50,11 @@ namespace TE
             _game.ShowTextBox("Du kannst jetzt die Zeit verlangsamen mit <sprite name=\"XboxOne_LB\"> !");
         }
 
+        public void UnlockFireball()
+        {
+            //TODO Text
+            fireBall = true;
+        }
 
         public bool IsDashUnlocked()
         {
@@ -63,6 +69,11 @@ namespace TE
         public bool HasTimeSkills()
         {
             return timeSkills || _game.allTimeSkills;
+        }
+
+        public bool HasFireball()
+        {
+            return fireBall || _game.unlockFireBall;
         }
     }
 }

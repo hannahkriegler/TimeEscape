@@ -35,6 +35,7 @@ namespace TE
         [Header("Cheats")] public bool allMovementSkills;
         public bool unlimitedTimeTravel;
         public bool allTimeSkills;
+        public bool unlockFireBall;
         public bool skipTutorials;
 
         [Header("Data")] public Room[] allRooms;

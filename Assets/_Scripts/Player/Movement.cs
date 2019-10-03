@@ -190,6 +190,11 @@ namespace TE
             _player.buttomPrompt.transform.localScale = new Vector2(_player.buttomPrompt.transform.localScale.x * -1 , 0.01f);
         }
 
+        public Vector2 GetForwardDir()
+        {
+            return facingRight? Vector2.right: Vector2.left;
+        }
+
         void UpdateGrounded()
         {
             grounded = false;

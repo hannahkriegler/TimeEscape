@@ -20,6 +20,7 @@ namespace TE
         private bool pause;
         private Vector2 movement;
 
+        private bool skillCheck;
         private bool dashCheck;
 
         private bool jump;
@@ -69,8 +70,16 @@ namespace TE
                 didAttack = false;
             }
 
+            //Active Skill
+            bool controllerSkill = Input.GetAxis("Skill") > 0.5f;
+            bool keySkill = Input.GetButtonDown("Skill");
+            active_skill = controllerSkill || keySkill;
 
-            active_skill = Input.GetButtonDown("Skill");
+            if (skillCheck)
+            {
+                if (!controllerSkill && !keySkill)
+                    skillCheck = false;
+            }
 
             //Jump Handling
             jumpPressed = Input.GetButton("Jump");
@@ -212,7 +221,6 @@ namespace TE
                 dashCheck = true;
             }
 
-
             //Attack Handling
             if (attack)
             {
@@ -225,10 +233,11 @@ namespace TE
             }
 
             //Skills
-            if (active_skill)
+            if (active_skill && !skillCheck)
             {
                 active_skill = false;
                 player.CombatSkill.ActivateActiveSkill();
+                skillCheck = true;
             }
 
             //Time Skills
