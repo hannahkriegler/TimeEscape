@@ -15,6 +15,7 @@ namespace TE
 
         public TrailRenderer trailRenderer { get; private set; }
 
+        public FinalBoss_AnimHook anim_hook { get; private set; }
         public Animator animator { get; private set; }
 
         public DamageCollider sword  { get; private set; }
@@ -35,10 +36,19 @@ namespace TE
         [Header("Stats")]
         public int maxHealth = 30;
         public int curHealth;
+        public float attackDistance = 2.8f;
+        public int attackDamage = 10;
 
         [Header("States")]
         public bool canAttack;
-        
+        public bool grounded;
+
+        [Header("Misc")]
+        public bool facingRight;
+        public float responseAttackTimer;
+        public float attackCooldown;
+        public float damageThreshold;
+
         public float delta { get; private set; }
         public float fixedDelta { get; private set; }
         
@@ -57,6 +67,8 @@ namespace TE
 
         bool activated;
 
+        Player player;
+
       
         public void Start()
         {
@@ -64,15 +76,19 @@ namespace TE
             _game = Game.instance;
             rigidBody = GetComponent<Rigidbody2D>();
             sword = GetComponentInChildren<DamageCollider>();
+            anim_hook = GetComponentInChildren<FinalBoss_AnimHook>();
             animator = GetComponentInChildren<Animator>();
             col = GetComponent<Collider2D>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             all_Sprites = GetComponentsInChildren<SpriteRenderer>();
 
             canAttack = true;
+            anim_hook.Init(this);
             SetupTrailRenderer();
 
             curHealth = maxHealth;
+
+            player = _game.player;
 
             ActivateBoss();
         }
@@ -90,23 +106,104 @@ namespace TE
 
             delta = Time.deltaTime * _game.worldTimeScale;
             fixedDelta = Time.fixedDeltaTime * _game.worldTimeScale;
-          
+
+            UpdateGrounded();
+            MeleeUpdate();
         }
 
         private void LateUpdate()
         {
             if (!IsInteracting())
             {
-            
+                if (attackCooldown > 0)
+                {
+                    sword.AllowHit(false);
+                    attackCooldown -= delta;
+                }
+                else
+                    canAttack = true;
+            }
+            else
+            {
+                attackCooldown = 0.4f;
             }
         }
 
-  
+        void MeleeUpdate()
+        {
+            if(Vector2.Distance(player.transform.position, transform.position) < attackDistance)
+            {
+                if (responseAttackTimer > 0)
+                    responseAttackTimer -= delta;
+                else
+                    Attack();
+            }
+            else
+            {
+                responseAttackTimer = 0.2f;
+            }
+        }
+
+        bool Attack()
+        {
+            if (!canAttack)
+                return false;
+
+            float dot = Vector2.Angle((player.transform.position - transform.position).normalized, Vector2.right);
+            FlipCharacter(dot < 90);
+
+            if (!grounded)
+                animator.Play("Attack");
+            else
+                animator.Play("Jump_Attack");
+
+            canAttack = false;
+            SoundManager.instance.PlaySlash();
+            return true;
+        }
+
+        
         public bool IsInteracting()
         {
             return animator.GetBool("isInteracting");
         }
 
+        #region Movement
+        void UpdateGrounded()
+        {
+            grounded = false;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Vector2 rayOrigin = groundCheck.position;
+                rayOrigin += Vector2.right * (i - 5) * 0.025f;
+                RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, 0.1f, groundLayerCheck);
+
+                if (hit)
+                {
+                    Debug.DrawRay(rayOrigin, Vector2.down * 0.1f, Color.red);
+                    grounded = true;
+                    break;
+                }
+            }
+        }
+
+        void FlipCharacter(bool right = true)
+        {
+            if (facingRight && right)
+                return;
+
+            if (!facingRight && !right)
+                return;
+
+            facingRight = !facingRight;
+            Vector3 playerScale = transform.localScale;
+            playerScale.x *= -1;
+            transform.localScale = playerScale;
+        }
+        #endregion
+
+        #region TakeDamage
         void TakeDamage(int damage)
         {
             curHealth -= damage;
@@ -119,8 +216,14 @@ namespace TE
         {
             SoundManager.instance.PlayHit();
             Debug.Log("Final Boss hitted!");
-            TakeDamage(damage);     
-            animator.CrossFade("Hit", 0.2f);
+            TakeDamage(damage);
+
+            //TODO Damage Threshold System
+            if (!IsInteracting())
+            {
+                animator.CrossFade("Hit", 0.2f);
+            }
+         
             currentFlashEffectTimer = flashEffectLength;
             StartCoroutine(FlashEffect());
         }
@@ -141,6 +244,17 @@ namespace TE
             FlashEffect(0);
         }
 
+        protected void FlashEffect(float strength)
+        {
+            foreach (SpriteRenderer rend in all_Sprites)
+            {
+                rend.material.SetFloat("_flash", strength);
+            }
+        }
+
+        #endregion
+
+        #region Effects
         void SetupTrailRenderer()
         {
             AnimationCurve curve = new AnimationCurve();
@@ -150,13 +264,6 @@ namespace TE
             trailRenderer.widthCurve = curve;
             trailRenderer.enabled = false;
         }
-
-        protected void FlashEffect(float strength)
-        {
-            foreach (SpriteRenderer rend in all_Sprites)
-            {
-                rend.material.SetFloat("_flash", strength);
-            }
-        }
+        #endregion
     }
 }

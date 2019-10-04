@@ -18,6 +18,8 @@ namespace TE
             playerFireBall = player;
             Destroy(gameObject, 10.0f);
             rigid = GetComponent<Rigidbody2D>();
+            if (dir.x < 0)
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             rigid.AddForce(dir * speed, ForceMode2D.Impulse);
         }

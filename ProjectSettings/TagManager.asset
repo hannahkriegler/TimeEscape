@@ -27,7 +27,7 @@ TagManager:
   - Mob
   - MobBlocker
   - DamageCollider
-  - 
+  - EnemyDamageCollider
   - 
   - 
   - 

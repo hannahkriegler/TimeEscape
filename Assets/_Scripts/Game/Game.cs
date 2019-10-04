@@ -188,7 +188,7 @@ namespace TE
         {
             foreach (Room room in allRooms)
             {
-                room.HandleTimeStamp();
+                room?.HandleTimeStamp();
             }
         }
 
@@ -196,7 +196,7 @@ namespace TE
         {
             foreach (Room room in allRooms)
             {
-                room.HandleTimeTravel();
+                room?.HandleTimeTravel();
             }
         }
 

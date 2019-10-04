@@ -9,12 +9,15 @@ namespace TE
     {
         public Collider2D col;
 
+        public bool isBossCollider;
+
         private void OnTriggerEnter2D(Collider2D other)
         {
             IHit hit = other.GetComponent<IHit>();
             if (hit != null)
             {
-                hit.OnHit(this.GetComponentInParent<Player>().damageModifier, other.gameObject);
+                int damage = isBossCollider ? GetComponentInParent<FinalBoss>().attackDamage : GetComponentInParent<Player>().damageModifier;
+                hit.OnHit(damage, other.gameObject);
                 AllowHit(false);
             }
         }
@@ -23,7 +26,5 @@ namespace TE
         {
             col.enabled = canHit;
         }
-        
-        
     }
 }
