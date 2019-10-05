@@ -145,7 +145,7 @@ namespace TE
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump1 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
-                _player.CombatMelee.AllowAttacking();
+                _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;
             }
@@ -156,7 +156,7 @@ namespace TE
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump2 = true;
                 _player.animator.CrossFade("Jump", 0.2f);
-                _player.CombatMelee.AllowAttacking();
+                _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;
             }
@@ -175,7 +175,7 @@ namespace TE
                     dashCDTimer = 0;
                     _player.animator.CrossFade("Dash", 0.2f);
                     SoundManager.instance.PlayDash();
-                    _player.CombatMelee.AllowAttacking();
+                    _player.CombatMelee.ResetAttackState();
                 }
             }
         }

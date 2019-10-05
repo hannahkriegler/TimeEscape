@@ -19,6 +19,7 @@ namespace TE
 
         public TrailRenderer trailRenderer { get; private set; }
 
+        public Player_AnimHook animHook { get; private set; }
         public Animator animator { get; private set; }
 
         public DamageCollider sword  { get; private set; }
@@ -65,11 +66,13 @@ namespace TE
             rigidBody = GetComponent<Rigidbody2D>();
             sword = GetComponentInChildren<DamageCollider>();
             animator = GetComponentInChildren<Animator>();
+            animHook = GetComponentInChildren<Player_AnimHook>();
             col = GetComponent<Collider2D>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             all_Sprites = GetComponentsInChildren<SpriteRenderer>();
 
             //Init Subsystems
+            animHook.Init(this);
             Movement = new Movement(this, _game);
             TimeSkills = new TimeSkills(this, _game);
             CombatMelee = new CombatMelee(this, _game);
@@ -90,7 +93,7 @@ namespace TE
         {
             if (!IsInteracting())
             {
-                CombatMelee.AllowAttacking();
+                CombatMelee.ResetAttackState();
             }
         }
 

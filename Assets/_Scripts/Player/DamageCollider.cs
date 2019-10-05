@@ -11,7 +11,23 @@ namespace TE
 
         public bool isBossCollider;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public LayerMask layerMask;
+
+        bool canHit;
+
+        private void Update()
+        {
+            if (canHit)
+            {
+                Collider2D[] hits = Physics2D.OverlapAreaAll(col.bounds.min, col.bounds.max, layerMask);
+                foreach (Collider2D hit in hits)
+                {
+                    Damage(hit);
+                }
+            }
+        }
+
+        void Damage(Collider2D other)
         {
             IHit hit = other.GetComponent<IHit>();
             if (hit != null)
@@ -24,7 +40,7 @@ namespace TE
 
         public void AllowHit(bool canHit)
         {
-            col.enabled = canHit;
-        }
+            this.canHit = canHit;
+        }   
     }
 }

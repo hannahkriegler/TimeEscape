@@ -125,7 +125,7 @@ namespace TE
             }
             else
             {
-                attackCooldown = 0.4f;
+                attackCooldown = 0.45f;
             }
         }
 
@@ -140,7 +140,7 @@ namespace TE
             }
             else
             {
-                responseAttackTimer = 0.2f;
+                responseAttackTimer = 0.3f;
             }
         }
 

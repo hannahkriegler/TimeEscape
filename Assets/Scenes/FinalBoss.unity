@@ -11819,5 +11819,25 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 6bcb78a60db60b843b4eedd3deafb9eb, type: 2}
+    - target: {fileID: 9222792781115207750, guid: 075ee45eb9f41a84e86aba5a54312435,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158324873811601350, guid: 075ee45eb9f41a84e86aba5a54312435,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870827633679609809, guid: 075ee45eb9f41a84e86aba5a54312435,
+        type: 3}
+      propertyPath: isBossCollider
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1870827633679609809, guid: 075ee45eb9f41a84e86aba5a54312435,
+        type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075ee45eb9f41a84e86aba5a54312435, type: 3}

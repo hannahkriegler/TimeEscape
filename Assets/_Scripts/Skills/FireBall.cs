@@ -16,7 +16,7 @@ namespace TE
         {
             _damage = damage;
             playerFireBall = player;
-            Destroy(gameObject, 10.0f);
+            Destroy(gameObject, 4.0f);
             rigid = GetComponent<Rigidbody2D>();
             if (dir.x < 0)
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
