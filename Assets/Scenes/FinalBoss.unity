@@ -915,7 +915,7 @@ MonoBehaviour:
   worldTimeScale: 1
   countDownScale: 1
   inputManager: {fileID: 1358705767}
-  startTime: 420
+  startTime: 360
   timeDrainMultiplier: 1
   timeLeft: 0
   timeShardCounter: 0
@@ -11268,24 +11268,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1000803323587601952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8524123517826739778, guid: 075ee45eb9f41a84e86aba5a54312435,
-    type: 3}
-  m_PrefabInstance: {fileID: 8910464768228558946}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1000803323587601953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000803323587601952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d193806158a6f4a8c83193bbbef26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7110490288559821034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11495,72 +11477,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1499182210005255779, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 6bcb78a60db60b843b4eedd3deafb9eb, type: 2}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: attackDistance
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: dashSpeed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: maxHealth
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: attackDamage
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: fireBall
-      value: 
-      objectReference: {fileID: 1070472936221306141, guid: e5e0a33472a9e2e41822eae120520975,
-        type: 3}
-    - target: {fileID: 9222792781115207750, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Layer
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158324873811601350, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158324873811601350, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.0216403
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158324873811601350, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.10178685
-      objectReference: {fileID: 0}
-    - target: {fileID: 3158324873811601350, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.8138001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1870827633679609809, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: isBossCollider
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1870827633679609809, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075ee45eb9f41a84e86aba5a54312435, type: 3}
