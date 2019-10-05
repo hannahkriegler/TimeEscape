@@ -90,20 +90,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheck: {fileID: 6470073093515743779}
+  fireBall: {fileID: 1070472936221306141, guid: e5e0a33472a9e2e41822eae120520975,
+    type: 3}
   moveSpeed: 300
   jumpVelocity: 10
   fallMultiplier: 2.5
   gravityMultiplier: 2
-  dashVelocity: 500
+  dashSpeed: 500
   maxHealth: 30
   curHealth: 0
   attackDistance: 2.8
-  attackDamage: 10
+  attackDamage: 15
+  fireBallDamage: 10
   canAttack: 0
   grounded: 0
+  dashActive: 0
+  knockBack: 0
   facingRight: 0
   responseAttackTimer: 0
   attackCooldown: 0
+  damageThreshold: 0
   damageModifier: 1
   takenDamageModifier: 1
   skillCostModifier: 1
@@ -347,6 +353,7 @@ GameObject:
   - component: {fileID: 4646941048442795943}
   - component: {fileID: 1499182210005255779}
   - component: {fileID: 7154288639813975050}
+  - component: {fileID: 1000803323587601953}
   m_Layer: 13
   m_Name: TrueMe
   m_TagString: Untagged
@@ -378,7 +385,7 @@ Animator:
   m_GameObject: {fileID: 8524123517826739778}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 53006815ac41f904d812d22c59032a07, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6bcb78a60db60b843b4eedd3deafb9eb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -436,6 +443,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1000803323587601953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524123517826739778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d193806158a6f4a8c83193bbbef26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9222792781115207750
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,7 +466,7 @@ GameObject:
   - component: {fileID: 4302666219438126417}
   - component: {fileID: 3158324873811601350}
   - component: {fileID: 1870827633679609809}
-  m_Layer: 18
+  m_Layer: 13
   m_Name: DamageCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -481,7 +500,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036224723, y: 0.10178682}
+  m_Offset: {x: 0.01640433, y: 0.10178685}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -492,7 +511,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7846313, y: 1.5225618}
+  m_Size: {x: 1.824272, y: 1.5225618}
   m_EdgeRadius: 0
 --- !u!114 &1870827633679609809
 MonoBehaviour:
@@ -508,3 +527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 3158324873811601350}
   isBossCollider: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1024

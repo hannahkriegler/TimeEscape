@@ -39,6 +39,7 @@ namespace TE
         public int curHealth;
         public float attackDistance = 2.8f;
         public int attackDamage = 10;
+        public int fireBallDamage = 10;
 
         [Header("States")]
         public bool canAttack;
@@ -216,7 +217,7 @@ namespace TE
             Vector2 dir = facingRight ? Vector2.right : Vector2.left;
             fb.transform.position = transform.position + (Vector3)dir * 1.2f + transform.up * 0.5f;
             float dist = Vector2.Distance(player.transform.position, transform.position);
-            fb.GetComponent<FireBall>().Shoot(2, dir, false,  dist * 1.2f + 6);
+            fb.GetComponent<FireBall>().Shoot(fireBallDamage, dir, false,  dist * 1.2f + 6);
             fireBallCD = 2.0f;
         }
 
