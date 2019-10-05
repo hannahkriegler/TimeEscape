@@ -110,8 +110,8 @@ namespace TE
             Debug.Log("Player hitted!");
             float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);
-            animator.CrossFade("Hit", 0.2f);
-            Movement.KnockBack(300 + damage * 10, attacker.transform);
+            animator.Play("Hit");
+            Movement.KnockBack(150 + damage * 5, attacker.transform);
             currentFlashEffectTimer = flashEffectLength;
             StartCoroutine(FlashEffect());
         }

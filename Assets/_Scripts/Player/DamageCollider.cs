@@ -33,7 +33,7 @@ namespace TE
             if (hit != null)
             {
                 int damage = isBossCollider ? GetComponentInParent<FinalBoss>().attackDamage : GetComponentInParent<Player>().damageModifier;
-                hit.OnHit(damage, other.gameObject);
+                hit.OnHit(damage, transform.parent.gameObject);
                 AllowHit(false);
             }
         }

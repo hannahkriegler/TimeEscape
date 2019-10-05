@@ -87,10 +87,9 @@ namespace TE
         {
             float delta = _player.fixedDelta;
             //Handle Knockback
-            bool isInteracting = _player.IsInteracting();
             if(knockBack)
             {
-                if (isInteracting && knockBackTimer < 0.5f)
+                if (knockBackTimer < 0.5f)
                 {
                     knockBackTimer += delta;
                     return;
@@ -144,7 +143,7 @@ namespace TE
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump1 = true;
-                _player.animator.CrossFade("Jump", 0.2f);
+                _player.animator.Play("Jump");
                 _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;
@@ -155,7 +154,7 @@ namespace TE
             {
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump2 = true;
-                _player.animator.CrossFade("Jump", 0.2f);
+                _player.animator.Play("Jump");
                 _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;
@@ -173,7 +172,7 @@ namespace TE
                     dashDir = facingRight ? Vector2.right : Vector2.left;
                     dashActiveTimer = 0;
                     dashCDTimer = 0;
-                    _player.animator.CrossFade("Dash", 0.2f);
+                    _player.animator.Play("Dash");
                     SoundManager.instance.PlayDash();
                     _player.CombatMelee.ResetAttackState();
                 }

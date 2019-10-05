@@ -9,10 +9,9 @@ namespace TE
        Rigidbody2D rigid;
 
         private int _damage = 1;
-        public float speed = 500;
         bool playerFireBall;
 
-        public void Shoot(int damage, Vector2 dir, bool player = true)
+        public void Shoot(int damage, Vector2 dir, bool player = true, float speed = 15)
         {
             _damage = damage;
             playerFireBall = player;
@@ -30,6 +29,9 @@ namespace TE
             if (hit != null)
             {
                 if (playerFireBall && collision.transform.name == "Player_TrueMe")
+                    return;
+
+                if (!playerFireBall && collision.transform.name == "FinalBoss")
                     return;
 
                 hit.OnHit(_damage, collision.gameObject);
