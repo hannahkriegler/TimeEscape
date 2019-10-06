@@ -58,7 +58,7 @@ public class RoomBarriers : Enemy
 
     void MoveSpikes(GameObject spike, Vector2 direction)
     {
-        spike.transform.localPosition = Vector2.MoveTowards(new Vector2(spike.transform.localPosition.x, spike.transform.localPosition.y), direction, 3 * Time.deltaTime);
+        spike.transform.localPosition = Vector2.MoveTowards(new Vector2(spike.transform.localPosition.x, spike.transform.localPosition.y), direction, 6 * Time.deltaTime);
 
     }
 
