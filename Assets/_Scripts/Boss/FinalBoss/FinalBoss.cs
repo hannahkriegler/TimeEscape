@@ -163,7 +163,7 @@ namespace TE
             }
             else
             {
-                attackCooldown = 0.45f;
+                attackCooldown = 0.2f;
             }
         }
 
@@ -177,7 +177,7 @@ namespace TE
                 else
                     Attack();
             }
-            else if(dist < attackDistance * 3  && fireBallCD <= 0)
+            else if (dist < attackDistance * 3 && fireBallCD <= 0)
             {
                 CastFireBall();
             }
@@ -188,7 +188,10 @@ namespace TE
                 else
                     MoveImpulse();
                 attackCooldown = 0;
-                responseAttackTimer = 0.3f;
+                if (!grounded)
+                    responseAttackTimer = 0.5f;
+                else
+                    responseAttackTimer = 1.5f;
                 fireBallCD -= Time.deltaTime;
             }
         }
@@ -207,18 +210,34 @@ namespace TE
             revengeValue = 0;
             SoundManager.instance.PlaySlash();
             dashActive = false;
-            moveImpulseCD = 0.2f;
+            moveImpulseCD = 0.6f;
             return true;
         }
 
         void CastFireBall()
         {
+            if (!canAttack)
+                return;
+
+            animator.Play("Attack");
+
+            StartCoroutine(FireBall());
+       
+            fireBallCD = 8.0f;
+            dashActive = false;
+            moveImpulseCD = 0.6f;
+            canAttack = false;
+            revengeValue = 0;
+        }
+
+        IEnumerator FireBall()
+        {
+            yield return new WaitForSeconds(0.4f);
             GameObject fb = Instantiate(fireBall);
             Vector2 dir = facingRight ? Vector2.right : Vector2.left;
             fb.transform.position = transform.position + (Vector3)dir * 1.2f + transform.up * 0.5f;
             float dist = Vector2.Distance(player.transform.position, transform.position);
-            fb.GetComponent<FireBall>().Shoot(fireBallDamage, dir, false,  dist * 1.2f + 6);
-            fireBallCD = 2.0f;
+            fb.GetComponent<FireBall>().Shoot(fireBallDamage, dir, false, dist * 0.8f + 3);
         }
 
         public bool IsInteracting()
@@ -230,8 +249,11 @@ namespace TE
 
         void MoveUpdate()
         {
-            float dot = Vector2.Angle((player.transform.position - transform.position).normalized, Vector2.right);
-            FlipCharacter(dot < 90);
+            if (!IsInteracting())
+            {
+                float dot = Vector2.Angle((player.transform.position - transform.position).normalized, Vector2.right);
+                FlipCharacter(dot < 90);
+            }
 
             Vector2 rigidbodyCurVelocity = rigidBody.velocity;
 
@@ -255,7 +277,11 @@ namespace TE
                 if (Vector2.Distance(targetPosition, transform.position) < 0.2f || moveTimer > 1.0f)
                 {
                     dashActive = false;
-                    moveImpulseCD = 0.2f;
+                    moveImpulseCD = 0.4f;
+                    if (!grounded)
+                        responseAttackTimer = 1.0f;
+                    else
+                        responseAttackTimer = 2.0f;
                 }
 
                 if (!trailRenderer.enabled && dashEffect)
@@ -356,7 +382,7 @@ namespace TE
             TakeDamage(damage);
 
             //TODO Damage Threshold System
-            if (!IsInteracting() && revengeValue < 2)
+            if (!IsInteracting() && revengeValue < 1)
             {
                 revengeValue += damage;
                 animator.Play("Hit");

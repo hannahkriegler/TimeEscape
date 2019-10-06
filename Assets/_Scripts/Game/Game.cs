@@ -252,7 +252,7 @@ namespace TE
                 return;
             }
 
-            if (timeLeft <= 60)
+            if (timeLeft <= 60 && !skipTutorials)
             {
                 ChangeInfoTextSprite("XboxOne_Y");
                 ShowTextBox("Halte <sprite name=\"XboxOne_Y\"> gedrückt um in der Zeit zurückzureisen." +
