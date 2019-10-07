@@ -111,7 +111,7 @@ namespace TE
             float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);
             animator.Play("Hit");
-            Movement.KnockBack(150 + damage * 5, attacker.transform);
+            Movement.KnockBack(150 + damage * 10, attacker.transform);
             currentFlashEffectTimer = flashEffectLength;
             StartCoroutine(FlashEffect());
         }

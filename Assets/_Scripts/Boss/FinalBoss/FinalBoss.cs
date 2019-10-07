@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TE
 {
-    public class FinalBoss : MonoBehaviour, IHit
+    public class FinalBoss : MonoBehaviour, IHit, ITimeTravel
     {
         private Game _game;
 
@@ -37,6 +37,7 @@ namespace TE
         [Header("Stats")]
         public int maxHealth = 30;
         public int curHealth;
+        private int savedHealth;
         public float attackDistance = 2.8f;
         public int attackDamage = 10;
         public int fireBallDamage = 10;
@@ -103,16 +104,20 @@ namespace TE
 
             player = _game.player;
 
-            moveImpulseCD = 0.8f;
+            moveImpulseCD = 1.5f;
             fireBallCD = 2.0f;
-
-            ActivateBoss();
         }
 
         public void ActivateBoss()
         {
             activated = true;
             _game.bossHealthBar.Activate("Prokrastination");
+        }
+
+        public void DeactivateBoss()
+        {
+            activated = false;
+            _game.bossHealthBar.DeActivate();
         }
 
         private void Update()
@@ -163,7 +168,7 @@ namespace TE
             }
             else
             {
-                attackCooldown = 0.2f;
+                attackCooldown = 0.4f;
             }
         }
 
@@ -189,9 +194,9 @@ namespace TE
                     MoveImpulse();
                 attackCooldown = 0;
                 if (!grounded)
-                    responseAttackTimer = 0.5f;
+                    responseAttackTimer = 0.4f;
                 else
-                    responseAttackTimer = 1.5f;
+                    responseAttackTimer = 1.2f;
                 fireBallCD -= Time.deltaTime;
             }
         }
@@ -210,7 +215,7 @@ namespace TE
             revengeValue = 0;
             SoundManager.instance.PlaySlash();
             dashActive = false;
-            moveImpulseCD = 0.6f;
+            moveImpulseCD = 0.5f;
             return true;
         }
 
@@ -219,13 +224,13 @@ namespace TE
             if (!canAttack)
                 return;
 
-            animator.Play("Attack");
+            animator.Play("Cast");
 
             StartCoroutine(FireBall());
        
             fireBallCD = 8.0f;
             dashActive = false;
-            moveImpulseCD = 0.6f;
+            moveImpulseCD = 0.5f;
             canAttack = false;
             revengeValue = 0;
         }
@@ -261,12 +266,13 @@ namespace TE
 
             if (dashActive)
             {
+                sword.AllowHit(false);
                 Vector2 dir = (targetPosition - transform.position).normalized;
 
-                moveTimer += Time.deltaTime * 2.0f;
+                moveTimer += Time.deltaTime* 2.0f;
 
                 if (moveTimer < 0.4f)
-                    targetPosition = player.transform.position;
+                   targetPosition = player.transform.position;
 
                 float curDashSpeed = Mathf.Lerp(dashSpeed, 0, moveTimer);
 
@@ -279,9 +285,9 @@ namespace TE
                     dashActive = false;
                     moveImpulseCD = 0.4f;
                     if (!grounded)
-                        responseAttackTimer = 1.0f;
+                        responseAttackTimer = 0.5f;
                     else
-                        responseAttackTimer = 2.0f;
+                        responseAttackTimer = 1.2f;
                 }
 
                 if (!trailRenderer.enabled && dashEffect)
@@ -376,7 +382,10 @@ namespace TE
         {
             if (dead)
                 return;
-
+            
+            if(!activated)
+                ActivateBoss();
+            
             SoundManager.instance.PlayHit();
             Debug.Log("Final Boss hitted!");
             TakeDamage(damage);
@@ -442,6 +451,7 @@ namespace TE
             yield return new WaitForSeconds(1.0f);
             gameObject.SetActive(false);
             _game.bossHealthBar.DeActivate();
+            Game.instance.Won();
         }
 
         #endregion
@@ -457,5 +467,16 @@ namespace TE
             trailRenderer.enabled = false;
         }
         #endregion
+
+        public void HandleTimeStamp()
+        {
+            savedHealth = curHealth;
+        }
+
+        public void HandleTimeTravel()
+        {
+            DeactivateBoss();
+            curHealth = savedHealth;
+        }
     }
 }

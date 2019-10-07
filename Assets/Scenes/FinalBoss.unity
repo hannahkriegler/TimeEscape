@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -940,6 +940,8 @@ MonoBehaviour:
   systemMessage: {fileID: 548933241}
   dashIcon: {fileID: 1386018855}
   jumpIcon: {fileID: 541598004}
+  wonPanel: {fileID: 0}
+  timeleftText: {fileID: 0}
   bossHealthBar: {fileID: 1616384944}
 --- !u!4 &1358705769
 Transform:
@@ -2753,6 +2755,7 @@ MonoBehaviour:
   roomType: 1
   RoomID: 1
   secondsLeftToOpen: 0
+  finalBoss: {fileID: 0}
 --- !u!61 &1547059446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11477,26 +11480,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2547711281281982779, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: attackDamage
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: fireBallDamage
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 2587666762796535426, guid: 075ee45eb9f41a84e86aba5a54312435,
-        type: 3}
-      propertyPath: maxHealth
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 075ee45eb9f41a84e86aba5a54312435, type: 3}

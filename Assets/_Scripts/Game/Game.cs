@@ -48,6 +48,8 @@ namespace TE
         public GameObject systemMessage;
         public GameObject dashIcon;
         public GameObject jumpIcon;
+        public GameObject wonPanel;
+        public TextMeshProUGUI timeleftText;
 
         float gameOverTimer;
         bool gameOver;
@@ -55,6 +57,7 @@ namespace TE
 
         public Healthbar bossHealthBar;
 
+        private bool wonGame;
 
         private void Awake()
         {
@@ -142,6 +145,9 @@ namespace TE
 
         void UpdateTime()
         {
+            if (wonGame)
+                return;
+            
             if (timeLeft > 0)
                 timeLeft -= Time.deltaTime * timeDrainMultiplier * countDownScale;
             else
@@ -206,6 +212,12 @@ namespace TE
         {
             if (textBoxOpen)
                 return;
+
+            if (wonGame)
+            {
+                SceneManager.LoadScene(0);
+                return;
+            }
 
             Pause(!gameIsPaused);
             pauseScreen.SetActive(gameIsPaused);
@@ -297,6 +309,13 @@ namespace TE
                 return 1;
 
             return 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
+        }
+
+        public void Won()
+        {
+            wonPanel.SetActive(true);
+            timeleftText.text = "Zeit übrig: " + Mathf.Round(timeLeft) + " Sekunden.";
+            wonGame = true;
         }
     }
 }
