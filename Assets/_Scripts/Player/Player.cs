@@ -19,6 +19,7 @@ namespace TE
 
         public TrailRenderer trailRenderer { get; private set; }
 
+        public Player_AnimHook animHook { get; private set; }
         public Animator animator { get; private set; }
 
         public DamageCollider sword  { get; private set; }
@@ -29,6 +30,7 @@ namespace TE
         public LayerMask groundLayerCheck;
         public Transform groundCheck;
         public ButtomPrompt buttomPrompt;
+        public GameObject fireBall;
         
         [Header("Settings")]
         public float moveSpeed = 300;
@@ -64,11 +66,13 @@ namespace TE
             rigidBody = GetComponent<Rigidbody2D>();
             sword = GetComponentInChildren<DamageCollider>();
             animator = GetComponentInChildren<Animator>();
+            animHook = GetComponentInChildren<Player_AnimHook>();
             col = GetComponent<Collider2D>();
             trailRenderer = GetComponentInChildren<TrailRenderer>();
             all_Sprites = GetComponentsInChildren<SpriteRenderer>();
 
             //Init Subsystems
+            animHook.Init(this);
             Movement = new Movement(this, _game);
             TimeSkills = new TimeSkills(this, _game);
             CombatMelee = new CombatMelee(this, _game);
@@ -89,7 +93,7 @@ namespace TE
         {
             if (!IsInteracting())
             {
-                CombatMelee.AllowAttacking();
+                CombatMelee.ResetAttackState();
             }
         }
 
@@ -106,8 +110,8 @@ namespace TE
             Debug.Log("Player hitted!");
             float f = damage * takenDamageModifier;
             _game.DecreaseTime(f);
-            animator.CrossFade("Hit", 0.2f);
-            Movement.KnockBack(300 + damage * 10, attacker.transform);
+            animator.Play("Hit");
+            Movement.KnockBack(150 + damage * 10, attacker.transform);
             currentFlashEffectTimer = flashEffectLength;
             StartCoroutine(FlashEffect());
         }

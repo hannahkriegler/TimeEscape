@@ -15,10 +15,19 @@ namespace TE
             _game = game;
         }
 
+        public void GetFireBall()
+        {
+            _activeSkill = new FireBallSkill();
+        }
+
         public void ActivateActiveSkill()
         {
-            Debug.Log("Active Skill activated!");
-            _activeSkill?.Activate();
+            if(_activeSkill == null && _game.session.HasFireball())
+            {
+                GetFireBall();
+            }
+
+            _activeSkill?.Activate(_player);
         }
         
     }

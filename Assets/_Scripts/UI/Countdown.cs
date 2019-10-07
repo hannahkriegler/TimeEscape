@@ -18,7 +18,7 @@ namespace TE.UI
             int sec = Mathf.FloorToInt((timeLeft - min * 60));
         
             countdownText.text = min.ToString();
-            countdownImage.fillAmount = sec / 60f;
+            countdownImage.fillAmount = Mathf.Lerp(countdownImage.fillAmount, sec / 60f, Time.deltaTime * 5);
         }
 
     }

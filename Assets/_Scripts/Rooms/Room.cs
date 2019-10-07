@@ -30,8 +30,10 @@ namespace TE
 
         private bool saveDoorsDown;
 
-        [Header("Special Time Rooms Infos")]
+        [Header("Special Rooms Infos")]
         public int secondsLeftToOpen;
+
+        public FinalBoss finalBoss;
 
         private void Start()
         {
@@ -98,7 +100,7 @@ namespace TE
                 if (door != null)
                     door.HandleTimeTravel();
             }
-
+            finalBoss?.HandleTimeTravel();
             doorsDown = saveDoorsDown;
         }
 
@@ -120,7 +122,7 @@ namespace TE
                     door.HandleTimeStamp();
             }
             
-
+            finalBoss?.HandleTimeStamp();
             saveDoorsDown = doorsDown;
         }
 
@@ -142,6 +144,8 @@ namespace TE
                     MoveDoorsDown(true);
                     break;
                 case RoomTypes.Boss:
+                    MoveDoorsDown(true);
+                    finalBoss?.ActivateBoss();
                     break;
                 case RoomTypes.SpecialTimeRoom:
                     if (doorsDown) break; // bei der tür genau inverse
