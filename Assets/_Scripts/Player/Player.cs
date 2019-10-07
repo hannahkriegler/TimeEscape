@@ -42,7 +42,8 @@ namespace TE
 
         [Header("States")]
         public bool canAttack;
-        
+
+        public bool hasSword;
         public float delta { get; private set; }
         public float fixedDelta { get; private set; }
         
@@ -87,6 +88,7 @@ namespace TE
             delta = Time.deltaTime * _game.playerTimeScale;
             fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
           
+            animator.SetBool("hasSword", hasSword);
         }
 
         private void LateUpdate()

@@ -17,6 +17,9 @@ namespace TE
         {
             if (!_player.canAttack)
                 return false;
+
+            if (!_player.hasSword)
+                return false;
        
             if(_player.Movement.grounded)
               _player.animator.Play("Attack");

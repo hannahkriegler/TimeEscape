@@ -28,7 +28,7 @@ AnimationClip:
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: {x: -1.585, y: 0.65, z: 0}
         inSlope: {x: Infinity, y: Infinity, z: Infinity}
         outSlope: {x: Infinity, y: Infinity, z: Infinity}
@@ -48,13 +48,13 @@ AnimationClip:
       value: {fileID: 21300000, guid: 5b7b2751c1448fc42955940b5138e293, type: 3}
     - time: 0.375
       value: {fileID: 21300000, guid: f78ce58e239be8c46a8066c1b2ee1acd, type: 3}
-    - time: 0.75
+    - time: 0.625
       value: {fileID: 21300000, guid: ff62b386df592fd4b8fab51847826b7e, type: 3}
-    - time: 0.875
+    - time: 0.75
       value: {fileID: 21300000, guid: 7cd6a29362a57014b86085d6179603f5, type: 3}
-    - time: 1
+    - time: 0.875
       value: {fileID: 21300000, guid: 0f660b173e89d8845aa88fd5188fd8d7, type: 3}
-    - time: 1.125
+    - time: 1
       value: {fileID: 21300000, guid: 20489a35d2f1b1e479417b65424ebf76, type: 3}
     attribute: m_Sprite
     path: 
@@ -93,7 +93,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.25
+    m_StopTime: 1.125
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -122,7 +122,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: -1.585
         inSlope: Infinity
         outSlope: Infinity
@@ -150,7 +150,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: 0.65
         inSlope: Infinity
         outSlope: Infinity
@@ -178,7 +178,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -197,14 +197,14 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.75
+  - time: 0.625
     functionName: EnableMeleeDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
+  - time: 0.875
     functionName: DisableMeleeDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}
