@@ -7,11 +7,12 @@ namespace TE
 {
     public class ButtomPrompt : MonoBehaviour
     {
-        public Sprite y_button;
-        public Sprite b_button;
+        public GameObject portalSymbol;
+        public GameObject timeTravel;
 
-        public Image buttonImage;
+
         public Image circleImage;
+        public Color baseColor;
 
 
         public void Init(ButtonType buttonType)
@@ -20,10 +21,12 @@ namespace TE
             switch (buttonType)
             {
                 case ButtonType.B:
-                    buttonImage.sprite = b_button;
+                    portalSymbol.SetActive(true);
+                    timeTravel.SetActive(false);
                     break;
                 case ButtonType.Y:
-                    buttonImage.sprite = y_button;
+                    portalSymbol.SetActive(false);
+                    timeTravel.SetActive(true);
                     break;
                 default:
                     break;
@@ -32,11 +35,37 @@ namespace TE
 
         public void SetFillAmount(float fill)
         {
+            circleImage.color = baseColor;
             circleImage.fillAmount = fill;
         }
 
+        public void ShowTimeTravelDisabled()
+        {
+            if (!rdy)
+                return;
+            portalSymbol.SetActive(false);
+            timeTravel.SetActive(true);
+            gameObject.SetActive(true);
+            circleImage.color = Color.red;
+            circleImage.fillAmount = 1;
+            rdy = false;
+            StartCoroutine(Hide());
+        }
+
+        bool rdy = true;
+        IEnumerator Hide()
+        {
+            yield return new WaitForSeconds(0.4f);
+            gameObject.SetActive(false);
+            rdy = true;
+        }
+
+
         public void Disable()
         {
+            if (!rdy)
+                return;
+
             gameObject.SetActive(false);
         }
     }

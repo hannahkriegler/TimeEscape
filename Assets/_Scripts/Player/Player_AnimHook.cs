@@ -22,5 +22,10 @@ namespace TE
         {
             player.sword.AllowHit(false);
         }
+
+        public void CastFireBall()
+        {
+            player.CombatSkill.TriggerSkill();
+        }
     }
 }

@@ -17,13 +17,11 @@ public class ShroomieJr_WalkBehaviour : StateMachineBehaviour
         speed = Random.Range(maxSpeed, minSpeed);
         shroomieJR = animator.GetComponentInParent<Shroomie_JR>().gameObject;
         playerPos = Game.instance.player.transform;
-        Debug.Log("shroomie: " + shroomieJR);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("JR walks");
         var direction = (playerPos.transform.position- shroomieJR.transform.position).normalized;
         
         direction.y = 0;

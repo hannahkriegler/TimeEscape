@@ -20,6 +20,8 @@ namespace TE
         bool right;
         bool toClose;
 
+        GameObject shooter;
+
         private void Start()
         {
             _player = Game.instance.player;
@@ -32,9 +34,19 @@ namespace TE
             follow = false;
         }
 
+        public void AssignShooter(GameObject shooter)
+        {
+            this.shooter = shooter;
+        }
+
         float timer;
         private void Update()
         {
+            if (!shooter.activeSelf)
+            {
+                Destroy(gameObject);
+            }
+
             if (timer > 0.2f && !follow)
             {
                 moveVector = (_player.transform.position - transform.position + Vector3.up * 

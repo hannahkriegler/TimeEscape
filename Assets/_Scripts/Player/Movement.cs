@@ -143,7 +143,10 @@ namespace TE
                 //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump1 = true;
-                _player.animator.Play("Jump");
+                if(_player.hasSword)
+                    _player.animator.Play("Jump");
+                else
+                    _player.animator.Play("Jump_NoSword");
                 _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;
@@ -154,7 +157,10 @@ namespace TE
             {
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump2 = true;
-                _player.animator.Play("Jump");
+                if (_player.hasSword)
+                    _player.animator.Play("Jump");
+                else
+                    _player.animator.Play("Jump_NoSword");
                 _player.CombatMelee.ResetAttackState();
                 SoundManager.instance.PlayJump();
                 return true;

@@ -14,13 +14,7 @@ namespace TE
 
         protected override void Setup()
         {
-            attackKnockback = 0;
-        }
-
-        protected override void Knockback(float strength)
-        {
-            // No Knockback in this enemy
-            return;       
+            //attackKnockback = 0.5f;
         }
 
        protected override void Tick()
@@ -34,8 +28,10 @@ namespace TE
             AttackAnim(true);
             if (timeBtwShots <= 0)
             {
-                Instantiate(projectile, transform.position + Vector3.up * 0.2f, 
+                GameObject note = Instantiate(projectile, transform.position + Vector3.up * 0.2f, 
                     Quaternion.identity);
+                MusicBoxProjectile proj = note.GetComponent<MusicBoxProjectile>();
+                proj.AssignShooter(gameObject);
                 counter++;
                 timeBtwShots = counter % 3 == 0 ? startTimeBtwShots : timeBtwTripleShots;
             }

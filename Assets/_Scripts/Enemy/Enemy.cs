@@ -269,7 +269,8 @@ namespace TE
                 yield return new WaitForEndOfFrame();
             }
             gameObject.SetActive(false);
-            assignedRoom.NotifyEnemyDied(this);
+            if(assignedRoom != null)
+             assignedRoom.NotifyEnemyDied(this);
             if (hasLootDrop) DropLoot();
         }
 
