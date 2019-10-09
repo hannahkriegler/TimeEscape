@@ -225,8 +225,6 @@ namespace TE
                 return;
 
             animator.Play("Cast");
-
-            StartCoroutine(FireBall());
        
             fireBallCD = 8.0f;
             dashActive = false;
@@ -235,9 +233,8 @@ namespace TE
             revengeValue = 0;
         }
 
-        IEnumerator FireBall()
+        public void TriggerFireBall()
         {
-            yield return new WaitForSeconds(0.4f);
             GameObject fb = Instantiate(fireBall);
             Vector2 dir = facingRight ? Vector2.right : Vector2.left;
             fb.transform.position = transform.position + (Vector3)dir * 1.2f + transform.up * 0.5f;

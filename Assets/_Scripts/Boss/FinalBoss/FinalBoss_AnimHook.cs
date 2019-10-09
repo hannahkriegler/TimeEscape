@@ -21,5 +21,10 @@ namespace TE
         {
             boss.sword.AllowHit(false);
         }
+
+        public void CastFireBall()
+        {
+            boss.TriggerFireBall();
+        }
     }
 }

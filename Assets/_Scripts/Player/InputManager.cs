@@ -120,6 +120,7 @@ namespace TE
 
             timeTravel = false;
             bool timeTravelPressed = Input.GetButton("TimeTravel");
+            bool timeTravelJustPressed = Input.GetButtonDown("TimeTravel");
 
             if (timeTravelPressed && game.session.canTimeTravel && game.CanTimeTravel())
             {
@@ -140,7 +141,11 @@ namespace TE
             {
                 didTimeTravel = false;
                 timeTravelTimer = 0;
+             
             }
+
+            if (timeTravelJustPressed && game.session.canTimeTravel && !game.CanTimeTravel())
+                player.buttomPrompt.ShowTimeTravelDisabled();
 
             if (!timeTravelPressed && !timeStampPressed)
                 player.buttomPrompt.Disable();

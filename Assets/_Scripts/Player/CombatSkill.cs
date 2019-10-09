@@ -29,6 +29,11 @@ namespace TE
 
             _activeSkill?.Activate(_player);
         }
+
+        public void TriggerSkill()
+        {
+            _activeSkill?.Trigger(_player);
+        }
         
     }
 }
