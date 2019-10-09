@@ -9,6 +9,8 @@ TagManager:
   - LootInfo
   - Boss
   - FinalBoss
+  - Sword
+  - FireBall
   layers:
   - Default
   - TransparentFX
