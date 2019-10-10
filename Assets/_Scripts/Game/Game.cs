@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Video;
 
 namespace TE
 {
@@ -37,6 +38,7 @@ namespace TE
         public bool allTimeSkills;
         public bool unlockFireBall;
         public bool skipTutorials;
+        public bool skipIntro;
 
         [Header("Configs")]
         public bool AllowMoreThan4TimeShards = true;
@@ -54,6 +56,13 @@ namespace TE
         public GameObject fireBallIcon;
         public GameObject wonPanel;
         public TextMeshProUGUI timeleftText;
+        public GameObject ui;
+
+        [Header("Video")]
+        public VideoPlayer videoPlayer;
+        public VideoClip intro;
+        public VideoClip outro;
+        bool videoPlaying;
 
         float gameOverTimer;
         bool gameOver;
@@ -85,10 +94,33 @@ namespace TE
                 session.UnlockTimeTravel();
                 session.UnlockTimestamp();
             }
+
+            if (!skipIntro)
+            {
+                ui.SetActive(false);
+                videoPlayer.clip = intro;
+                videoPlayer.Play();
+                Time.timeScale = 0;
+                videoPlaying = true;
+            }
         }
+
+
+
 
         private void Update()
         {
+            if (videoPlaying)
+            {
+                if (videoPlayer.isPrepared && !videoPlayer.isPlaying)
+                {
+                    videoPlayer.Stop();
+                    Time.timeScale = 1;
+                    videoPlaying = false;
+                    ui.SetActive(true);
+                }
+            }
+
             UpdateTime();
 
             Cheats();
@@ -330,6 +362,17 @@ namespace TE
             wonPanel.SetActive(true);
             timeleftText.text = "Zeit übrig: " + Mathf.Round(timeLeft) + " Sekunden.";
             wonGame = true;
+            StartCoroutine(PlayOutro());
+        }
+
+        IEnumerator PlayOutro()
+        {
+            yield return new WaitForSeconds(1.2f);
+            ui.SetActive(false);
+            videoPlayer.clip = outro;
+            videoPlayer.Play();
+            Time.timeScale = 0;
+            videoPlaying = true;
         }
     }
 }
