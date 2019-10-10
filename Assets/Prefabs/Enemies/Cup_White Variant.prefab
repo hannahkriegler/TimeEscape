@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 9a56984ed17c49d4785b49d4e2de1401, type: 2}
+    - target: {fileID: 1143893415467564886, guid: 631f6a106e7b73c4bbea6f22cf740f86,
+        type: 3}
+      propertyPath: damageAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1143893416101979339, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
       propertyPath: m_Layer
