@@ -13,7 +13,8 @@ namespace TE
         {
             DASH,
             JUMP,
-            FIREBALL
+            FIREBALL,
+            TIMECONTROLE
         }
 
 
@@ -41,6 +42,11 @@ namespace TE
                     info = "Du hast den Feuerball freigeschaltet!\n" +
                         "Schieße einen Feuerball mit <sprite name=\"XboxOne_LT\">!";
                     session.UnlockFireball();
+                    break;
+                case SkillType.TIMECONTROLE:
+                    Game.instance.ChangeInfoTextSprite("XboxOne_LB");
+                    info = "Du kannst jetzt die Zeit verlangsamen mit <sprite name=\"XboxOne_LB\"> !";
+                    session.UnlockTimeSkills();
                     break;
                 default:
                     break;

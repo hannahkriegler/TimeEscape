@@ -11,6 +11,7 @@ public class Boss : Enemy
 
     public GameObject spitProjectile;
     public GameObject spitStart;
+    public GameObject bossSteps;
 
     protected float timeBtwDamage = 0f; // give the player time to recover before taking more damage
     private float timeToRecoverAfterSpit = 2f;
@@ -168,7 +169,9 @@ public class Boss : Enemy
         Game.instance.bossHealthBar.DeActivate();
         gameObject.SetActive(false);
         //Unlocks time skills
-        Game.instance.session.UnlockTimeSkills();
+        //Game.instance.session.UnlockTimeSkills();
+        
+        bossSteps.SetActive(true);
     }
 
     protected IEnumerator WaitToDie(float timeToWait)

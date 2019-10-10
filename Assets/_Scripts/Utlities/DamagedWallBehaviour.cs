@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using TE;
 using UnityEngine;
 
-public class DamagedWallBehaviour : MonoBehaviour, IHit
+public class DamagedWallBehaviour : MonoBehaviour, IHit, ITimeTravel
 {
     public bool shake;
     public float timeToShake = 2f;
     private float currentTime;
     private bool isShaking = false;
+
+    private bool saveDestroy = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("FireBall")) return;
@@ -70,5 +72,15 @@ public class DamagedWallBehaviour : MonoBehaviour, IHit
     {
 
         shake = true;
+    }
+
+    public void HandleTimeStamp()
+    {
+        saveDestroy = gameObject.activeSelf;
+    }
+
+    public void HandleTimeTravel()
+    {
+        gameObject.SetActive(saveDestroy);
     }
 }
