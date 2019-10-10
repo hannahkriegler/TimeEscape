@@ -164,11 +164,13 @@ namespace TE
 
         public void IncreaseTime(float time)
         {
+            player.stopWatch.TimeChange(Mathf.RoundToInt(time));
             timeLeft += time;
         }
 
         public void DecreaseTime(float time)
         {
+            player.stopWatch.TimeChange(-Mathf.RoundToInt(time));
             timeLeft -= time;
         }
 

@@ -31,6 +31,7 @@ namespace TE
         public Transform groundCheck;
         public ButtomPrompt buttomPrompt;
         public GameObject fireBall;
+        public LooseTime stopWatch;
         
         [Header("Settings")]
         public float moveSpeed = 300;

@@ -193,6 +193,7 @@ namespace TE
             _player.transform.localScale = playerScale;
 
             _player.buttomPrompt.transform.localScale = new Vector2(_player.buttomPrompt.transform.localScale.x * -1 , 0.01f);
+            _player.stopWatch.transform.localScale = new Vector2(_player.stopWatch.transform.localScale.x * -1, 0.01f);
         }
 
         public Vector2 GetForwardDir()
