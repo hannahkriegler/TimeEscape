@@ -71,6 +71,7 @@ public class Cup : Enemy
         explodeAnimation.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         
         Die();
+        explodeAnimation.gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     public override void OnHit(int damage, GameObject attacker, bool knockBack)
