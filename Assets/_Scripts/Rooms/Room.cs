@@ -33,7 +33,7 @@ namespace TE
         [Header("Special Rooms Infos")]
         public int secondsLeftToOpen;
 
-        public FinalBoss finalBoss;
+        public GameObject finalBoss;
 
         private void Start()
         {
@@ -100,7 +100,7 @@ namespace TE
                 if (door != null)
                     door.HandleTimeTravel();
             }
-            finalBoss?.HandleTimeTravel();
+            finalBoss.GetComponent<FinalBoss>()?.HandleTimeTravel();
             doorsDown = saveDoorsDown;
         }
 
@@ -122,7 +122,7 @@ namespace TE
                     door.HandleTimeStamp();
             }
             
-            finalBoss?.HandleTimeStamp();
+            finalBoss.GetComponent<FinalBoss>()?.HandleTimeStamp();
             saveDoorsDown = doorsDown;
         }
 
@@ -142,10 +142,11 @@ namespace TE
                     break;
                 case RoomTypes.CloseDoorsUnitlEnemiesDefeated:
                     MoveDoorsDown(true);
+                    if (finalBoss != null) finalBoss.GetComponent<Boss>().setUp = true;
                     break;
                 case RoomTypes.Boss:
                     MoveDoorsDown(true);
-                    finalBoss?.ActivateBoss();
+                    finalBoss.GetComponent<FinalBoss>()?.ActivateBoss();
                     break;
                 case RoomTypes.SpecialTimeRoom:
                     if (doorsDown) break; // bei der tür genau inverse

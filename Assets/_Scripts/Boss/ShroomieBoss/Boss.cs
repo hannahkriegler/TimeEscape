@@ -14,13 +14,14 @@ public class Boss : Enemy
 
     protected float timeBtwDamage = 0f; // give the player time to recover before taking more damage
     private float timeToRecoverAfterSpit = 2f;
-    private float timeToRecoverAfterSpawn = 5f;
+    private float timeToRecoverAfterSpawn = 4f;
     private int _rndm;
    
     [HideInInspector] 
     public bool isInAttackRange;
 
-    bool activated = false;
+    public bool setUp = false;
+    private bool activated = false;
     private bool isDead = false;
 
     private int maxHealth;
@@ -37,7 +38,7 @@ public class Boss : Enemy
         
         if (!activated)
         {
-            if (Vector2.Distance(player.transform.position, transform.position) < 8)
+            if (Vector2.Distance(player.transform.position, transform.position) < 8 && setUp)
             {
                 activated = true;
                 Game.instance.bossHealthBar.Activate(Healthbar.BossType.SHROOMIE);
