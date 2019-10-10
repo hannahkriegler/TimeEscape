@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Characters/TrueMe/DashWithSword.meta
-guid: 16f5e7f976b644c66b0afb6f761d2d9e
-=======
-guid: 43a096d62db6629489101a184286186d
->>>>>>> c57a15a038a415995346430c514f1b8bdb3c9daf:Assets/Characters/TrueMe/DashWithSword.meta
+guid: 70beb793919dd4c269c68cf3da1216c0
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
