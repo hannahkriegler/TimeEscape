@@ -20,15 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2f070cf4f317d4c26840316155043ad9, type: 3}
+      value: {fileID: 21300000, guid: 1b7d61cdbf088d447854a14f313949a5, type: 3}
+    - time: 0.125
+      value: {fileID: 21300000, guid: 67d7121cb3eee15459b0d82a64b14aef, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
+      value: {fileID: 21300000, guid: 6a8cbc64aea2e634481dd57234f69a14, type: 3}
+    - time: 0.375
+      value: {fileID: 21300000, guid: 79716742cf715954aa488b1f822d0079, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: d0493ca8f6f154f71a219a73279405f8, type: 3}
+      value: {fileID: 21300000, guid: 6b398e154c0a97041ab726d7eacc5188, type: 3}
+    - time: 0.625
+      value: {fileID: 21300000, guid: 79716742cf715954aa488b1f822d0079, type: 3}
     - time: 0.75
-      value: {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
+      value: {fileID: 21300000, guid: 6a8cbc64aea2e634481dd57234f69a14, type: 3}
     - time: 0.875
-      value: {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
+      value: {fileID: 21300000, guid: 67d7121cb3eee15459b0d82a64b14aef, type: 3}
+    - time: 1
+      value: {fileID: 21300000, guid: 1b7d61cdbf088d447854a14f313949a5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +56,21 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2f070cf4f317d4c26840316155043ad9, type: 3}
-    - {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
-    - {fileID: 21300000, guid: d0493ca8f6f154f71a219a73279405f8, type: 3}
-    - {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
-    - {fileID: 21300000, guid: b24e8e1b0bb914adf8ca9c91dda4ef51, type: 3}
+    - {fileID: 21300000, guid: 1b7d61cdbf088d447854a14f313949a5, type: 3}
+    - {fileID: 21300000, guid: 67d7121cb3eee15459b0d82a64b14aef, type: 3}
+    - {fileID: 21300000, guid: 6a8cbc64aea2e634481dd57234f69a14, type: 3}
+    - {fileID: 21300000, guid: 79716742cf715954aa488b1f822d0079, type: 3}
+    - {fileID: 21300000, guid: 6b398e154c0a97041ab726d7eacc5188, type: 3}
+    - {fileID: 21300000, guid: 79716742cf715954aa488b1f822d0079, type: 3}
+    - {fileID: 21300000, guid: 6a8cbc64aea2e634481dd57234f69a14, type: 3}
+    - {fileID: 21300000, guid: 67d7121cb3eee15459b0d82a64b14aef, type: 3}
+    - {fileID: 21300000, guid: 1b7d61cdbf088d447854a14f313949a5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 1.125
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -78,7 +90,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.625
+  - time: 0.5
     functionName: CastFireBall
     data: 
     objectReferenceParameter: {fileID: 0}

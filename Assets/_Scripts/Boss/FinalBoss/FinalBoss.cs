@@ -111,7 +111,7 @@ namespace TE
         public void ActivateBoss()
         {
             activated = true;
-            _game.bossHealthBar.Activate("Prokrastination");
+            _game.bossHealthBar.Activate(Healthbar.BossType.PROKRASTINATION);
         }
 
         public void DeactivateBoss()

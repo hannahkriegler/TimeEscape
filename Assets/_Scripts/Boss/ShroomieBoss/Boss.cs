@@ -40,7 +40,7 @@ public class Boss : Enemy
             if (Vector2.Distance(player.transform.position, transform.position) < 8)
             {
                 activated = true;
-                Game.instance.bossHealthBar.Activate("Shroomie");
+                Game.instance.bossHealthBar.Activate(Healthbar.BossType.SHROOMIE);
                 maxHealth = hitPoints;
             }
                 
