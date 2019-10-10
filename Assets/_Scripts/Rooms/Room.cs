@@ -47,8 +47,13 @@ namespace TE
                 if (AllEnemiesAreDead())
                 {
                     MoveDoorsDown(false);
-
                 }
+
+                if (!gameObject.GetComponent<Collider2D>().IsTouching(Game.instance.player.GetComponent<Collider2D>()))
+                {
+                    MoveDoorsDown(false);
+                }
+                
             }
             if (roomType == RoomTypes.SpecialTimeRoom && !doorsDown
                                                       && Game.instance.timeLeft <= secondsLeftToOpen)
