@@ -43,6 +43,7 @@ namespace TE
 
         [Header("States")]
         public bool canAttack;
+        public bool iFrameActive;
 
         public bool hasSword;
         public float delta { get; private set; }
@@ -109,6 +110,9 @@ namespace TE
 
         public void OnHit(int damage, GameObject attacker, bool knockBack)
         {
+            if (iFrameActive)
+                return;
+
             SoundManager.instance.PlayHit();
             Debug.Log("Player hitted!");
             float f = damage * takenDamageModifier;
@@ -123,6 +127,7 @@ namespace TE
         float flashEffectLength = 0.35f;
         IEnumerator FlashEffect()
         {
+            iFrameActive = true;
             while (currentFlashEffectTimer > 0)
             {         
                 currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
@@ -133,6 +138,7 @@ namespace TE
                 yield return new WaitForEndOfFrame();
             }
             FlashEffect(0);
+            iFrameActive = false;
         }
 
         void SetupTrailRenderer()
