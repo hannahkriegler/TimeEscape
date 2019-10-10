@@ -19,7 +19,8 @@ public class Explosion : MonoBehaviour
         {
             IHit hit = other.gameObject.GetComponent<IHit>();
             hit.OnHit(damageAmount, gameObject);
-            
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
         }
     }
 

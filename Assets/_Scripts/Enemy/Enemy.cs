@@ -131,6 +131,7 @@ namespace TE
 
         public virtual void Die()
         {
+            hitPoints = 0;
             if (died)
                 return;
 

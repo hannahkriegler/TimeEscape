@@ -23,6 +23,7 @@ public class Cup : Enemy
         enemyAI.canMove = false;
         animator.SetBool("run", false);
         animator.SetTrigger("explode");
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         StartCoroutine(Explode());
         StartCoroutine(Hide());
     }
@@ -68,11 +69,12 @@ public class Cup : Enemy
         explodeAnimation.SetActive(true);
         yield return new WaitForSeconds(.2f);
         explodeAnimation.gameObject.GetComponent<CircleCollider2D>().enabled = true;
-        yield return new WaitForSeconds(.4f);
         
-        Debug.Log("here");
+        Die();
+    }
+
+    public override void OnHit(int damage, GameObject attacker, bool knockBack)
+    {
         
-        
-        gameObject.SetActive(false);
     }
 }
