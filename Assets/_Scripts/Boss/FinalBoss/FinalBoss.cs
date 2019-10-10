@@ -112,6 +112,7 @@ namespace TE
         {
             activated = true;
             _game.bossHealthBar.Activate(Healthbar.BossType.PROKRASTINATION);
+            SoundManager.instance.PlayBossAmbient();
         }
 
         public void DeactivateBoss()

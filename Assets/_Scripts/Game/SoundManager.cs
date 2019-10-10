@@ -8,7 +8,9 @@ namespace TE
     public class SoundManager : MonoBehaviour
     {
         [Header("Ambient")]
-        public AudioClip musicClip;
+        public AudioClip level1Ambient;
+        public AudioClip level2Ambient;
+        public AudioClip bossAmbient;
 
         [Header("Combat")]
         public AudioClip slash;
@@ -59,13 +61,34 @@ namespace TE
 
         void StartAudio()
         {
-            musicSource.clip = musicClip;
+            musicSource.clip = level1Ambient;
             musicSource.loop = true;
             musicSource.Play();
         }
         private void Update()
         {
             musicSource.pitch = Game.instance.CalculateAmbientPitch();
+        }
+
+        public void PlayLevel1Ambient()
+        {
+            musicSource.clip = level1Ambient;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
+
+        public void PlayLevel2Ambient()
+        {
+            musicSource.clip = level2Ambient;
+            musicSource.loop = true;
+            musicSource.Play();
+        }
+
+        public void PlayBossAmbient()
+        {
+            musicSource.clip = bossAmbient;
+            musicSource.loop = true;
+            musicSource.Play();
         }
 
         public void PlayHit()

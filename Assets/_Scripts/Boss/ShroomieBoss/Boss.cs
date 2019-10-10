@@ -44,6 +44,7 @@ public class Boss : Enemy
                 activated = true;
                 Game.instance.bossHealthBar.Activate(Healthbar.BossType.SHROOMIE);
                 maxHealth = hitPoints;
+                SoundManager.instance.PlayBossAmbient();
             }
                 
             else return;
@@ -90,8 +91,6 @@ public class Boss : Enemy
                 }
             }
         }
-
-
     }
 
     private void CheckDistance()
@@ -172,6 +171,7 @@ public class Boss : Enemy
         //Game.instance.session.UnlockTimeSkills();
         
         bossSteps.SetActive(true);
+        SoundManager.instance.PlayLevel2Ambient();
     }
 
     protected IEnumerator WaitToDie(float timeToWait)

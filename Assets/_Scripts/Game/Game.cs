@@ -107,7 +107,13 @@ namespace TE
         }
 
 
-
+        void StopVideo()
+        {
+            videoPlayer.Stop();
+            Time.timeScale = 1;
+            videoPlaying = false;
+            ui.SetActive(true);
+        }
 
         private void Update()
         {
@@ -115,10 +121,7 @@ namespace TE
             {
                 if (videoPlayer.isPrepared && !videoPlayer.isPlaying)
                 {
-                    videoPlayer.Stop();
-                    Time.timeScale = 1;
-                    videoPlaying = false;
-                    ui.SetActive(true);
+                    StopVideo();
                 }
             }
 
@@ -256,6 +259,12 @@ namespace TE
 
         public void PausePressed()
         {
+            if (videoPlaying)
+            {
+                StopVideo();
+                return;
+            }
+
             if (textBoxOpen)
                 return;
 
@@ -270,7 +279,7 @@ namespace TE
         }
 
         public void NextButtonPressed()
-        {
+        {        
             if (!textBoxOpen)
                 return;
 
