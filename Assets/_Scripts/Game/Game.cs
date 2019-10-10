@@ -48,6 +48,7 @@ namespace TE
         public GameObject systemMessage;
         public GameObject dashIcon;
         public GameObject jumpIcon;
+        public GameObject fireBallIcon;
         public GameObject wonPanel;
         public TextMeshProUGUI timeleftText;
 

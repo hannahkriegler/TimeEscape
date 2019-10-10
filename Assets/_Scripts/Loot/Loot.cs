@@ -86,6 +86,9 @@ namespace TE
                 case LootTypes.MovementSkills:
                     CustomBehavior();
                     break;
+                case LootTypes.ActiveSkills:
+                    CustomBehavior();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }

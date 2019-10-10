@@ -52,7 +52,7 @@ namespace TE
 
         public void UnlockFireball()
         {
-            //TODO Text
+            _game.fireBallIcon.SetActive(true);
             fireBall = true;
         }
 
