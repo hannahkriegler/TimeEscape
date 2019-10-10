@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   routes:
   - {fileID: 7567030494127598173}
-  damageAmount: 3
+  damageAmount: 15
 --- !u!50 &7567030493801181822
 Rigidbody2D:
   serializedVersion: 4

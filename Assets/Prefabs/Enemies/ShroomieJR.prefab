@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a720915a4e3e4704f87fbc9f88d9c079, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
+  damageAmount: 5
   hitPoints: 1
   hasLootDrop: 0
   lootTypes: 0
@@ -155,9 +155,9 @@ MonoBehaviour:
   knockbackLength: 1
   spitProjectile: {fileID: 0}
   spitStart: {fileID: 0}
+  bossSteps: {fileID: 0}
   isInAttackRange: 0
-  bossInfo: {fileID: 0}
-  healthbar: {fileID: 0}
+  setUp: 0
 --- !u!70 &1400434447554934443
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
