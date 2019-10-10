@@ -6,14 +6,27 @@ using TMPro;
 
 public class Healthbar : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
     public Image fillBar;
+    public GameObject finalBossImage;
+    public GameObject shroomieImage;
 
     float nextFill;
 
-    public void Activate(string bossName)
+    public void Activate(BossType boss)
     {
-        nameText.text = bossName;
+        switch (boss)
+        {
+            case BossType.SHROOMIE:
+                finalBossImage.SetActive(false);
+                shroomieImage.SetActive(true);
+                break;
+            case BossType.PROKRASTINATION:
+                finalBossImage.SetActive(true);
+                shroomieImage.SetActive(false);
+                break;
+            default:
+                break;
+        }
         gameObject.SetActive(true);
         fillBar.fillAmount = 1;
         nextFill = 1;
@@ -33,5 +46,10 @@ public class Healthbar : MonoBehaviour
     public void UpdateBar(int curHealth, int maxHealth)
     {
         nextFill = (float) curHealth / maxHealth;
+    }
+
+    public enum BossType
+    {
+        SHROOMIE, PROKRASTINATION
     }
 }

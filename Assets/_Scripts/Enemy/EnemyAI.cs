@@ -137,6 +137,10 @@ namespace TE
 
         public bool IsInFollowDistance()
         {
+            if (path == null)
+            {
+                return false;
+            }
             float enemyDistance = path.GetTotalLength();
             if (enemyDistance > maxEnemyDistance)
             {
