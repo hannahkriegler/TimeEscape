@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1143893415011207286, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
       propertyPath: m_Name
-      value: Cup_White
+      value: Cup_White Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1143893415011207286, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
