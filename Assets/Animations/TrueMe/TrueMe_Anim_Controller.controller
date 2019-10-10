@@ -29,7 +29,7 @@ AnimatorStateMachine:
     m_Position: {x: 660, y: 170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2331716679079824932}
-    m_Position: {x: 670, y: 90, z: 0}
+    m_Position: {x: 680, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6535847121588068108}
     m_Position: {x: 540, y: 0, z: 0}
@@ -133,7 +133,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Cast
+  m_Name: Cast_Time
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -147,7 +147,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2c8388d468302734489b8cdebe7beef3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 9554955fb789dca47b69d67223690117, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -634,7 +634,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dizzy
+  m_Name: Cast
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -648,7 +648,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c5375546e9df78d43bb0059158b7ae89, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2c8388d468302734489b8cdebe7beef3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

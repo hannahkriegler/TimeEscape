@@ -38,7 +38,6 @@ namespace TE
             timeStampSpawn.transform.position = _player.transform.position;
 
             _game.timeStorage.CreateTimeStamp(_player);
-            _player.animator.CrossFade("Cast", 0.2f);
             SoundManager.instance.PlayPortal();
             Debug.Log("Timestamp placed!");
         }
@@ -57,7 +56,6 @@ namespace TE
             firstTimeTravel = true;
             _game.SetTimeShardCounter(0);
             _game.timeStorage.LoadTimeStamp(_player);
-            _player.animator.CrossFade("Dizzy", 0.2f);
             SoundManager.instance.PlayTimeTravel();
             Debug.Log("Time traveled");
         }

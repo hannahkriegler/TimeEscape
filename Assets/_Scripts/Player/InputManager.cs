@@ -34,6 +34,9 @@ namespace TE
         bool didTimeTravel;
         const float longPressDuration = 0.8f;
 
+        bool timeStampAnimActive;
+        bool timeTravelAnimActive;
+
         public void Init(Game game)
         {
             this.game = game;
@@ -101,6 +104,12 @@ namespace TE
             {
                 if (!didPlaceTimeStamp)
                 {
+                    if (!timeStampAnimActive)
+                    {
+                        player.animator.Play("Cast_Time");
+                        timeStampAnimActive = true;
+                    }
+
                     player.buttomPrompt.Init(ButtonType.B);
                     timeStampTimer += Time.deltaTime;
                     player.buttomPrompt.SetFillAmount(timeStampTimer / longPressDuration);
@@ -108,6 +117,7 @@ namespace TE
                     {
                         didPlaceTimeStamp = true;
                         timeStamp = true;
+                        timeStampAnimActive = false;
                         player.buttomPrompt.Disable();
                     }
                 }
@@ -115,6 +125,11 @@ namespace TE
             else
             {
                 didPlaceTimeStamp = false;
+                if (timeStampAnimActive)
+                {
+                    player.animator.Play("Default");
+                    timeStampAnimActive = false;
+                }
                 timeStampTimer = 0;
             }
 
@@ -126,6 +141,12 @@ namespace TE
             {
                 if (!didTimeTravel)
                 {
+                    if (!timeTravelAnimActive)
+                    {
+                        player.animator.Play("Cast_Time");
+                        timeTravelAnimActive = true;
+                    }
+
                     player.buttomPrompt.Init(ButtonType.Y);
                     timeTravelTimer += Time.deltaTime;
                     player.buttomPrompt.SetFillAmount(timeTravelTimer / longPressDuration);
@@ -140,6 +161,11 @@ namespace TE
             else
             {
                 didTimeTravel = false;
+                if (timeTravelAnimActive)
+                {
+                    player.animator.Play("Default");
+                    timeTravelAnimActive = false;
+                }
                 timeTravelTimer = 0;
              
             }

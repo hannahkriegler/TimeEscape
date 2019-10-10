@@ -305,10 +305,11 @@ namespace TE
 
         public float CalculateAmbientPitch()
         {
-            if (timeLeft > startTime * 0.9f)
-                return 1;
-
-            return 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
+            float res = 1;
+            if (timeLeft <= startTime * 0.9f)
+                res = 1 + (startTime * 0.9f - timeLeft) / (startTime * 0.8f);
+            res *= worldTimeScale;
+            return res;
         }
 
         public void Won()
