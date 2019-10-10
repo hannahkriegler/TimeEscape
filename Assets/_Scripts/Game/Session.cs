@@ -46,7 +46,7 @@ namespace TE
         {
             //TODO Permanent unlock
             timeSkills = true;
-            
+            _game.rewindIcon.SetActive(true);
         }
 
         public void UnlockFireball()

@@ -54,6 +54,7 @@ namespace TE
         public GameObject dashIcon;
         public GameObject jumpIcon;
         public GameObject fireBallIcon;
+        public GameObject rewindIcon;
         public GameObject wonPanel;
         public TextMeshProUGUI timeleftText;
         public GameObject ui;
