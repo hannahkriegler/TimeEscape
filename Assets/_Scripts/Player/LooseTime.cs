@@ -12,6 +12,9 @@ namespace TE
 
         public void TimeChange(int time)
         {
+            if (time == 0)
+                return;
+
             gameObject.SetActive(true);
             transform.localPosition = startPos;
             string content = time.ToString(); 
