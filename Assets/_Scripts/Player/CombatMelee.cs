@@ -17,18 +17,20 @@ namespace TE
         {
             if (!_player.canAttack)
                 return false;
+
+            if (!_player.hasSword)
+                return false;
        
             if(_player.Movement.grounded)
               _player.animator.Play("Attack");
             else
                 _player.animator.Play("Jump_Attack");
-            _player.sword.AllowHit(true);
             _player.canAttack = false;
             SoundManager.instance.PlaySlash();
             return true;
         }
 
-        public void AllowAttacking()
+        public void ResetAttackState()
         {
             _player.canAttack = true;
             _player.sword.AllowHit(false);

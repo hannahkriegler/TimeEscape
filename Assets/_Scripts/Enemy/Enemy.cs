@@ -129,7 +129,7 @@ namespace TE
             enemyAi.canMove = enemyAi.IsInFollowDistance();
         }
 
-        protected virtual void Die()
+        public virtual void Die()
         {
             if (died)
                 return;
@@ -269,7 +269,8 @@ namespace TE
                 yield return new WaitForEndOfFrame();
             }
             gameObject.SetActive(false);
-            assignedRoom.NotifyEnemyDied(this);
+            if(assignedRoom != null)
+             assignedRoom.NotifyEnemyDied(this);
             if (hasLootDrop) DropLoot();
         }
 

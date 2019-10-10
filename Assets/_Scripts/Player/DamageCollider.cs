@@ -9,21 +9,38 @@ namespace TE
     {
         public Collider2D col;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        public bool isBossCollider;
+
+        public LayerMask layerMask;
+
+        bool canHit;
+
+        private void Update()
+        {
+            if (canHit)
+            {
+                Collider2D[] hits = Physics2D.OverlapAreaAll(col.bounds.min, col.bounds.max, layerMask);
+                foreach (Collider2D hit in hits)
+                {
+                    Damage(hit);
+                }
+            }
+        }
+
+        void Damage(Collider2D other)
         {
             IHit hit = other.GetComponent<IHit>();
             if (hit != null)
             {
-                hit.OnHit(this.GetComponentInParent<Player>().damageModifier, other.gameObject);
+                int damage = isBossCollider ? GetComponentInParent<FinalBoss>().attackDamage : GetComponentInParent<Player>().damageModifier;
+                hit.OnHit(damage, transform.parent.gameObject);
                 AllowHit(false);
             }
         }
 
         public void AllowHit(bool canHit)
         {
-            col.enabled = canHit;
-        }
-        
-        
+            this.canHit = canHit;
+        }   
     }
 }
