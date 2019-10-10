@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
-  hitPoints: 3
+  hitPoints: 2
   hasLootDrop: 1
   lootTypes: 0
   player: {fileID: 0}

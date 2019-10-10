@@ -38,6 +38,9 @@ namespace TE
         public bool unlockFireBall;
         public bool skipTutorials;
 
+        [Header("Configs")]
+        public bool AllowMoreThan4TimeShards = true;
+
         [Header("Data")] public Room[] allRooms;
         public GameObject timeStampPrefab;
 
@@ -171,7 +174,7 @@ namespace TE
 
         public bool AddTimeShard()
         {
-            if (timeShardCounter < 4)
+            if (timeShardCounter < 4 || AllowMoreThan4TimeShards)
             {
                 timeShardCounter++;
                 return true;
@@ -185,9 +188,16 @@ namespace TE
             timeShardCounter = count;
         }
 
+        public void ReduceTimeShardCounter(int count)
+        {
+            timeShardCounter -= count;
+            if (timeShardCounter < 0)
+                timeShardCounter = 0;
+        }
+
         public bool CanTimeTravel()
         {
-            return timeShardCounter == 4 || unlimitedTimeTravel;
+            return timeShardCounter >= 4 || unlimitedTimeTravel;
         }
 
 

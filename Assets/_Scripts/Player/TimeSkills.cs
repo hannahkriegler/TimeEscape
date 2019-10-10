@@ -54,7 +54,7 @@ namespace TE
                 return;
 
             firstTimeTravel = true;
-            _game.SetTimeShardCounter(0);
+            _game.ReduceTimeShardCounter(4);
             _game.timeStorage.LoadTimeStamp(_player);
             SoundManager.instance.PlayTimeTravel();
             Debug.Log("Time traveled");

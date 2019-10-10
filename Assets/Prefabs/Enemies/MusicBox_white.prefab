@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5696be5e4423a498058bac46cd65ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 10
-  hitPoints: 1
+  damageAmount: 15
+  hitPoints: 3
   hasLootDrop: 0
   lootTypes: 0
   player: {fileID: 0}

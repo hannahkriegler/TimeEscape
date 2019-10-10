@@ -68,7 +68,7 @@ namespace TE
                     break;
                 case LootTypes.Zeitsplitter:
                     Debug.Log("Picked Up Zeitsplitter");
-                    if (Game.instance.timeShardCounter >= 4)
+                    if (Game.instance.timeShardCounter >= 4 && !Game.instance.AllowMoreThan4TimeShards)
                     {
                         doHide = false;
                         if (!messageShown)

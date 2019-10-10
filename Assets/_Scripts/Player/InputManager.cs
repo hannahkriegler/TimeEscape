@@ -112,7 +112,7 @@ namespace TE
 
                     player.buttomPrompt.Init(ButtonType.B);
                     timeStampTimer += Time.deltaTime;
-                    player.buttomPrompt.SetFillAmount(timeStampTimer / longPressDuration);
+                    player.buttomPrompt.SetFillAmount(timeStampTimer / longPressDuration, !game.CanTimeTravel());
                     if (timeStampTimer > longPressDuration)
                     {
                         didPlaceTimeStamp = true;

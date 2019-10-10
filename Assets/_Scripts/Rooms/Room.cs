@@ -100,7 +100,8 @@ namespace TE
                 if (door != null)
                     door.HandleTimeTravel();
             }
-            finalBoss.GetComponent<FinalBoss>()?.HandleTimeTravel();
+            if (finalBoss != null)
+                finalBoss.GetComponent<FinalBoss>()?.HandleTimeTravel();
             doorsDown = saveDoorsDown;
         }
 
@@ -122,7 +123,8 @@ namespace TE
                     door.HandleTimeStamp();
             }
             
-            finalBoss.GetComponent<FinalBoss>()?.HandleTimeStamp();
+            if(finalBoss != null)
+                finalBoss.GetComponent<FinalBoss>()?.HandleTimeStamp();
             saveDoorsDown = doorsDown;
         }
 

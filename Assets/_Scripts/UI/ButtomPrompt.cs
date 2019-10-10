@@ -33,9 +33,12 @@ namespace TE
             }
         }
 
-        public void SetFillAmount(float fill)
+        public void SetFillAmount(float fill, bool changeColor = false)
         {
-            circleImage.color = baseColor;
+            if (changeColor)
+                circleImage.color = Color.red;
+            else
+              circleImage.color = baseColor;
             circleImage.fillAmount = fill;
         }
 
