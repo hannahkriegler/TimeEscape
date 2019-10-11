@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 372650396429658200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.1}
   m_Children:
   - {fileID: 8004456991655193323}
   - {fileID: 4036158991605581866}
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5696be5e4423a498058bac46cd65ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 15
-  hitPoints: 3
+  damageAmount: 10
+  hitPoints: 2
   hasLootDrop: 0
   lootTypes: 0
   player: {fileID: 0}
