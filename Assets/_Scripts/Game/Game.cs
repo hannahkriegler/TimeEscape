@@ -58,6 +58,7 @@ namespace TE
         public GameObject wonPanel;
         public TextMeshProUGUI timeleftText;
         public GameObject ui;
+        public Crazy crazy;
 
         [Header("Video")]
         public VideoPlayer videoPlayer;

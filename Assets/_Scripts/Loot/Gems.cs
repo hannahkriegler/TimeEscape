@@ -16,10 +16,11 @@ namespace TE
             LessTimeMagicCosts, // reduces time magic costs
             IncreasePlayerSpeed, // Player moves slightly faster
             IncreasePlayerJump, // Player can jum slightly higher
-            ReduceDamage, // Player loses less time if he gets hit from enemy
+            IncreaseDamage, // Player loses less time if he gets hit from enemy
             CrazyGem, // Doubles Damage, Doubles countdown speed
             DamageDash, // Dash makes damage
-            FasterSword // Sword is faster
+            FasterSword, // Sword is faster
+            ReduceDamage //Less damage from enemies
         }
 
 
@@ -49,12 +50,17 @@ namespace TE
                     info = "Höheres Springen!";
                     break;
                 case GemTypes.ReduceDamage:
-                    Game.instance.player.takenDamageModifier *= 1.125f;
+                    Game.instance.player.takenDamageModifier *= 0.8f;
+                    info = "Weniger Schaden von Gegner!";
+                    break;
+                case GemTypes.IncreaseDamage:
+                    Game.instance.player.damageModifier *= 2;
                     info = "Mehr Schaden gegen Gegner, YEAH!";
                     break;
                 case GemTypes.CrazyGem:
                     Game.instance.player.damageModifier *= 2;
                     Game.instance.worldTimeScale *= 2f;
+                    Game.instance.crazy.EnableCrazy();
                     info = "WTF IS HAPPENING?!";
                     break;
                 case GemTypes.DamageDash:
@@ -63,9 +69,8 @@ namespace TE
                     info = "Error 404, Gem Not Found!";
                     break;
                 case GemTypes.FasterSword:
-                    // TODO 
-                    Debug.Log("Hannah needs to Implement this gem!");
-                    info = "Keine Funktion, Lame!";
+                    info = "Du kannst jetzt schneller Gegner zerschnetzeln!";
+                    Game.instance.player.attackSpeed = 2.0f;
                     break;
             }
             

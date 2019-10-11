@@ -58,7 +58,8 @@ namespace TE
         public float skillCostModifier = 1;
         [HideInInspector]
         public float enemyKnockBackMultiplier = 1;
-
+        [HideInInspector]
+        public float attackSpeed = 1.5f;
         [HideInInspector]
         public bool dead;
 
@@ -91,6 +92,7 @@ namespace TE
             fixedDelta = Time.fixedDeltaTime * _game.playerTimeScale;
           
             animator.SetBool("hasSword", hasSword);
+            animator.SetFloat("attackSpeed", attackSpeed);
         }
 
         private void LateUpdate()

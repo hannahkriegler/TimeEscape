@@ -7,17 +7,31 @@ namespace TE
 {
     public class Crazy : MonoBehaviour
     {
-        public Tilemap tilemap;
+        public Tilemap[] tilemaps;
 
         float timer = 0;
 
+        bool crazyModeOn = false;
+
+
+        public void EnableCrazy()
+        {
+            crazyModeOn = true;
+        }
+
         private void Update()
         {
+            if (!crazyModeOn)
+                return;
+            
             timer += Time.deltaTime;
             if (timer > 0.2f)
             {
                 timer = 0;
-                tilemap.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+                foreach (Tilemap tilemap in tilemaps)
+                {
+                    tilemap.color = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+                }               
             }
         }
     }
