@@ -20,12 +20,12 @@ PrefabInstance:
     - target: {fileID: 1143893415011207276, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1143893415011207276, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.156
+      value: -3.9329815
       objectReference: {fileID: 0}
     - target: {fileID: 1143893415011207276, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
@@ -71,21 +71,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143893415011207283, guid: 631f6a106e7b73c4bbea6f22cf740f86,
-        type: 3}
-      propertyPath: damageAmount
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143893415011207282, guid: 631f6a106e7b73c4bbea6f22cf740f86,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1143893415011207282, guid: 631f6a106e7b73c4bbea6f22cf740f86,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1143893415337330927, guid: 631f6a106e7b73c4bbea6f22cf740f86,
         type: 3}
@@ -137,6 +122,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143893415011207277, guid: 631f6a106e7b73c4bbea6f22cf740f86,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.007932663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143893415011207277, guid: 631f6a106e7b73c4bbea6f22cf740f86,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.063913345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143893415011207277, guid: 631f6a106e7b73c4bbea6f22cf740f86,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.53899765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143893415011207277, guid: 631f6a106e7b73c4bbea6f22cf740f86,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.98903465
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 631f6a106e7b73c4bbea6f22cf740f86, type: 3}

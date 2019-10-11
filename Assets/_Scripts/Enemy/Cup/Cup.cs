@@ -76,6 +76,11 @@ public class Cup : Enemy
 
     public override void OnHit(int damage, GameObject attacker, bool knockBack)
     {
-        
+        enemyAI.canMove = false;
+        animator.SetBool("run", false);
+        animator.SetTrigger("explode");
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        StartCoroutine(Explode());
+        StartCoroutine(Hide());
     }
 }

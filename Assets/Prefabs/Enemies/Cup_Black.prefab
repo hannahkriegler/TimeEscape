@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1143893415011207280}
   - component: {fileID: 1143893415011207287}
   - component: {fileID: 1143893415011207277}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cup_Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,8 +155,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01037693, y: 0.005253434}
-  m_Size: {x: 0.45589638, y: 0.87171483}
+  m_Offset: {x: 0.0030441284, y: 0.041915894}
+  m_Size: {x: 0.53899384, y: 0.94503975}
   m_Direction: 0
 --- !u!1 &1143893415337330927
 GameObject:
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 1143893415337330920}
   - component: {fileID: 1143893415337330922}
   - component: {fileID: 1143893415337330921}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: b_cup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,9 +294,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143893415011207276}
     m_Modifications:
+    - target: {fileID: 120280, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 120280, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 139366, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 426390, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -350,9 +362,21 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 120280, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 162364, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 104186, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 192790, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 113464, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b185c1a9cf067374586d095111b15bd1, type: 3}
