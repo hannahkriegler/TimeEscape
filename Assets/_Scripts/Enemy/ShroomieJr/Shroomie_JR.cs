@@ -47,7 +47,7 @@ public class Shroomie_JR : Boss
 
         
         //Flash
-        currentFlashEffectTimer = flashEffectLength;
+        CurrentFlashEffectTimer = flashEffectLength;
         StartCoroutine(FlashEffect());
     }
 

@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace TE
 {
+    /// <summary>
+    /// The main class for the loot management
+    /// There are different Types of loot which all inherit from this class
+    /// </summary>
     public class Loot : MonoBehaviour, ITimeTravel
     {
+        
         public enum LootTypes
         {
             Time,
@@ -27,14 +33,14 @@ namespace TE
 
         public SpawnTypes spawnType = SpawnTypes.ReSpawn;
 
-        bool savePickedUp;
+        private bool _savePickedUp;
 
-        bool visible;
+        private bool _visible;
 
-        SpriteRenderer[] sprites;
-        Collider2D col;
+        private SpriteRenderer[] sprites;
+        private Collider2D col;
 
-        bool messageShown;
+        private bool _messageShown;
 
         public Room assignedRoom { get; private set; }
 
@@ -43,7 +49,7 @@ namespace TE
             sprites = GetComponentsInChildren<SpriteRenderer>();
             col = GetComponent<Collider2D>();
             assignedRoom = GetComponentInParent<Room>();
-            visible = true;
+            _visible = true;
             if (assignedRoom != null)
                 assignedRoom.AddLootToRoom(this);
         }
@@ -57,7 +63,7 @@ namespace TE
         }
 
 
-        public virtual void PickUpLoot()
+        protected virtual void PickUpLoot()
         {
             bool doHide = true;
             switch (lootType)
@@ -71,9 +77,9 @@ namespace TE
                     if (Game.instance.timeShardCounter >= 4 && !Game.instance.AllowMoreThan4TimeShards)
                     {
                         doHide = false;
-                        if (!messageShown)
+                        if (!_messageShown)
                         {
-                            messageShown = true;
+                            _messageShown = true;
                             Game.instance.ShowTextBox("Du hast bereits 4 Zeitsplitter");
                         }
                     }
@@ -92,16 +98,15 @@ namespace TE
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            if (doHide)
-            {
-                SoundManager.instance.PlayPickup();
-                Show(false);
-            }
+
+            if (!doHide) return;
+            SoundManager.instance.PlayPickup();
+            Show(false);
         }
 
         public void HandleTimeStamp()
         {
-            savePickedUp = !visible;
+            _savePickedUp = !_visible;
         }
 
         public void HandleTimeTravel()
@@ -109,29 +114,27 @@ namespace TE
             switch (spawnType)
             {
                 case SpawnTypes.ReSpawn:
-                    Show(!savePickedUp);
+                    Show(!_savePickedUp);
                     break;
                 case SpawnTypes.NoRespawn:
-                    break;
-                default:
                     break;
             }
         }
 
-        public virtual void CustomBehavior()
+        protected virtual void CustomBehavior()
         {
             Debug.Log("Picked Up Gem");
         }
 
 
-        protected void Show(bool b)
+        private void Show(bool b)
         {
             col.enabled = b;
             foreach (SpriteRenderer rend in sprites)
             {
                 rend.enabled = b;
             }
-            visible = b;
+            _visible = b;
         }
     }
 }

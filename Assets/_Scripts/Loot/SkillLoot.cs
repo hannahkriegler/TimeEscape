@@ -24,7 +24,7 @@ namespace TE
         public SkillType skillType;
         public string info;
 
-        public override void CustomBehavior()
+        protected override void CustomBehavior()
         {
             Debug.Log("Picked up a " + skillType + "!");
             Session session = Game.instance.session;

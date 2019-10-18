@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Route draws the path the shroomie spit will take, it is just for debugging
+/// </summary>
 public class Route : MonoBehaviour
 {
     [SerializeField] private Transform[] controlPoints;
@@ -16,7 +19,9 @@ public class Route : MonoBehaviour
 
     private Vector2 gizmosPosition;
 
-
+/// <summary>
+/// Just to see the path for debugging issues
+/// </summary>
     private void OnDrawGizmos()
     {
         for (float t = 0; t <= 1; t += 0.05f)
@@ -46,6 +51,6 @@ public class Route : MonoBehaviour
         randomHeight = Random.Range(middle.position.y - 0.2f, middle.position.y + 0.8f);
         var position = new Vector2(middlePos.x, randomHeight);
         controlPoints[1].transform.position = position;
-        controlPoints[2].transform.position = position; //new Vector2(c, controlPoints[2].transform.position.y);
+        controlPoints[2].transform.position = position; 
     }
 }

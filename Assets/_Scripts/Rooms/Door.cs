@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// The door has two states, up or down. The height of each position needs to be set in the editor due to different corridor heights.
+    /// </summary>
     public class Door : MonoBehaviour, ITimeTravel
     {
         public Vector2 down;
@@ -12,9 +15,9 @@ namespace TE
 
         [HideInInspector]
         public bool isDown = false;
-        
 
-        bool savedDown;
+        private bool _savedDown;
+        
         // Start is called before the first frame update
         void Start()
         {
@@ -52,12 +55,12 @@ namespace TE
 
         public void HandleTimeStamp()
         {
-            savedDown = isDown;
+            _savedDown = isDown;
         }
 
         public void HandleTimeTravel()
         {
-            MoveDoor(savedDown);
+            MoveDoor(_savedDown);
         }
     }
 }

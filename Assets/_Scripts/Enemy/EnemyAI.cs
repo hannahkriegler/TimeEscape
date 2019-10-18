@@ -149,14 +149,7 @@ namespace TE
 
             return true;
         }
-
-        public void AttackModus(bool modusOn)
-        {
-            if (modusOn)
-            {
-                
-            }
-        }
+        
         
     }
 }

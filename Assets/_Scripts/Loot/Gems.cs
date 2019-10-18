@@ -27,7 +27,7 @@ namespace TE
         public GemTypes gemType;
         public string info;
 
-        public override void CustomBehavior()
+        protected override void CustomBehavior()
         {
             Debug.Log("Picked up a " + gemType + "!");
             switch (gemType)
@@ -37,7 +37,6 @@ namespace TE
                     info = "Bonus Zeit beim Schlag auf einem Gegner";
                     break;
                 case GemTypes.LessSkillCosts:
-                    // TODO Where are skill costs?
                     info = "Skills kosten weniger!";
                     Game.instance.player.skillCostModifier *= 0.8f;
                     break;
@@ -64,7 +63,6 @@ namespace TE
                     info = "WTF IS HAPPENING?!";
                     break;
                 case GemTypes.DamageDash:
-                    // TODO Where to implement this?
                     Debug.Log("Hannah needs to Implement this gem!");
                     info = "Error 404, Gem Not Found!";
                     break;

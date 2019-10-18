@@ -8,20 +8,23 @@ using Debug = UnityEngine.Debug;
 
 namespace TE
 {
+    /// <summary>
+    /// Core class for the enemies
+    /// </summary>
     public abstract class Enemy : MonoBehaviour, IHit, ITimeTravel
     {
-
+        // public variables that are set in the unity editor for each enemy
         public int damageAmount = 10;
         public int hitPoints = 3;
         public bool hasLootDrop = false;
         public Loot.LootTypes lootTypes;
 
+        
         [HideInInspector]
         public Player player;
+        private SpriteRenderer[] all_Sprites;
 
-        SpriteRenderer[] all_Sprites;
-
-        // Knockbacks
+        // Knockback informations
         protected float currentKnockbackLength = 0f;
         public float knockbackLength = 1;
         protected float attackKnockback = 3f;
@@ -39,10 +42,11 @@ namespace TE
         public Collider2D[] colliders { get; protected set; }
 
         bool died;
+        
         private void Awake()
         {
             assignedRoom = GetComponentInParent<Room>();
-            if (colliders == null)
+            if (colliders == null) 
                 colliders = GetComponents<Collider2D>();
             if (rb == null)
                 rb = GetComponent<Rigidbody2D>();
@@ -92,6 +96,9 @@ namespace TE
         }
 
 
+        /// <summary>
+        /// Tick represents the update method for all enemies 
+        /// </summary>
         protected virtual void Tick()
         {
 
@@ -113,6 +120,9 @@ namespace TE
             }
         }
 
+        /// <summary>
+        /// Not all enemies have an attack animation, so it is separated from attack
+        /// </summary>
         protected virtual void AttackAnim(bool b)
         {
             if (gameObject.GetComponent<Animator>() != null)

@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using TE;
 using UnityEngine;
-
+/// <summary>
+/// A room barrier consist of two parts, the right and the left part.
+/// It inherits from the enemy class, but has no die functionality
+/// The pars will move to their close positions, which can be manually set in the editor, depending on the corridor distance
+/// </summary>
 public class RoomBarriers : Enemy
 {
 
@@ -30,7 +34,6 @@ public class RoomBarriers : Enemy
 
     protected override void Tick()
     {
-        //Debug.Log(currentTimeBetweenShots);
         if (currentTimeBetweenShots <= 0)
         {
             toClose = !toClose;

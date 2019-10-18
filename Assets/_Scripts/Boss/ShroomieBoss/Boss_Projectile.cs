@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TE;
 using UnityEngine;
-
+/// <summary>
+/// This calculates the path of the shroomie spit. it represents a bezier curve between shroomies mouth, the players position and 1/3 of the distance with a random height
+/// </summary>
 public class Boss_Projectile : MonoBehaviour
 {
     [SerializeField] private Transform[] routes;
@@ -28,12 +30,8 @@ public class Boss_Projectile : MonoBehaviour
         routeToGo = 0;
         tParam = 0f;
         speedModifier = 1f;
-        // = false;
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _collider2D = GetComponent<Collider2D>();
-
-
-
     }
 
     private void OnEnable()
@@ -45,15 +43,7 @@ public class Boss_Projectile : MonoBehaviour
     {
         StopCoroutine(GoByTheRoute(routeToGo));
     }
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (coroutineAllowed)
-        {
-            StartCoroutine(GoByTheRoute(routeToGo));
-        }
-    }*/
+    
 
     private IEnumerator GoByTheRoute(int routeNumber)
     {
@@ -81,7 +71,6 @@ public class Boss_Projectile : MonoBehaviour
 
         tParam = 0f;
 
-        //coroutineAllowed = fa;
     }
     
     private void OnTriggerEnter2D(Collider2D other)

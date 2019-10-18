@@ -6,9 +6,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Boss Class for Shroomie
+/// </summary>
 public class Boss : Enemy
 {
-
     public GameObject spitProjectile;
     public GameObject spitStart;
     public GameObject bossSteps;
@@ -22,28 +24,25 @@ public class Boss : Enemy
     public bool isInAttackRange;
 
     public bool setUp = false;
-    private bool activated = false;
-    private bool isDead = false;
+    
+    private bool _activated = false;
+    private bool _isDead = false;
+    private int _maxHealth;
 
-    private int maxHealth;
-
-    protected override void Setup()
-    {
-        base.Setup();
-    }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Shroomie is build upon a State machine that is controlled via triggers. They can be found in shroomies animator
+    /// </summary>
     protected override void Tick()
     {
-        if(isDead) return;
+        if(_isDead) return;
         
-        if (!activated)
+        if (!_activated)
         {
             if (Vector2.Distance(player.transform.position, transform.position) < 8 && setUp)
             {
-                activated = true;
+                _activated = true;
                 Game.instance.bossHealthBar.Activate(Healthbar.BossType.SHROOMIE);
-                maxHealth = hitPoints;
+                _maxHealth = hitPoints;
                 SoundManager.instance.PlayBossAmbient();
             }
                 
@@ -58,18 +57,18 @@ public class Boss : Enemy
             timeBtwDamage -= Time.deltaTime;
             if (!isInAttackRange)
             {
-                animator.SetTrigger("walk");
+                animator.SetTrigger(Walk);
             }
             else
             {
-                animator.SetTrigger("idle");
+                animator.SetTrigger(Idle);
             }
         }
         else
         {
             if (!isInAttackRange)
             {
-                animator.SetTrigger("walk");
+                animator.SetTrigger(Walk);
             }
             else
             {
@@ -79,12 +78,12 @@ public class Boss : Enemy
                     _rndm = Random.Range(0, 2);
                    if (_rndm == 0)
                    {
-                       animator.SetTrigger("spit");
+                       animator.SetTrigger(Spit);
                        timeBtwDamage = timeToRecoverAfterSpit;
                    }
                    else
                    {
-                       animator.SetTrigger("spawn");
+                       animator.SetTrigger(Spawn);
                        timeBtwDamage = timeToRecoverAfterSpawn;
                        Knockback(10 * 500 * player.enemyKnockBackMultiplier);
                    }
@@ -99,43 +98,36 @@ public class Boss : Enemy
         isInAttackRange = !(distance > 10f);
     }
 
-    protected void CheckRotation()
+    private void CheckRotation()
     {
         var direction = (player.transform.position- transform.position).normalized;
-        if (direction.x > 0) // go right
-        {
-            transform.localRotation = new Quaternion(0, -180,0,0);
-        }
-        else
-        {
-            transform.localRotation = new Quaternion(0, 0,0,0);
-        }
+        transform.localRotation = !(direction.x > 0) ? new Quaternion(0, 0, 0, 0) : new Quaternion(0, -180, 0, 0);
     }
 
 
-    public override void OnHit(int damage, GameObject attacker, bool knockBack = true)
+    public override void OnHit(int damage, GameObject attacker, bool knockBack)
     {
-        if(isDead) return;
+        if(_isDead) return;
         if(currentKnockbackLength>0) return;
-        animator.SetTrigger("hit");
+        animator.SetTrigger(Hit);
         currentKnockbackLength = knockbackLength * Game.instance.worldTimeScale;
         Debug.Log(gameObject.name + " took " + damage + " damage!");
         Knockback(damage * 500 * player.enemyKnockBackMultiplier);
         StartCoroutine(KnockbackCountdown());
         Game.instance.IncreaseTime(Game.instance.timeBonusOnHit);
         hitPoints--;
-        Game.instance.bossHealthBar.UpdateBar(hitPoints, maxHealth);
+        Game.instance.bossHealthBar.UpdateBar(hitPoints, _maxHealth);
         if (hitPoints == 0)
         {
-            animator.SetTrigger("dead");
-            isDead = true;
+            animator.SetTrigger(Dead);
+            _isDead = true;
             return;
         }
 
         animator.SetTrigger("spit");
 
         //Flash
-        currentFlashEffectTimer = flashEffectLength;
+        CurrentFlashEffectTimer = flashEffectLength;
         StartCoroutine(FlashEffect());
     }
 
@@ -144,32 +136,15 @@ public class Boss : Enemy
     {
         if(!other.CompareTag("Player")) return;
         IHit hit = other.GetComponent<IHit>();
-        if (hit != null)
-        {
-            hit.OnHit(damageAmount, gameObject);
-        }
+        hit?.OnHit(damageAmount, gameObject);
     }
     
     
-    /*public virtual void OnTriggerExit2D(Collider2D other)
-    {
-        if(!other.CompareTag("Player")) return;
-        Debug.Log("Player is Not in damage range");
-        isInAttackRange = false;
-    }*/
-
-    
     public override void Die()
     {
-        
-        // TODO: wait for die animation
-        //StartCoroutine(WaitToDie(0.5f));
         if(hasLootDrop) DropLoot();
         Game.instance.bossHealthBar.DeActivate();
         gameObject.SetActive(false);
-        //Unlocks time skills
-        //Game.instance.session.UnlockTimeSkills();
-        
         bossSteps.SetActive(true);
         SoundManager.instance.PlayLevel2Ambient();
     }
@@ -181,15 +156,21 @@ public class Boss : Enemy
     }
 
 
-    protected float currentFlashEffectTimer;
-  
+    protected float CurrentFlashEffectTimer;
+    private static readonly int Walk = Animator.StringToHash("walk");
+    private static readonly int Idle = Animator.StringToHash("idle");
+    private static readonly int Spit = Animator.StringToHash("spit");
+    private static readonly int Spawn = Animator.StringToHash("spawn");
+    private static readonly int Hit = Animator.StringToHash("hit");
+    private static readonly int Dead = Animator.StringToHash("dead");
+
     protected IEnumerator FlashEffect()
     {
-        while (currentFlashEffectTimer > 0)
+        while (CurrentFlashEffectTimer > 0)
         {
-            currentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
+            CurrentFlashEffectTimer -= Time.deltaTime * Game.instance.playerTimeScale;
             //Handle Flash Effect
-            float a = flashEffectLength - currentFlashEffectTimer;
+            float a = flashEffectLength - CurrentFlashEffectTimer;
             float flashStrength = Mathf.Sin(a * Mathf.PI / flashEffectLength) * 0.8f;
             FlashEffect(flashStrength);
             yield return new WaitForEndOfFrame();

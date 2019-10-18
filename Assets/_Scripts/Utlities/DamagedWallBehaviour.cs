@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TE;
 using UnityEngine;
-
+/// <summary>
+/// The damaged wall dissapears if it gets hit by the fireball, else it will shake
+/// </summary>
 public class DamagedWallBehaviour : MonoBehaviour, IHit, ITimeTravel
 {
     public bool shake;
@@ -16,9 +18,6 @@ public class DamagedWallBehaviour : MonoBehaviour, IHit, ITimeTravel
     {
         if (!other.CompareTag("FireBall")) return;
         DestroyWall();
-        return;
-
-
     }
 
     private void DestroyWall()
@@ -43,7 +42,10 @@ public class DamagedWallBehaviour : MonoBehaviour, IHit, ITimeTravel
         }
     }
 
-
+    /// <summary>
+    /// A coroutine to shake all wall parts if the player hits the wall with the sword
+    /// </summary>
+    /// <returns></returns>
     IEnumerator MoveWallPart()
     {
         while (currentTime > 0)
@@ -61,16 +63,12 @@ public class DamagedWallBehaviour : MonoBehaviour, IHit, ITimeTravel
         {
             wall.transform.rotation = Quaternion.Lerp(wall.transform.rotation, new Quaternion(0,0,0,1), 10f );
         }
-
         isShaking = false;
-
-        
     }
 
 
     public void OnHit(int damage, GameObject attacker, bool knockBack = true)
     {
-
         shake = true;
     }
 
