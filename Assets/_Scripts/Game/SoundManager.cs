@@ -5,6 +5,10 @@ using UnityEngine.Audio;
 
 namespace TE
 {
+    /// <summary>
+    /// Handles Game Audio to play the different music tracks. Implements different sound 
+    /// channels for BGM, SFX and other audio layers to regulate volume.
+    /// </summary>
     public class SoundManager : MonoBehaviour
     {
         [Header("Ambient")]

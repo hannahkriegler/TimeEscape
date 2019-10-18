@@ -10,6 +10,11 @@ namespace TE
         public TextMeshProUGUI text;
         public Vector2 startPos;
 
+        /// <summary>
+        /// Spawns a block above the character to show current time changes. When value is negative text is red.
+        /// When positive text is green. Does not show a clock when timechange is 0.
+        /// </summary>
+        /// <param name="time">Current time change</param>
         public void TimeChange(int time)
         {
             if (time == 0)

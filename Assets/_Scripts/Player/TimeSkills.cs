@@ -20,6 +20,9 @@ namespace TE
             _game = game;
         }
 
+        /// <summary>
+        /// Checks whether Player can place time stamps. Than executs the Timestamp operation.
+        /// </summary>
         public void PlaceTimestamp()
         {
             if (!_game.session.canPlaceTimeStamp)
@@ -42,6 +45,9 @@ namespace TE
             Debug.Log("Timestamp placed!");
         }
         
+        /// <summary>
+        /// Checks whether Player can time travel. Than executs the Time Travel operation.
+        /// </summary>
         public void TimeTravel()
         {
             if (!_game.session.canTimeTravel)
@@ -60,6 +66,10 @@ namespace TE
             Debug.Log("Time traveled");
         }
 
+
+        /// <summary>
+        /// Defaul time scales with no time skill active.
+        /// </summary>
         public void NormalTime()
         {
             _game.playerTimeScale = 1;
@@ -67,6 +77,9 @@ namespace TE
             _game.countDownScale = 1;
         }
 
+        /// <summary>
+        /// Timescales for the slow down time skill.
+        /// </summary>
         public void SlowDownTime()
         {
             if (!_game.session.HasTimeSkills())
@@ -77,6 +90,9 @@ namespace TE
             _game.countDownScale = 4.0f;
         }
 
+        /// <summary>
+        /// Timescales for the speed up time skill.
+        /// </summary>
         public void SpeedUpTime()
         {
             if (!_game.session.HasTimeSkills())

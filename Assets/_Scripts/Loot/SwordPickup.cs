@@ -5,6 +5,9 @@ using TMPro;
 
 namespace TE
 {
+    /// <summary>
+    /// When the player runs over the pickup the player can use the sword. After picking up displays a textbox to explain attacking.
+    /// </summary>
     public class SwordPickup : MonoBehaviour
     {
         [TextArea]

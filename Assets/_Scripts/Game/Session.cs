@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// Keeps track of skills the player has unlocked during this run.
+    /// </summary>
     public class Session
     {
         private Game _game;
@@ -44,7 +47,6 @@ namespace TE
 
         public void UnlockTimeSkills()
         {
-            //TODO Permanent unlock
             timeSkills = true;
             _game.rewindIcon.SetActive(true);
         }

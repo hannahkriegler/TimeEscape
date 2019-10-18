@@ -10,13 +10,17 @@ namespace TE
         public Vector3 saved_player_pos;
         bool hasTimeStamp;
         
-        //TODO Room State
 
         public TimeStorage(Game game)
         {
             _game = game;
         }
 
+
+        /// <summary>
+        /// Tells the game that the player placed the timestamp.
+        /// </summary>
+        /// <param name="player">Player who placed the timestamp</param>
         public void CreateTimeStamp(Player player)
         {
             saved_time = Game.instance.timeLeft;
@@ -25,6 +29,10 @@ namespace TE
             hasTimeStamp = true;
         }
 
+        /// <summary>
+        /// Tells the game that the player timetraveled.
+        /// </summary>
+        /// <param name="player">Player who timetraveled </param>
         public void LoadTimeStamp(Player player)
         {
             if (!hasTimeStamp)
@@ -37,8 +45,14 @@ namespace TE
 
     public interface ITimeTravel
     {
+        /// <summary>
+        /// Player has placed a time stamp. Actor should save all current states.
+        /// </summary>
         void HandleTimeStamp();
 
+        /// <summary>
+        /// Loads all saved states of the actor.
+        /// </summary>
         void HandleTimeTravel();
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// Responsible for each Input Command the Player can execute. Updates the Player Class according to the input.
+    /// </summary>
     public class InputManager : MonoBehaviour
     {
         private Game game;
@@ -50,6 +53,9 @@ namespace TE
             UpdatePlayer();
         }
 
+        /// <summary>
+        /// Updates states for all input actions.
+        /// </summary>
         void UpdateInputs()
         {
             movement.x = Input.GetAxis("Horizontal");
@@ -98,6 +104,7 @@ namespace TE
                 didJump = false;
             }
 
+            //Handles Timestamps and the ButtonPrompt above the Character
             bool timeStampPressed = Input.GetButton("TimeStamp");
             timeStamp = false;
             if (timeStampPressed && game.session.canPlaceTimeStamp && player.Movement.grounded)
@@ -133,6 +140,7 @@ namespace TE
                 timeStampTimer = 0;
             }
 
+            //Handles Timetravels and the ButtonPrompt above the Character
             timeTravel = false;
             bool timeTravelPressed = Input.GetButton("TimeTravel");
             bool timeTravelJustPressed = Input.GetButtonDown("TimeTravel");
@@ -170,13 +178,14 @@ namespace TE
              
             }
 
+            //Resets buttom Prompts
             if (timeTravelJustPressed && game.session.canTimeTravel && !game.CanTimeTravel())
                 player.buttomPrompt.ShowTimeTravelDisabled();
 
             if (!timeTravelPressed && !timeStampPressed)
                 player.buttomPrompt.Disable();
 
-
+            //The Controllers Trigger is not a Button its an Axis.
             bool controllerDash = Input.GetAxis("Dash") > 0.5f;
             bool keyDash = Input.GetButtonDown("Dash");
             dash = controllerDash || keyDash;
@@ -211,6 +220,9 @@ namespace TE
             return attackPressed || active_skill || jumpPressed || timeStamp || timeTravel || dash || timeSkill_slow || timeSkill_fast;
         }
 
+        /// <summary>
+        /// Executes functions on the Player class according to the inputs.
+        /// </summary>
         void UpdatePlayer()
         {
             if (player.dead)

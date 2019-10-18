@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace TE
 {
+    /// <summary>
+    /// Skill Drop which unlocks a skill for the player. Display a textbox after pickup.
+    /// </summary>
     public class SkillLoot : Loot
     {
         public enum SkillType

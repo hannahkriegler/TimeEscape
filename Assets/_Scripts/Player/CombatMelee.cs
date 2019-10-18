@@ -13,6 +13,10 @@ namespace TE
             _game = game;
         }
 
+        /// <summary>
+        /// Checks whether the player can attadck and than executes the attack.
+        /// </summary>
+        /// <returns></returns>
         public bool Attack()
         {
             if (!_player.canAttack)
@@ -30,6 +34,9 @@ namespace TE
             return true;
         }
 
+        /// <summary>
+        /// Reset states to allow player to attack again.
+        /// </summary>
         public void ResetAttackState()
         {
             _player.canAttack = true;

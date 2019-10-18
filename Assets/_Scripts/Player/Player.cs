@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// Core class for the Player includes all needed Unity components. Consists of different subsystems which handle Movement, Combat, TimeSkills
+    /// </summary>
     public class Player : MonoBehaviour, IHit
     {
         private Game _game;

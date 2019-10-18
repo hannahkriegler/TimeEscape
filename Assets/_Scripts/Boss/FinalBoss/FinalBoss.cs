@@ -82,6 +82,8 @@ namespace TE
         float moveImpulseCD;
         float fireBallCD;
 
+        //Prevents the boss from being stunlocked by the player. 
+        //After a specified damage amount the boss escapes from the hit animation and executes a counter attack
         float revengeValue;
 
         public void Start()
@@ -108,6 +110,9 @@ namespace TE
             fireBallCD = 2.0f;
         }
 
+        /// <summary>
+        /// Displays healthbar of the boss. Makes the boss having aggro on the player
+        /// </summary>
         public void ActivateBoss()
         {
             activated = true;
@@ -115,6 +120,9 @@ namespace TE
             SoundManager.instance.PlayBossAmbient();
         }
 
+        /// <summary>
+        /// Hides healthbar and stops the boss having aggro on the player
+        /// </summary>
         public void DeactivateBoss()
         {
             activated = false;
@@ -173,6 +181,10 @@ namespace TE
             }
         }
 
+        /// <summary>
+        /// Updates Attacks of the boss. Handles Sword Attack and Fireball. Prevents spamming of skills. 
+        /// Triggers a Movement Action after an attack (with delay)
+        /// </summary>
         void MeleeUpdate()
         {
             float dist = Vector2.Distance(player.transform.position, transform.position);
@@ -202,6 +214,10 @@ namespace TE
             }
         }
 
+        /// <summary>
+        /// Executes an sowrd attack
+        /// </summary>
+        /// <returns></returns>
         bool Attack()
         {
             if (!canAttack)
@@ -220,6 +236,9 @@ namespace TE
             return true;
         }
 
+        /// <summary>
+        /// Plays the fireball animation and prepares boss for fireball
+        /// </summary>
         void CastFireBall()
         {
             if (!canAttack)
@@ -234,6 +253,9 @@ namespace TE
             revengeValue = 0;
         }
 
+        /// <summary>
+        /// Actually spawns the fireball
+        /// </summary>
         public void TriggerFireBall()
         {
             GameObject fb = Instantiate(fireBall);

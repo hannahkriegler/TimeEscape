@@ -19,6 +19,7 @@ namespace TE
         {
             if (canHit)
             {
+                //Physic2D.OverlapArea works better on static objects like music box
                 Collider2D[] hits = Physics2D.OverlapAreaAll(col.bounds.min, col.bounds.max, layerMask);
                 foreach (Collider2D hit in hits)
                 {
@@ -34,6 +35,7 @@ namespace TE
             {
                 int damage = isBossCollider ? GetComponentInParent<FinalBoss>().attackDamage : GetComponentInParent<Player>().damageModifier;
                 hit.OnHit(damage, transform.parent.gameObject);
+                //Only allow to hit one unit during an attack.
                 AllowHit(false);
             }
         }

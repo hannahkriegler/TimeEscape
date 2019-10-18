@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// Passes game states to the shaders paramters
+    /// </summary>
     public class BackgroundHook : MonoBehaviour
     {
         Material mat;
@@ -18,6 +21,7 @@ namespace TE
         {
             float time = Game.instance.startTime - Game.instance.timeLeft;
             //time = Mathf.Clamp(time, 0, Game.instance.startTime);
+            //Lerps timechange for smoother transitions
             curTime = Mathf.Lerp(curTime, time, Time.deltaTime * 5);
             mat.SetFloat("_CurTime", curTime);
         }

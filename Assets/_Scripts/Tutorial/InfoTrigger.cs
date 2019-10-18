@@ -18,6 +18,7 @@ namespace TE
         public bool unlockTimeStamp;
         public bool specialTimeStampBlock;
 
+        [Tooltip("Whether the trigger should stay active after displaying the textbox.")]
         bool waitForTrigger = false;
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -39,6 +40,8 @@ namespace TE
 
                 if(!waitForTrigger)
                  triggerd = true;
+
+                //Unlocks the time skill explained in the tutorial box. 
                 if (unlockTimeTravel)
                     Game.instance.session.UnlockTimeTravel();
                 if (unlockTimeStamp)
@@ -50,12 +53,14 @@ namespace TE
         {
             if (specialTimeStampBlock)
             {
+                //Knockbacks player if he did not place a timestamp
                 if (waitForTrigger && !Game.instance.IsTextBoxOpen())
                 {
                     Game.instance.player.Movement.KnockBack(800, transform);
                     waitForTrigger = false;
                 }
 
+                //Disables knockback when player placed his first timestamp
                 if (Game.instance.player.TimeSkills.firstTimeStamp)
                 {
                     triggerd = true;

@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 namespace TE
 {
+    /// <summary>
+    /// Effect of the crazy gem to change the tilemaps color at random.
+    /// </summary>
     public class Crazy : MonoBehaviour
     {
         public Tilemap[] tilemaps;

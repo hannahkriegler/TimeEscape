@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace TE
 {
+    /// <summary>
+    /// Handles Movement, Jump, Dash, Teleport and OnGround Check
+    /// </summary>
     public class Movement
     {
         private Player _player;
@@ -67,6 +70,7 @@ namespace TE
 
             Rigidbody2D rb = _player.rigidBody;
 
+            //Optimized Jump Behavior for a smoother jump movememnt curve.
             if (!grounded)
             {
                 rb.velocity += Vector2.up * delta * Physics2D.gravity * _player.gravityMultiplier;
@@ -83,6 +87,10 @@ namespace TE
             }
         }
 
+        /// <summary>
+        /// Moves the character according to iput move direction. Additionaly handels movement during dash and jump.
+        /// </summary>
+        /// <param name="direction">Movement Input of the player</param>
         public void Move(Vector2 direction)
         {
             float delta = _player.fixedDelta;
@@ -135,12 +143,15 @@ namespace TE
             rb.velocity = new Vector2(h * _player.moveSpeed * delta * modifier + dashModifier * delta, rb.velocity.y);
         }
 
+        /// <summary>
+        /// Checks if the character and jump and than execute the jump action.
+        /// </summary>
+        /// <returns>Whether the character actually jumped</returns>
         public bool Jump()
         {
             //Short Window for Jump to improve responsiveness
             if (readyToJump < jumpWindow && !jump1)
             {
-                //TODO Trigger Jump Animation
                 _player.rigidBody.velocity = Vector2.up * _player.jumpVelocity;
                 jump1 = true;
                 if(_player.hasSword)
@@ -169,6 +180,9 @@ namespace TE
             return false;
         }
 
+        /// <summary>
+        /// Checks whether can dash and if it holds true prepare character for dash.
+        /// </summary>
         public void Dash()
         {
             if (_game.session.IsDashUnlocked())
@@ -185,6 +199,9 @@ namespace TE
             }
         }
 
+        /// <summary>
+        ///   Flips the character sprite by multiplying local x scale with -1. Additionally Rotates the buttomPrompts to prevent the text being flipped
+        /// </summary>
         void FlipCharacter()
         {
             facingRight = !facingRight;
@@ -201,6 +218,9 @@ namespace TE
             return facingRight? Vector2.right: Vector2.left;
         }
 
+        /// <summary>
+        /// Checks wether the Player is currently on Ground. Updates the state in value grounded.
+        /// </summary>
         void UpdateGrounded()
         {
             grounded = false;
@@ -232,6 +252,10 @@ namespace TE
                 readyToJump += delta;
         }
 
+        /// <summary>
+        /// Teleports during another position without regarding physics. (For Timetravel)
+        /// </summary>
+        /// <param name="teleportPos"></param>
         public void Teleport(Vector2 teleportPos)
         {
             _player.rigidBody.isKinematic = true;
@@ -240,6 +264,11 @@ namespace TE
             _player.rigidBody.isKinematic = false;
         }
 
+        /// <summary>
+        /// Moves the character away from the attacker. Prevents additional movement during knockback.
+        /// </summary>
+        /// <param name="strength">How much distance the player gets knocked back.</param>
+        /// <param name="attacker">Transform to move away from</param>
         public void KnockBack(float strength, Transform attacker)
         {
             knockBack = true;
