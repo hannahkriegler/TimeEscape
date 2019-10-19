@@ -8,3 +8,9 @@ Time Escape ist ein 2D-Sidescroller mit Roguelike Elementen. Der Held TrueMe ist
 Von Philip Hell, Hannah Kriegler, Oliver Braese und Artjom Steiz
 
 TimeEscape wurde im Rahmen des Rapid Game Development Seminars an der UDS erstellt.
+
+Wichtiger Hinweis
+
+Bitte den Bracnh final_version benutzen! (git checkout final_version)
+
+Window -> TextMeshPro -> Import TMP Essential Resources -> Auf Import klicken, um Text Materialien zu laden.
